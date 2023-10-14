@@ -20,7 +20,7 @@ window.addEventListener('keydown', (e) => {
         keyboard.UP = true;
     }
     if (e.keyCode == 32) {
-        keyboard.THROW = true;
+        keyboard.SPACE = true;
     }
     // console.log(e);
 })
@@ -36,6 +36,6 @@ window.addEventListener('keyup', (e) => {
         keyboard.UP = false;
     }
     if (e.keyCode == 32) {
-        keyboard.THROW = false;
+        keyboard.SPACE = false;
     }
 })

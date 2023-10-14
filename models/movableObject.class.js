@@ -1,9 +1,9 @@
 class MovableObject extends DrawableObject {
-    otherDirection = true;
     speedY = 0;
     acceleration = 2;
     energy = 100;
     lastHit = 0;
+    collectedCoins = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -15,11 +15,20 @@ class MovableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        return this.y <= 293;
+        if (this instanceof ThrowableObject) {
+            return true;
+        } else {
+            return this.y <= 293;
+        }
     }
 
+    // this.x und this.width ist der character; mo ist das Colliding-Objekt
     isColliding(mo) {
-        return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height;
+        return (this.x + this.width) >= mo.x
+            && this.x <= (mo.x + mo.width)
+            && (this.y + this.height) >= mo.y
+            && this.x < mo.x // von hinten darf nicht angegriffen werden
+            && this.y <= (mo.y + mo.height);
     }
 
     hit() {

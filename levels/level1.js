@@ -1,14 +1,14 @@
 const level1 = new Level([
-    new ManZombie(),
-    new ManZombie(),
-    new ManZombie(),
-    new WildZombie(),
-    new WildZombie(),
-    new WildZombie(),
-    new WomanZombie(),
-    new WomanZombie(),
-    new WomanZombie(),
-    new Endboss(),
+    // new ManZombie(),
+    // new ManZombie(),
+    // new ManZombie(),
+    // new WildZombie(),
+    // new WildZombie(),
+    // new WildZombie(),
+    // new WomanZombie(),
+    // new WomanZombie(),
+    // new WomanZombie(),
+    // new Endboss(),
 ],
     [
         new FogsSmall(),
@@ -94,5 +94,12 @@ const level1 = new Level([
         //ground
         new BackgroundObjectsBack('img/5_background/layers/Pale/groundBack.png', 719 * 3),
         new BackgroundObjectsBack('img/5_background/layers/Pale/cracks1.png', 719 * 3),
+    ],
+    [
+        new Coins(),
+        new Coins(),
+        new Coins(),
+        new Coins(),
+        new Coins(),
     ],
 );
