@@ -36,28 +36,40 @@ class World {
     }
 
     checkCollisions() {
+        this.collisionEnemies();
+        this.collisionCoins();
+        this.collisionsSticks();
+    }
+
+    collisionEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
-        });
+        })
+    }
+
+    collisionCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
-                this.character.addCoin();
+                this.character.addItem('coin');
                 this.coinsBar.setAmountCoins(this.character.collectedCoins);
-                this.character.removeCoin(coin);
+                this.character.removeItem(level1.coins, coin);
                 this.collectedCoins.push(coin);
             }
-        });
+        })
+    }
+
+    collisionsSticks() {
         this.level.sticks.forEach((stick) => {
             if (this.character.isColliding(stick)) {
-                this.character.addStick();
+                this.character.addItem('stick');
                 this.sticksBar.setAmountSticks(this.character.collectedSticks);
-                this.character.removeStick(stick);
+                this.character.removeItem(level1.sticks, stick);
                 this.collectedSticks.push(stick);
             }
-        });
+        })
     }
 
     checkThrowObject() {

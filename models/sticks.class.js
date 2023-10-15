@@ -1,4 +1,4 @@
-class Sticks extends MovableObject {
+class Sticks extends DrawableObject {
     x = 100;
     y = 395;
     width = 40;

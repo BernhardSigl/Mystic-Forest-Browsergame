@@ -36,27 +36,35 @@ class DrawableObject {
         }
     }
 
-    addCoin() {
-        this.collectedCoins++;
-        if (this.collectedCoins > 5) {
-            this.collectedCoins = 5;
+    // removeCoin(coin) {
+    //     let index = level1.coins.indexOf(coin);
+    //     level1.coins.splice(index, 1);
+    // }
+
+    // removeStick(stick) {
+    //     let index = level1.sticks.indexOf(stick);
+    //     level1.sticks.splice(index, 1);
+    // }
+
+    addItem(item) {
+        switch (item) {
+            case 'coin':
+                this.collectedCoins++;
+                if (this.collectedCoins > 5) {
+                    this.collectedCoins = 5;
+                }
+                break;
+            case 'stick':
+                this.collectedSticks++;
+                if (this.collectedSticks > 5) {
+                    this.collectedSticks = 5;
+                }
+                break;
         }
     }
 
-    removeCoin(coin) {
-        let index = level1.coins.indexOf(coin);
-        level1.coins.splice(index, 1);
-    }
-
-    addStick() {
-        this.collectedSticks++;
-        if (this.collectedSticks > 5) {
-            this.collectedSticks = 5;
-        }
-    }
-
-    removeStick(stick) {
-        let index = level1.sticks.indexOf(stick);
-        level1.sticks.splice(index, 1);
+    removeItem(array, item) {
+        let index = array.indexOf(item);
+        array.splice(index, 1);
     }
 }
