@@ -40,5 +40,4 @@ class CoinBar extends DrawableObject {
             return 5;
         }
     }
-
 }
