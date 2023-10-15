@@ -26,6 +26,7 @@ class SticksBar extends DrawableObject {
     }
 
     resolveImageIndex() {
+        console.log(this.amount);
         if (this.amount == 5) {
             return 0;
         } else if (this.amount == 4) {

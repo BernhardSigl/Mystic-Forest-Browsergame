@@ -54,7 +54,7 @@ class World {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
                 this.character.addItem('coin');
-                this.coinsBar.setAmountCoins(this.character.collectedCoins);
+                this.coinsBar.setAmountCoins(this.collectedCoins.length + 1);
                 this.character.removeItem(level1.coins, coin);
                 this.collectedCoins.push(coin);
             }
@@ -65,7 +65,7 @@ class World {
         this.level.sticks.forEach((stick) => {
             if (this.character.isColliding(stick)) {
                 this.character.addItem('stick');
-                this.sticksBar.setAmountSticks(this.character.collectedSticks);
+                this.sticksBar.setAmountSticks(this.collectedSticks.length + 1);
                 this.character.removeItem(level1.sticks, stick);
                 this.collectedSticks.push(stick);
             }
@@ -79,6 +79,7 @@ class World {
                 throwableStick = new ThrowableObject(this.character.x + 25, this.character.y + 5);
                 this.throwableObjects.push(throwableStick);
                 this.collectedSticks.splice(i, 1);
+                this.sticksBar.setAmountSticks(this.collectedSticks.length);
             }
         }
     }

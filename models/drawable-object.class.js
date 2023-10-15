@@ -3,7 +3,8 @@ class DrawableObject {
     img;
     imageCache = {};
     currentImage = 0;
-    collectedItems = 0;
+    collectedCoins = 0;
+    collectedSticks = 0;
     x = 0;
     y = 0;
     width = 190;
@@ -35,16 +36,6 @@ class DrawableObject {
             ctx.stroke();
         }
     }
-
-    // removeCoin(coin) {
-    //     let index = level1.coins.indexOf(coin);
-    //     level1.coins.splice(index, 1);
-    // }
-
-    // removeStick(stick) {
-    //     let index = level1.sticks.indexOf(stick);
-    //     level1.sticks.splice(index, 1);
-    // }
 
     addItem(item) {
         switch (item) {
