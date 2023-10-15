@@ -7,10 +7,7 @@ class FogsBig extends MovableObject {
         this.x = Math.random() * 800;
         this.y = -20 + Math.random() * 100;
         this.speed = 0.04 + Math.random() * 0.05;
-        this.animate();
-    }
-    animate() {
-        this.moveLeft();
+        animate(this);
     }
 }
 
@@ -23,10 +20,14 @@ class FogsSmall extends MovableObject {
 
         this.y = -20 + Math.random() * 150;
         this.speed = 0.06 + Math.random() * 0.05;
-        this.animate();
+        animate(this);
     }
-    animate() {
-        this.moveLeft();
-    }
+}
+
+function animate(o) {
+    setInterval(() => {
+        o.moveLeft();
+        o.x -= o.speed;
+    }, 16);
 }
 

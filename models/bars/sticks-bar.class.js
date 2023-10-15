@@ -22,11 +22,9 @@ class SticksBar extends DrawableObject {
         this.amount = amount;
         let path = this.IMAGES_STICKSBAR[this.resolveImageIndex()];
         this.img = this.imageCache[path];
-        // console.log(this.amount);
     }
 
     resolveImageIndex() {
-        console.log(this.amount);
         if (this.amount == 5) {
             return 0;
         } else if (this.amount == 4) {

@@ -19,19 +19,7 @@ class WildZombie extends MovableObject {
         this.speed = 0.02 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
-        this.animate();
-    }
-
-    animate() {
-        this.moveLeft();
-        setInterval(() => {
-            this.x -= this.speed;
-            this.otherDirection = true;
-        });
-        setInterval(() => {
-            this.walking_sound.play();
-            this.playAnimation(this.IMAGES_WALK);
-        }, 425);
+        animateEnemies(this);
     }
 }
 
@@ -54,19 +42,7 @@ class ManZombie extends MovableObject {
         this.speed = 0.06 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
-        this.animate();
-    }
-
-    animate() {
-        this.moveLeft();
-        setInterval(() => {
-            this.x -= this.speed;
-            this.otherDirection = true;
-        });
-        setInterval(() => {
-            this.walking_sound.play();
-            this.playAnimation(this.IMAGES_WALK);
-        }, 425);
+        animateEnemies(this);
     }
 }
 
@@ -92,18 +68,18 @@ class WomanZombie extends MovableObject {
         this.speed = 0.04 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
-        this.animate();
+        animateEnemies(this);
     }
+}
 
-    animate() {
-        this.moveLeft();
-        setInterval(() => {
-            this.x -= this.speed;
-            this.otherDirection = true;
-        });
-        setInterval(() => {
-            this.walking_sound.play();
-            this.playAnimation(this.IMAGES_WALK);
-        }, 425);
-    }
+function animateEnemies(o) {
+    o.moveLeft();
+    setInterval(() => {
+        o.x -= o.speed;
+        o.otherDirection = true;
+    });
+    setInterval(() => {
+        o.walking_sound.play();
+        o.playAnimation(o.IMAGES_WALK);
+    }, 425);
 }
