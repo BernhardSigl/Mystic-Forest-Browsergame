@@ -6,6 +6,9 @@ class Character extends MovableObject {
     speed = 3.5;
     otherDirection = false;
     camera_x = 100;
+    lastAttackTime = 0;
+    maxAttackDuration = 2000;
+
     IMAGES_WALK = [
         'img/1_characters/Raider_3/walk/1.png',
         'img/1_characters/Raider_3/walk/2.png',
@@ -35,6 +38,14 @@ class Character extends MovableObject {
         'img/1_characters/Raider_3/hurt/1.png',
         'img/1_characters/Raider_3/hurt/3.png',
     ];
+
+    IMAGES_ATTACK = [
+        'img/1_characters/Raider_3/attack/1.png',
+        'img/1_characters/Raider_3/attack/2.png',
+        'img/1_characters/Raider_3/attack/3.png',
+        'img/1_characters/Raider_3/attack/4.png',
+        'img/1_characters/Raider_3/attack/5.png',
+    ];
     // IMAGES_IDLE = [
     //     'img/1_characters/Raider_3/idle/1.png',
     //     'img/1_characters/Raider_3/idle/2.png',
@@ -52,6 +63,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_JUMP);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_ATTACK);
         // this.loadImages(this.IMAGES_IDLE);
         this.animate();
         this.walking_sound = new Audio('audio/character_walk.wav');
@@ -74,6 +86,7 @@ class Character extends MovableObject {
                 this.jump();
             }
 
+
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
 
@@ -90,5 +103,22 @@ class Character extends MovableObject {
                 }
             }
         }, 200);
+
+        setInterval(() => {
+            let currentTime = new Date().getTime();
+            let difference = currentTime - this.lastAttackTime;
+            if (this.world.keyboard.F) {
+                if (this.lastAttackTime === 0) {
+                    this.lastAttackTime = currentTime; // beim drücken soll lastAttackTime die aktuelle Zeit in echt bekommen
+                } else if (difference <= 850) { // schlagzeit
+                    console.log(difference);
+                    this.playAnimation(this.IMAGES_ATTACK);
+                }
+            } else {
+                this.lastAttackTime = 0;
+                console.log('time at end: ', this.lastAttackTime);
+            }
+        }, 125); // schlaggeschwindigkeit
+
     }
 }
