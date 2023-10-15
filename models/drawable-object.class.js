@@ -27,7 +27,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof WildZombie || this instanceof ManZombie || this instanceof WomanZombie || this instanceof Endboss || this instanceof Coins) {
+        if (this instanceof Character || this instanceof WildZombie || this instanceof ManZombie || this instanceof WomanZombie || this instanceof Endboss || this instanceof Coins || this instanceof Sticks) {
             ctx.beginPath();
             ctx.lineWidth = 2;
             ctx.strokeStyle = 'red';
@@ -36,15 +36,27 @@ class DrawableObject {
         }
     }
 
-    addItem() {
-        this.collectedItems++;
-        if (this.collectedItems > 5) {
-            this.collectedItems = 5;
+    addCoin() {
+        this.collectedCoins++;
+        if (this.collectedCoins > 5) {
+            this.collectedCoins = 5;
         }
     }
 
-    removeItemFromLevel(item) {
-        let index = level1.coins.indexOf(item);
+    removeCoin(coin) {
+        let index = level1.coins.indexOf(coin);
         level1.coins.splice(index, 1);
+    }
+
+    addStick() {
+        this.collectedSticks++;
+        if (this.collectedSticks > 5) {
+            this.collectedSticks = 5;
+        }
+    }
+
+    removeStick(stick) {
+        let index = level1.sticks.indexOf(stick);
+        level1.sticks.splice(index, 1);
     }
 }

@@ -1,4 +1,4 @@
-class CoinBar extends DrawableObject {
+class CoinsBar extends DrawableObject {
     IMAGES_COINBAR = [
         'img/6_statusbar/coinbar/100.png',
         'img/6_statusbar/coinbar/80.png',
@@ -15,10 +15,10 @@ class CoinBar extends DrawableObject {
         this.loadImages(this.IMAGES_COINBAR);
         this.x = 30;
         this.y = 64;
-        this.setAmount(0);
+        this.setAmountCoins(0);
     }
 
-    setAmount(amount) {
+    setAmountCoins(amount) {
         this.amount = amount;
         let path = this.IMAGES_COINBAR[this.resolveImageIndex()];
         this.img = this.imageCache[path];

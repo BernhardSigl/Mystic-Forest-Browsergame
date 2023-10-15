@@ -6,11 +6,12 @@ class World {
     keyboard;
     camera_x = -100;
     statusBar = new StatusBar();
-    weoponBar = new WeoponBar();
-    coinBar = new CoinBar();
+    sticksBar = new SticksBar();
+    coinsBar = new CoinsBar();
 
     throwableObjects = [];
     collectedCoins = [];
+    collectedSticks = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -43,10 +44,18 @@ class World {
         });
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
-                this.character.addItem(coin);
-                this.coinBar.setAmount(this.character.collectedItems);
-                this.character.removeItemFromLevel(coin);
+                this.character.addCoin();
+                this.coinsBar.setAmountCoins(this.character.collectedCoins);
+                this.character.removeCoin(coin);
                 this.collectedCoins.push(coin);
+            }
+        });
+        this.level.sticks.forEach((stick) => {
+            if (this.character.isColliding(stick)) {
+                this.character.addStick();
+                this.sticksBar.setAmountSticks(this.character.collectedSticks);
+                this.character.removeStick(stick);
+                this.collectedSticks.push(stick);
             }
         });
     }
@@ -71,13 +80,14 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjectsFront);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.sticks);
 
         this.ctx.translate(-this.camera_x, 0);
 
         // bars
         this.addToMap(this.statusBar);
-        this.addToMap(this.weoponBar);
-        this.addToMap(this.coinBar);
+        this.addToMap(this.sticksBar);
+        this.addToMap(this.coinsBar);
 
         // Draw() wird immer wieder aufgerufen
         let self = this;

@@ -1,5 +1,5 @@
-class WeoponBar extends DrawableObject {
-    IMAGES_WEOPONBAR = [
+class SticksBar extends DrawableObject {
+    IMAGES_STICKSBAR = [
         'img/6_statusbar/weoponbar/100.png',
         'img/6_statusbar/weoponbar/80.png',
         'img/6_statusbar/weoponbar/60.png',
@@ -8,34 +8,35 @@ class WeoponBar extends DrawableObject {
         'img/6_statusbar/weoponbar/0.png',
     ];
 
-    percentage = 0;
+    amount = 0;
 
     constructor() {
         super();
-        this.loadImages(this.IMAGES_WEOPONBAR);
+        this.loadImages(this.IMAGES_STICKSBAR);
         this.x = 30;
         this.y = 32;
-        this.setPercentage(0);
+        this.setAmountSticks(0);
     }
 
-    setPercentage(percentage) {
-        this.percentage = percentage;
-        let path = this.IMAGES_WEOPONBAR[this.resolveImageIndex()];
+    setAmountSticks(amount) {
+        this.amount = amount;
+        let path = this.IMAGES_STICKSBAR[this.resolveImageIndex()];
         this.img = this.imageCache[path];
+        // console.log(this.amount);
     }
 
     resolveImageIndex() {
-        if (this.percentage == 100) {
+        if (this.amount == 5) {
             return 0;
-        } else if (this.percentage > 80) {
+        } else if (this.amount == 4) {
             return 1;
-        } else if (this.percentage > 60) {
+        } else if (this.amount == 3) {
             return 2;
-        } else if (this.percentage > 40) {
+        } else if (this.amount == 2) {
             return 3;
-        } else if (this.percentage > 20) {
+        } else if (this.amount == 1) {
             return 4;
-        } else if (this.percentage >= 0) {
+        } else if (this.amount == 0) {
             return 5;
         }
     }
