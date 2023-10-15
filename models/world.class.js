@@ -73,10 +73,13 @@ class World {
     }
 
     checkThrowObject() {
-        if (this.keyboard.SPACE) {
-            let weapon = new ThrowableObject(this.character.x + 25, this.character.y + 5);
-            this.throwableObjects.push(weapon);
-            console.log(`throwableObjects`);
+        for (let i = 0; i < this.collectedSticks.length; i++) {
+            let throwableStick = this.collectedSticks[i];
+            if (this.collectedSticks.length > 0 && this.keyboard.SPACE) {
+                throwableStick = new ThrowableObject(this.character.x + 25, this.character.y + 5);
+                this.throwableObjects.push(throwableStick);
+                this.collectedSticks.splice(i, 1);
+            }
         }
     }
 

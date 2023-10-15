@@ -17,7 +17,7 @@ class MovableObject extends DrawableObject {
 
     isAboveGround() {
         if (this instanceof ThrowableObject) {
-            return true;
+            return true; // item soll aus der Welt fallen
         } else {
             return this.y <= 293;
         }
