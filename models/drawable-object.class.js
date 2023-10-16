@@ -28,7 +28,14 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof WildZombie || this instanceof ManZombie || this instanceof WomanZombie || this instanceof Endboss || this instanceof Coins || this instanceof Sticks) {
+        if (
+            this instanceof Character ||
+            // this instanceof WildZombie ||
+            this instanceof ManZombie ||
+            // this instanceof WomanZombie ||
+            // this instanceof Endboss ||
+            this instanceof Coins ||
+            this instanceof Sticks) {
             ctx.beginPath();
             ctx.lineWidth = 2;
             ctx.strokeStyle = 'red';

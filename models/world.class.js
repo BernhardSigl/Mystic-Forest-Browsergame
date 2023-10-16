@@ -1,5 +1,6 @@
 class World {
     character = new Character();
+    manZombie = new ManZombie();
     level = level1;
     canvas;
     ctx;
@@ -45,7 +46,9 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
+                this.character.hitManZombie(level1.enemies);
+                // this.character.attack(level1.enemies);
+                this.statusBar.setPercentage(this.character.energyCharacter);
             }
         })
     }
@@ -75,7 +78,7 @@ class World {
     checkThrowObject() {
         for (let i = 0; i < this.collectedSticks.length; i++) {
             let throwableStick = this.collectedSticks[i];
-            if (this.collectedSticks.length > 0 && this.keyboard.SPACE) {
+            if (this.collectedSticks.length > 0 && this.keyboard.K) {
                 throwableStick = new ThrowableObject(this.character.x + 25, this.character.y + 5);
                 this.throwableObjects.push(throwableStick);
                 this.collectedSticks.splice(i, 1);

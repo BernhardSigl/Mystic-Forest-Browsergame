@@ -11,37 +11,37 @@ function init() {
 
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 65) {
-        keyboard.LEFT = true;
+        keyboard.A = true;
     }
     if (e.keyCode == 68) {
-        keyboard.RIGHT = true;
+        keyboard.D = true;
     }
     if (e.keyCode == 87) {
-        keyboard.UP = true;
+        keyboard.W = true;
     }
-    if (e.keyCode == 32) {
-        keyboard.SPACE = true;
+    if (e.keyCode == 75) {
+        keyboard.K = true;
     }
-    if (e.keyCode == 70) {
-        keyboard.F = true;
+    if (e.keyCode == 74) {
+        keyboard.J = true;
     }
     // console.log(e.keyCode);
 })
 
 window.addEventListener('keyup', (e) => {
     if (e.keyCode == 65) {
-        keyboard.LEFT = false;
+        keyboard.A = false;
     }
     if (e.keyCode == 68) {
-        keyboard.RIGHT = false;
+        keyboard.D = false;
     }
     if (e.keyCode == 87) {
-        keyboard.UP = false;
+        keyboard.W = false;
     }
-    if (e.keyCode == 32) {
-        keyboard.SPACE = false;
+    if (e.keyCode == 75) {
+        keyboard.K = false;
     }
-    if (e.keyCode == 70) {
-        keyboard.F = false;
+    if (e.keyCode == 74) {
+        keyboard.J = false;
     }
 })

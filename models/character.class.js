@@ -7,7 +7,7 @@ class Character extends MovableObject {
     otherDirection = false;
     camera_x = 100;
     lastAttackTime = 0;
-    maxAttackDuration = 2000;
+    maxAttackDuration = 1000;
 
     IMAGES_WALK = [
         'img/1_characters/Raider_3/walk/1.png',
@@ -74,15 +74,15 @@ class Character extends MovableObject {
 
         setInterval(() => {
             this.walking_sound.pause();
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.walking_sound.play();
             }
-            if (this.world.keyboard.LEFT && this.x > 0) {
+            if (this.world.keyboard.A && this.x > 0) {
                 this.moveLeft();
                 this.walking_sound.play();
             }
-            if (this.world.keyboard.UP && !this.isAboveGround()) {
+            if (this.world.keyboard.W && !this.isAboveGround()) {
                 this.jump();
             }
 
@@ -98,7 +98,7 @@ class Character extends MovableObject {
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMP);
             } else {
-                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x || this.world.keyboard.LEFT && this.x > 0) {
+                if (this.world.keyboard.D && this.x < this.world.level.level_end_x || this.world.keyboard.A && this.x > 0) {
                     this.playAnimation(this.IMAGES_WALK);
                 }
             }
@@ -107,16 +107,21 @@ class Character extends MovableObject {
         setInterval(() => {
             let currentTime = new Date().getTime();
             let difference = currentTime - this.lastAttackTime;
-            if (this.world.keyboard.F) {
+            if (this.world.keyboard.J) {
                 if (this.lastAttackTime === 0) {
                     this.lastAttackTime = currentTime; // beim drücken soll lastAttackTime die aktuelle Zeit in echt bekommen
-                } else if (difference <= 850) { // schlagzeit
-                    console.log(difference);
+                } else if (difference <= this.maxAttackDuration) {
                     this.playAnimation(this.IMAGES_ATTACK);
+                    this.attack();
+
+                } else if (difference > this.maxAttackDuration) {
+                    this.world.keyboard.J = false;
+                    this.isAttacking = false;
                 }
             } else {
+                this.world.keyboard.J = false;
                 this.lastAttackTime = 0;
-                console.log('time at end: ', this.lastAttackTime);
+                this.isAttacking = false;
             }
         }, 125); // schlaggeschwindigkeit
 

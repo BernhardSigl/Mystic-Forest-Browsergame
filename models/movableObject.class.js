@@ -1,10 +1,12 @@
 class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2;
-    energy = 100;
+    energyCharacter = 100;
+    energyManZombie = 50;
     lastHit = 0;
     collectedCoins = 0;
     collectedSticks = 0;
+    isAttacking = false;
 
     applyGravity() {
         setInterval(() => {
@@ -16,7 +18,7 @@ class MovableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        if (this instanceof ThrowableObject) {
+        if (this instanceof ThrowableObject || this instanceof ManZombie) {
             return true; // item soll aus der Welt fallen
         } else {
             return this.y <= 293;
@@ -33,11 +35,23 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.energy -= 5;
-        if (this.energy < 0) {
-            this.energy = 0;
-        } else {
-            this.lastHit = new Date().getTime();
+        if (this.isAttacking === false) {
+            this.energyCharacter -= 10;
+            if (this.energyCharacter < 0) {
+                this.energyCharacter = 0;
+            } else {
+                this.lastHit = new Date().getTime();
+            }
+        }
+    }
+
+    hitManZombie(enemy) {
+        if (this.isAttacking === true) {
+            enemy[0].energyManZombie -= 10;;
+            if (enemy[0].energyManZombie < 0) {
+                enemy[0].energyManZombie = 0;
+                this.energyManZombie = 0;
+            }
         }
     }
 
@@ -48,7 +62,11 @@ class MovableObject extends DrawableObject {
     }
 
     isDead() {
-        return this.energy == 0;
+        return this.energyCharacter == 0;
+    }
+
+    isManZombieDead() {
+        return this.energyManZombie == 0;
     }
 
     moveRight() {
@@ -63,6 +81,13 @@ class MovableObject extends DrawableObject {
 
     jump() {
         this.speedY = 21;
+    }
+
+    attack(enemy) {
+        this.isAttacking = true;
+        if (this.isColliding === true) {
+            enemy[0].energyManZombie -= 50;
+        }
     }
 
     playAnimation(images) {

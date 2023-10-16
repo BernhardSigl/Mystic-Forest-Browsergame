@@ -1,7 +1,8 @@
 class Keyboard {
-    LEFT = false;
-    RIGHT = false;
-    UP = false;
-    THROW = false;
-    ATTACK = false;
+    A = false;
+    D = false;
+    W = false;
+    K = false;
+    J = false;
 }
+
