@@ -47,12 +47,20 @@ class ManZombie extends MovableObject {
         'img/2_enemies/Zombie Man/hurt/2.png',
         'img/2_enemies/Zombie Man/hurt/3.png',
     ];
+    IMAGES_ATTACK = [
+        'img/2_enemies/Zombie Man/attack/1.png',
+        'img/2_enemies/Zombie Man/attack/2.png',
+        'img/2_enemies/Zombie Man/attack/3.png',
+        'img/2_enemies/Zombie Man/attack/4.png',
+        'img/2_enemies/Zombie Man/attack/5.png',
+    ];
 
     constructor() {
         super().loadImage('img/2_enemies/Zombie Man/walk/1.png');
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_ATTACK);
         this.x = 200 + Math.random() * 450;
         this.speed = 2 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
@@ -83,7 +91,9 @@ class ManZombie extends MovableObject {
             else if (this.isColliding(world.character) && world.character.isAttacking === true) {
                 this.playAnimation(this.IMAGES_HURT);
             }
-
+            else if (this.isColliding(world.character) && world.character.isAttacking === false) {
+                this.playAnimation(this.IMAGES_ATTACK);
+            }
         }, 300);
     }
 }
