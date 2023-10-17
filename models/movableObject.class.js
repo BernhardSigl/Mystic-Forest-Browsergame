@@ -2,7 +2,7 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2;
     energyCharacter = 100;
-    energyManZombie = 50;
+    energyEnemy = 50;
     lastHit = 0;
     collectedCoins = 0;
     collectedSticks = 0;
@@ -52,11 +52,11 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    hitManZombie(enemy) {
+    damageAtCollision(enemy) {
         if (this.isAttacking === true) {
-            enemy[0].energyManZombie -= 10;;
-            if (enemy[0].energyManZombie < 0) {
-                enemy[0].energyManZombie = 0;
+            enemy.energyEnemy -= 10;;
+            if (enemy.energyEnemy < 0) {
+                enemy.energyEnemy = 0;
             }
         }
     }
@@ -72,7 +72,7 @@ class MovableObject extends DrawableObject {
     }
 
     isManZombieDead() {
-        return this.energyManZombie == 0;
+        return this.energyEnemy == 0;
     }
 
 
@@ -93,7 +93,7 @@ class MovableObject extends DrawableObject {
 
     jump() {
         if (this.characterMovable === true) {
-            this.speedY = 21;
+            this.speedY = 24;
         }
     }
 
@@ -101,7 +101,7 @@ class MovableObject extends DrawableObject {
         if (this.characterMovable === true) {
             this.isAttacking = true;
             if (this.isColliding === true) {
-                enemy[0].energyManZombie -= 50;
+                enemy.energyEnemy -= 50;
             }
         }
     }

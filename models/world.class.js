@@ -46,11 +46,10 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                this.character.hitManZombie(level1.enemies); // ladet die enemy arrays
-                // this.character.attackFromEnemy(level1.enemies);
+                this.character.damageAtCollision(enemy);
                 this.statusBar.setPercentage(this.character.energyCharacter);
             }
-        })
+        });
     }
 
     collisionCoins() {
@@ -108,6 +107,8 @@ class World {
         this.addToMap(this.sticksBar);
         this.addToMap(this.coinsBar);
 
+        // this.drawDeathMessage();
+
         // Draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {
@@ -145,4 +146,11 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
+    // drawDeathMessage() {
+    //     // Zeichne die Todesnachricht im Canvas
+    //     this.ctx.fillStyle = 'red';
+    //     this.ctx.font = '30px Arial';
+    //     this.ctx.fillText('Game Over', 200, 200);
+    // }
 }

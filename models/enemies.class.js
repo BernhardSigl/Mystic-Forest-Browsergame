@@ -1,27 +1,27 @@
-// class WildZombie extends MovableObject {
-//     x = 100;
-//     y = 348;
-//     width = 90;
-//     height = 65;
-//     IMAGES_WALK = [
-//         'img/2_enemies/Wild Zombie/walk/1.png',
-//         'img/2_enemies/Wild Zombie/walk/2.png',
-//         'img/2_enemies/Wild Zombie/walk/5.png',
-//         'img/2_enemies/Wild Zombie/walk/6.png',
-//         'img/2_enemies/Wild Zombie/walk/7.png',
-//         'img/2_enemies/Wild Zombie/walk/10.png',
-//     ];
+class WildZombie extends MovableObject {
+    x = 100;
+    y = 348;
+    width = 90;
+    height = 65;
+    IMAGES_WALK = [
+        'img/2_enemies/Wild Zombie/walk/1.png',
+        'img/2_enemies/Wild Zombie/walk/2.png',
+        'img/2_enemies/Wild Zombie/walk/5.png',
+        'img/2_enemies/Wild Zombie/walk/6.png',
+        'img/2_enemies/Wild Zombie/walk/7.png',
+        'img/2_enemies/Wild Zombie/walk/10.png',
+    ];
 
-//     constructor() {
-//         super().loadImage('img/2_enemies/Wild Zombie/walk/1.png');
-//         this.loadImages(this.IMAGES_WALK);
-//         this.x = 200 + Math.random() * 450;
-//         this.speed = 0.02 + Math.random() * 0.15;
-//         this.walking_sound = new Audio('audio/zombie_walk.wav');
-//         this.walking_sound.volume = 0.15;
-//         // animateEnemies(this);
-//     }
-// }
+    constructor() {
+        super().loadImage('img/2_enemies/Wild Zombie/walk/1.png');
+        this.loadImages(this.IMAGES_WALK);
+        this.x = 200 + Math.random() * 450;
+        this.speed = 0.02 + Math.random() * 0.15;
+        this.walking_sound = new Audio('audio/zombie_walk.wav');
+        this.walking_sound.volume = 0.15;
+        animateEnemy(this);
+    }
+}
 
 class ManZombie extends MovableObject {
     x = 100;
@@ -65,28 +65,7 @@ class ManZombie extends MovableObject {
         this.speed = 2 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
-        this.animate();
-    }
-
-    animate() {
-        setInterval(() => {
-            if (this.energyManZombie === 0) {
-                this.playAnimation(this.IMAGES_DEAD);
-                this.applyGravityDelay();
-            }
-            else if ((this.energyManZombie !== 0 && !this.isColliding(world.character) || world.character.energyCharacter === 0)) {
-                this.playAnimation(this.IMAGES_WALK);
-                this.moveLeft();
-                this.x -= this.speed;
-                this.otherDirection = true;
-            }
-            else if (this.isColliding(world.character) && world.character.isAttacking === true) {
-                this.playAnimation(this.IMAGES_HURT);
-            }
-            else if (this.isColliding(world.character) && world.character.isAttacking === false && world.character.energyCharacter !== 0) {
-                this.playAnimation(this.IMAGES_ATTACK);
-            }
-        }, 300);
+        animateEnemy(this);
     }
 }
 
@@ -116,18 +95,23 @@ class ManZombie extends MovableObject {
 //     }
 // }
 
-// function animateEnemies(o) {
-// o.moveLeft();
-// setInterval(() => {
-//     o.x -= o.speed;
-//     o.otherDirection = true;
-// });
-// setInterval(() => {
-//     o.walking_sound.play();
-//     if (o.isManZombieDead()) {
-//         o.playAnimation(o.IMAGES_DEAD);
-//     } else {
-//         o.playAnimation(o.IMAGES_WALK);
-//     }
-// }, 425);
-// }
+function animateEnemy(o) {
+    setInterval(() => {
+        if (o.energyEnemy === 0) {
+            o.playAnimation(o.IMAGES_DEAD);
+            o.applyGravityDelay();
+        }
+        else if ((o.energyEnemy !== 0 && !o.isColliding(world.character)) || world.character.energyCharacter === 0) {
+            o.playAnimation(o.IMAGES_WALK);
+            o.moveLeft();
+            o.x -= o.speed;
+            o.otherDirection = true;
+        }
+        else if (o.isColliding(world.character) && world.character.isAttacking === true) {
+            o.playAnimation(o.IMAGES_HURT);
+        }
+        else if (o.isColliding(world.character) && world.character.isAttacking === false && world.character.energyCharacter !== 0) {
+            o.playAnimation(o.IMAGES_ATTACK);
+        }
+    }, 300);
+}
