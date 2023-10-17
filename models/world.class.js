@@ -46,8 +46,8 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                this.character.hitManZombie(level1.enemies);
-                // this.character.attack(level1.enemies);
+                this.character.hitManZombie(level1.enemies); // ladet die enemy arrays
+                // this.character.attackFromEnemy(level1.enemies);
                 this.statusBar.setPercentage(this.character.energyCharacter);
             }
         })

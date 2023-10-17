@@ -30,7 +30,7 @@ class MovableObject extends DrawableObject {
         return (this.x + this.width) >= mo.x
             && this.x <= (mo.x + mo.width)
             && (this.y + this.height) >= mo.y
-            && this.x < mo.x // von hinten darf nicht angegriffen werden
+            // && this.x < mo.x // von hinten darf nicht angegriffen werden
             && this.y <= (mo.y + mo.height);
     }
 
@@ -50,7 +50,6 @@ class MovableObject extends DrawableObject {
             enemy[0].energyManZombie -= 10;;
             if (enemy[0].energyManZombie < 0) {
                 enemy[0].energyManZombie = 0;
-                this.energyManZombie = 0;
             }
         }
     }
