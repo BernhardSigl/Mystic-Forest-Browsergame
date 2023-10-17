@@ -8,7 +8,6 @@ function init() {
 
     // console.log('My character is: ', world.character);
 }
-
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 65) {
         keyboard.A = true;

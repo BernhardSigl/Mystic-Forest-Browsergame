@@ -28,10 +28,10 @@ class Character extends MovableObject {
         'img/1_characters/Raider_3/jump/8.png',
     ]
     IMAGES_DEAD = [
-        'img/1_characters/Raider_3/dead/1.png',
-        'img/1_characters/Raider_3/dead/2.png',
+        // 'img/1_characters/Raider_3/dead/1.png',
+        // 'img/1_characters/Raider_3/dead/2.png',
         'img/1_characters/Raider_3/dead/3.png',
-        'img/1_characters/Raider_3/dead/4.png',
+        // 'img/1_characters/Raider_3/dead/4.png',
     ];
 
     IMAGES_HURT = [
@@ -74,15 +74,15 @@ class Character extends MovableObject {
 
         setInterval(() => {
             this.walking_sound.pause();
-            if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
+            if (!this.isDead() && this.world.keyboard.D && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.walking_sound.play();
             }
-            if (this.world.keyboard.A && this.x > 0) {
+            if (!this.isDead() && this.world.keyboard.A && this.x > 0) {
                 this.moveLeft();
                 this.walking_sound.play();
             }
-            if (this.world.keyboard.W && !this.isAboveGround()) {
+            if (!this.isDead() && this.world.keyboard.W && !this.isAboveGround()) {
                 this.jump();
             }
 
@@ -92,7 +92,17 @@ class Character extends MovableObject {
 
         setInterval(() => {
             if (this.isDead()) {
+                this.characterMovable = false;
                 this.playAnimation(this.IMAGES_DEAD);
+                this.world.keyboard.D = false;
+
+                setTimeout(() => {
+                    setInterval(() => {
+                        this.y -= this.speedY;
+                        this.speedY -= 0.5;
+                    }, 200);
+                }, 2000);
+
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
@@ -102,7 +112,7 @@ class Character extends MovableObject {
                     this.playAnimation(this.IMAGES_WALK);
                 }
             }
-        }, 200);
+        }, 300);
 
         setInterval(() => {
             let currentTime = new Date().getTime();
@@ -110,7 +120,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.J) {
                 if (this.lastAttackTime === 0) {
                     this.lastAttackTime = currentTime; // beim drücken soll lastAttackTime die aktuelle Zeit in echt bekommen
-                } else if (difference <= this.maxAttackDuration) {
+                } else if (!this.isDead() && difference <= this.maxAttackDuration) {
                     this.playAnimation(this.IMAGES_ATTACK);
                     this.attack();
 

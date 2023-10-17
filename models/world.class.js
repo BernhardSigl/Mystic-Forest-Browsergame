@@ -78,7 +78,7 @@ class World {
     checkThrowObject() {
         for (let i = 0; i < this.collectedSticks.length; i++) {
             let throwableStick = this.collectedSticks[i];
-            if (this.collectedSticks.length > 0 && this.keyboard.K) {
+            if (this.collectedSticks.length > 0 && this.keyboard.K && world.character.characterMovable === true) {
                 throwableStick = new ThrowableObject(this.character.x + 25, this.character.y + 5);
                 this.throwableObjects.push(throwableStick);
                 this.collectedSticks.splice(i, 1);

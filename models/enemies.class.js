@@ -39,8 +39,8 @@ class ManZombie extends MovableObject {
         'img/2_enemies/Zombie Man/dead/1.png',
         'img/2_enemies/Zombie Man/dead/2.png',
         'img/2_enemies/Zombie Man/dead/3.png',
-        // 'img/2_enemies/Zombie Man/dead/4.png',
-        // 'img/2_enemies/Zombie Man/dead/5.png',
+        'img/2_enemies/Zombie Man/dead/4.png',
+        'img/2_enemies/Zombie Man/dead/5.png',
     ];
     IMAGES_HURT = [
         'img/2_enemies/Zombie Man/hurt/1.png',
@@ -68,21 +68,13 @@ class ManZombie extends MovableObject {
         this.animate();
     }
 
-    fallDown() {
-        setInterval(() => {
-            this.applyGravity();
-        }, 800);
-    }
-
     animate() {
         setInterval(() => {
             if (this.energyManZombie === 0) {
                 this.playAnimation(this.IMAGES_DEAD);
-                this.speed = 0;
-                this.fallDown();
+                this.applyGravityDelay();
             }
-            else if (this.energyManZombie !== 0 && !this.isColliding(world.character)) {
-                console.log('is this happening1');
+            else if ((this.energyManZombie !== 0 && !this.isColliding(world.character) || world.character.energyCharacter === 0)) {
                 this.playAnimation(this.IMAGES_WALK);
                 this.moveLeft();
                 this.x -= this.speed;
@@ -91,7 +83,7 @@ class ManZombie extends MovableObject {
             else if (this.isColliding(world.character) && world.character.isAttacking === true) {
                 this.playAnimation(this.IMAGES_HURT);
             }
-            else if (this.isColliding(world.character) && world.character.isAttacking === false) {
+            else if (this.isColliding(world.character) && world.character.isAttacking === false && world.character.energyCharacter !== 0) {
                 this.playAnimation(this.IMAGES_ATTACK);
             }
         }, 300);

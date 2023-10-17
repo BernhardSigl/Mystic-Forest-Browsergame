@@ -7,14 +7,21 @@ class MovableObject extends DrawableObject {
     collectedCoins = 0;
     collectedSticks = 0;
     isAttacking = false;
+    characterMovable = true;
 
     applyGravity() {
-        setInterval(() => {
+        this.gravityInterval = setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
         }, 1000 / 25);
+    }
+
+    applyGravityDelay() {
+        setInterval(() => {
+            this.applyGravity();
+        }, 800);
     }
 
     isAboveGround() {
@@ -68,24 +75,34 @@ class MovableObject extends DrawableObject {
         return this.energyManZombie == 0;
     }
 
+
     moveRight() {
-        this.x += this.speed;
-        this.otherDirection = false;
+        if (this.characterMovable === true) {
+            this.characterMovable = true;
+            this.x += this.speed;
+            this.otherDirection = false;
+        }
     }
 
     moveLeft() {
-        this.x -= this.speed;
-        this.otherDirection = true;
+        if (this.characterMovable === true) {
+            this.x -= this.speed;
+            this.otherDirection = true;
+        }
     }
 
     jump() {
-        this.speedY = 21;
+        if (this.characterMovable === true) {
+            this.speedY = 21;
+        }
     }
 
     attack(enemy) {
-        this.isAttacking = true;
-        if (this.isColliding === true) {
-            enemy[0].energyManZombie -= 50;
+        if (this.characterMovable === true) {
+            this.isAttacking = true;
+            if (this.isColliding === true) {
+                enemy[0].energyManZombie -= 50;
+            }
         }
     }
 
