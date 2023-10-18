@@ -109,7 +109,9 @@ class World {
         this.addObjectsToMap(this.level.fogs);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.backgroundObjectsFront);
+
         this.addObjectsToMap(this.throwableObjects);
+
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.sticks);
 

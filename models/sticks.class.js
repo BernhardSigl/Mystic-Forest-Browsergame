@@ -5,7 +5,7 @@ class Sticks extends DrawableObject {
     height = this.width;
 
     constructor() {
-        super().loadImage('img/7_items/weapon.png');
+        super().loadImage('img/7_items/weapon-1.png');
         this.x = 200 + Math.random() * 1500;
     }
 }
