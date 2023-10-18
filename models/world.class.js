@@ -49,6 +49,9 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.damageEnemyToCharacter();
+                if (this.character.isAboveGround() && this.character.speedY < 0) {
+                    this.character.jump();
+                }
                 this.character.damageCharacterToEnemy(enemy);
                 this.statusBar.setPercentage(this.character.energyCharacter);
             }

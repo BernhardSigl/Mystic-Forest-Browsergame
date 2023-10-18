@@ -10,7 +10,7 @@ class MovableObject extends DrawableObject {
     characterMovable = true;
 
     applyGravity() {
-        this.gravityInterval = setInterval(() => {
+        setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
@@ -25,30 +25,30 @@ class MovableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        if (this instanceof ThrowableObject || this instanceof ManZombie) {
+        // console.log(world.character.y); // maximale springhöhe
+        if (this instanceof ThrowableObject) {
             return true; // item soll aus der Welt fallen
         } else {
-            return this.y <= 293;
+            return this.y < 298;
         }
     }
 
     // this.x und this.width ist der character; mo ist das Colliding-Objekt
     isColliding(mo) {
-        // if (mo === this.throwableObjects) {
-        // console.log('mo ist dasselbe wie this.throwableObjects');
-        // } else {
-
         return (this.x + this.width) >= mo.x
             && this.x <= (mo.x + mo.width)
             && (this.y + this.height) >= mo.y
             // && this.x < mo.x // von hinten darf nicht angegriffen werden
             && this.y <= (mo.y + mo.height);
-        // }
     }
 
     damageEnemyToCharacter() {
         if (this.isAttacking === false) {
-            this.energyCharacter -= 10;
+            if (world.character.isAboveGround()) {
+                this.energyCharacter -= 5;
+            } else if (!world.character.isAboveGround()) {
+                this.energyCharacter -= 10;
+            }
             if (this.energyCharacter < 0) {
                 this.energyCharacter = 0;
             } else {
@@ -57,7 +57,6 @@ class MovableObject extends DrawableObject {
         }
     }
     throwableObjectsDamage(enemy) {
-        console.log('throwableObjectsDamage wird aufgerufen');
         enemy.energyEnemy -= 100;;
         if (enemy.energyEnemy < 0) {
             enemy.energyEnemy = 0;
@@ -106,6 +105,7 @@ class MovableObject extends DrawableObject {
     jump() {
         if (this.characterMovable === true) {
             this.speedY = 24;
+            world.character.y = 298;
         }
     }
 

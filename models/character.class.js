@@ -1,6 +1,6 @@
 class Character extends MovableObject {
     x = 100;
-    y = 293;
+    y = 298;
     width = 60;
     height = 120;
     speed = 3.5;
@@ -102,7 +102,7 @@ class Character extends MovableObject {
                     }, 200);
                 }, 2000);
 
-            } else if (this.isHurt()) {
+            } else if (this.isHurt() && !this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMP);
@@ -111,7 +111,7 @@ class Character extends MovableObject {
                     this.playAnimation(this.IMAGES_WALK);
                 }
             }
-        }, 300);
+        }, 100);
 
         setInterval(() => {
             let currentTime = new Date().getTime();
