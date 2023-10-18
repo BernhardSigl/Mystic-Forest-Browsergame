@@ -34,14 +34,19 @@ class MovableObject extends DrawableObject {
 
     // this.x und this.width ist der character; mo ist das Colliding-Objekt
     isColliding(mo) {
+        // if (mo === this.throwableObjects) {
+        // console.log('mo ist dasselbe wie this.throwableObjects');
+        // } else {
+
         return (this.x + this.width) >= mo.x
             && this.x <= (mo.x + mo.width)
             && (this.y + this.height) >= mo.y
             // && this.x < mo.x // von hinten darf nicht angegriffen werden
             && this.y <= (mo.y + mo.height);
+        // }
     }
 
-    hit() {
+    damageEnemyToCharacter() {
         if (this.isAttacking === false) {
             this.energyCharacter -= 10;
             if (this.energyCharacter < 0) {
@@ -51,8 +56,15 @@ class MovableObject extends DrawableObject {
             }
         }
     }
+    throwableObjectsDamage(enemy) {
+        console.log('throwableObjectsDamage wird aufgerufen');
+        enemy.energyEnemy -= 100;;
+        if (enemy.energyEnemy < 0) {
+            enemy.energyEnemy = 0;
+        }
+    }
 
-    damageAtCollision(enemy) {
+    damageCharacterToEnemy(enemy) {
         if (this.isAttacking === true) {
             enemy.energyEnemy -= 10;;
             if (enemy.energyEnemy < 0) {
@@ -97,7 +109,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    attack(enemy) {
+    attack() {
         if (this.characterMovable === true) {
             this.isAttacking = true;
             if (this.isColliding === true) {

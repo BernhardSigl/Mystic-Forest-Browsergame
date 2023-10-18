@@ -94,7 +94,6 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.characterMovable = false;
                 this.playAnimation(this.IMAGES_DEAD);
-                this.world.keyboard.D = false;
 
                 setTimeout(() => {
                     setInterval(() => {

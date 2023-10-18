@@ -1,6 +1,8 @@
 class World {
     character = new Character();
     manZombie = new ManZombie();
+    womanZombie = new WomanZombie();
+    wildZombie = new WildZombie();
     level = level1;
     canvas;
     ctx;
@@ -39,16 +41,27 @@ class World {
     checkCollisions() {
         this.collisionEnemies();
         this.collisionCoins();
-        this.collisionsSticks();
+        this.collisionSticks();
+        this.collisionThrowableObjectWithEnemy();
     }
 
     collisionEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.character.damageAtCollision(enemy);
+                this.character.damageEnemyToCharacter();
+                this.character.damageCharacterToEnemy(enemy);
                 this.statusBar.setPercentage(this.character.energyCharacter);
             }
+        });
+    }
+
+    collisionThrowableObjectWithEnemy() {
+        this.throwableObjects.forEach((stick) => {
+            this.level.enemies.forEach((enemy) => {
+                if (stick.isColliding(enemy)) {
+                    stick.throwableObjectsDamage(enemy);
+                }
+            })
         });
     }
 
@@ -63,7 +76,7 @@ class World {
         })
     }
 
-    collisionsSticks() {
+    collisionSticks() {
         this.level.sticks.forEach((stick) => {
             if (this.character.isColliding(stick)) {
                 this.character.addItem('stick');

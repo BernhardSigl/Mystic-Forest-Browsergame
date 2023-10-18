@@ -30,9 +30,10 @@ class DrawableObject {
     drawFrame(ctx) {
         if (
             this instanceof Character ||
-            // this instanceof WildZombie ||
+            this instanceof WildZombie ||
             this instanceof ManZombie ||
-            // this instanceof WomanZombie ||
+            this instanceof WomanZombie ||
+            this instanceof ThrowableObject ||
             // this instanceof Endboss ||
             this instanceof Coins ||
             this instanceof Sticks) {
