@@ -1,6 +1,6 @@
 class WildZombie extends MovableObject {
     x = 100;
-    y = 348;
+    y = 205;
     offset = {
         top: 130 * 0.7,
         bottom: 130,
@@ -10,35 +10,57 @@ class WildZombie extends MovableObject {
     width = 400;
     height = 250;
     IMAGES_WALK = [
-        'img/2_enemies/Wild Zombie/walk/1.png',
-        'img/2_enemies/Wild Zombie/walk/2.png',
-        'img/2_enemies/Wild Zombie/walk/5.png',
-        'img/2_enemies/Wild Zombie/walk/6.png',
-        'img/2_enemies/Wild Zombie/walk/7.png',
-        'img/2_enemies/Wild Zombie/walk/10.png',
+        'img/2_enemies/trol_red/Troll_03_1_WALK_000.png',
+        'img/2_enemies/trol_red/Troll_03_1_WALK_001.png',
+        'img/2_enemies/trol_red/Troll_03_1_WALK_002.png',
+        'img/2_enemies/trol_red/Troll_03_1_WALK_003.png',
+        'img/2_enemies/trol_red/Troll_03_1_WALK_004.png',
+        'img/2_enemies/trol_red/Troll_03_1_WALK_005.png',
+        'img/2_enemies/trol_red/Troll_03_1_WALK_006.png',
+        'img/2_enemies/trol_red/Troll_03_1_WALK_007.png',
+        'img/2_enemies/trol_red/Troll_03_1_WALK_008.png',
+        'img/2_enemies/trol_red/Troll_03_1_WALK_009.png',
+
     ];
     IMAGES_DEAD = [
-        'img/2_enemies/Wild Zombie/dead/1.png',
-        'img/2_enemies/Wild Zombie/dead/2.png',
-        'img/2_enemies/Wild Zombie/dead/3.png',
-        // 'img/2_enemies/Wild Zombie/dead/4.png',
-        // 'img/2_enemies/Wild Zombie/dead/5.png',
+        'img/2_enemies/trol_red/Troll_03_1_DIE_000.png',
+        'img/2_enemies/trol_red/Troll_03_1_DIE_001.png',
+        'img/2_enemies/trol_red/Troll_03_1_DIE_002.png',
+        'img/2_enemies/trol_red/Troll_03_1_DIE_003.png',
+        'img/2_enemies/trol_red/Troll_03_1_DIE_004.png',
+        'img/2_enemies/trol_red/Troll_03_1_DIE_005.png',
+        'img/2_enemies/trol_red/Troll_03_1_DIE_006.png',
+        'img/2_enemies/trol_red/Troll_03_1_DIE_007.png',
+        'img/2_enemies/trol_red/Troll_03_1_DIE_008.png',
+        'img/2_enemies/trol_red/Troll_03_1_DIE_009.png',
+
     ];
     IMAGES_HURT = [
-        'img/2_enemies/Wild Zombie/hurt/1.png',
-        'img/2_enemies/Wild Zombie/hurt/2.png',
-        'img/2_enemies/Wild Zombie/hurt/3.png',
-        'img/2_enemies/Wild Zombie/hurt/4.png',
-        'img/2_enemies/Wild Zombie/hurt/5.png',
+        'img/2_enemies/trol_red/Troll_03_1_HURT_000.png',
+        'img/2_enemies/trol_red/Troll_03_1_HURT_001.png',
+        'img/2_enemies/trol_red/Troll_03_1_HURT_002.png',
+        'img/2_enemies/trol_red/Troll_03_1_HURT_003.png',
+        'img/2_enemies/trol_red/Troll_03_1_HURT_004.png',
+        'img/2_enemies/trol_red/Troll_03_1_HURT_005.png',
+        'img/2_enemies/trol_red/Troll_03_1_HURT_006.png',
+        'img/2_enemies/trol_red/Troll_03_1_HURT_007.png',
+        'img/2_enemies/trol_red/Troll_03_1_HURT_008.png',
+        'img/2_enemies/trol_red/Troll_03_1_HURT_009.png',
     ];
     IMAGES_ATTACK = [
-        'img/2_enemies/Wild Zombie/attack/1.png',
-        'img/2_enemies/Wild Zombie/attack/2.png',
-        'img/2_enemies/Wild Zombie/attack/3.png',
-        'img/2_enemies/Wild Zombie/attack/4.png',
+        'img/2_enemies/trol_red/Troll_03_1_ATTACK_000.png',
+        'img/2_enemies/trol_red/Troll_03_1_ATTACK_001.png',
+        'img/2_enemies/trol_red/Troll_03_1_ATTACK_002.png',
+        'img/2_enemies/trol_red/Troll_03_1_ATTACK_003.png',
+        'img/2_enemies/trol_red/Troll_03_1_ATTACK_004.png',
+        'img/2_enemies/trol_red/Troll_03_1_ATTACK_005.png',
+        'img/2_enemies/trol_red/Troll_03_1_ATTACK_006.png',
+        'img/2_enemies/trol_red/Troll_03_1_ATTACK_007.png',
+        'img/2_enemies/trol_red/Troll_03_1_ATTACK_008.png',
+        'img/2_enemies/trol_red/Troll_03_1_ATTACK_009.png',
     ];
     constructor() {
-        super().loadImage('img/2_enemies/Wild Zombie/walk/1.png');
+        super().loadImage('img/2_enemies/trol_red/Troll_03_1_WALK_000.png');
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
@@ -47,13 +69,13 @@ class WildZombie extends MovableObject {
         this.speed = 1.5 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
-        // animateEnemy(this);
+        animateEnemy(this);
     }
 }
 
 class ManZombie extends MovableObject {
     x = 100;
-    y = 195;
+    y = 205;
     offset = {
         top: 130 * 0.7,
         bottom: 130,
@@ -127,8 +149,8 @@ class ManZombie extends MovableObject {
 }
 
 class WomanZombie extends MovableObject {
-    x = 105;
-    y = 311;
+    x = 100;
+    y = 205;
     offset = {
         top: 130 * 0.7,
         bottom: 130,
@@ -138,37 +160,56 @@ class WomanZombie extends MovableObject {
     width = 400;
     height = 250;
     IMAGES_WALK = [
-        'img/2_enemies/Zombie Woman/walk/1.png',
-        'img/2_enemies/Zombie Woman/walk/2.png',
-        'img/2_enemies/Zombie Woman/walk/3.png',
-        'img/2_enemies/Zombie Woman/walk/4.png',
-        'img/2_enemies/Zombie Woman/walk/5.png',
-        'img/2_enemies/Zombie Woman/walk/6.png',
-        'img/2_enemies/Zombie Woman/walk/7.png',
+        'img/2_enemies/troll_grey/Troll_02_1_WALK_000.png',
+        'img/2_enemies/troll_grey/Troll_02_1_WALK_001.png',
+        'img/2_enemies/troll_grey/Troll_02_1_WALK_002.png',
+        'img/2_enemies/troll_grey/Troll_02_1_WALK_003.png',
+        'img/2_enemies/troll_grey/Troll_02_1_WALK_004.png',
+        'img/2_enemies/troll_grey/Troll_02_1_WALK_005.png',
+        'img/2_enemies/troll_grey/Troll_02_1_WALK_006.png',
+        'img/2_enemies/troll_grey/Troll_02_1_WALK_007.png',
+        'img/2_enemies/troll_grey/Troll_02_1_WALK_008.png',
+        'img/2_enemies/troll_grey/Troll_02_1_WALK_009.png',
     ];
     IMAGES_DEAD = [
-        'img/2_enemies/Zombie Woman/dead/1.png',
-        'img/2_enemies/Zombie Woman/dead/2.png',
-        'img/2_enemies/Zombie Woman/dead/3.png',
-        // 'img/2_enemies/Zombie Woman/dead/4.png',
-        // 'img/2_enemies/Zombie Woman/dead/5.png',
+        'img/2_enemies/troll_grey/Troll_02_1_DIE_000.png',
+        'img/2_enemies/troll_grey/Troll_02_1_DIE_001.png',
+        'img/2_enemies/troll_grey/Troll_02_1_DIE_002.png',
+        'img/2_enemies/troll_grey/Troll_02_1_DIE_003.png',
+        'img/2_enemies/troll_grey/Troll_02_1_DIE_004.png',
+        'img/2_enemies/troll_grey/Troll_02_1_DIE_005.png',
+        'img/2_enemies/troll_grey/Troll_02_1_DIE_006.png',
+        'img/2_enemies/troll_grey/Troll_02_1_DIE_007.png',
+        'img/2_enemies/troll_grey/Troll_02_1_DIE_008.png',
+        'img/2_enemies/troll_grey/Troll_02_1_DIE_009.png',
     ];
     IMAGES_HURT = [
-        'img/2_enemies/Zombie Woman/hurt/1.png',
-        'img/2_enemies/Zombie Woman/hurt/2.png',
-        'img/2_enemies/Zombie Woman/hurt/3.png',
-        'img/2_enemies/Zombie Woman/hurt/4.png',
-        'img/2_enemies/Zombie Woman/hurt/5.png',
+        'img/2_enemies/troll_grey/Troll_02_1_HURT_000.png',
+        'img/2_enemies/troll_grey/Troll_02_1_HURT_001.png',
+        'img/2_enemies/troll_grey/Troll_02_1_HURT_002.png',
+        'img/2_enemies/troll_grey/Troll_02_1_HURT_003.png',
+        'img/2_enemies/troll_grey/Troll_02_1_HURT_004.png',
+        'img/2_enemies/troll_grey/Troll_02_1_HURT_005.png',
+        'img/2_enemies/troll_grey/Troll_02_1_HURT_006.png',
+        'img/2_enemies/troll_grey/Troll_02_1_HURT_007.png',
+        'img/2_enemies/troll_grey/Troll_02_1_HURT_008.png',
+        'img/2_enemies/troll_grey/Troll_02_1_HURT_009.png',
     ];
     IMAGES_ATTACK = [
-        'img/2_enemies/Zombie Woman/attack/1.png',
-        'img/2_enemies/Zombie Woman/attack/2.png',
-        'img/2_enemies/Zombie Woman/attack/3.png',
-        'img/2_enemies/Zombie Woman/attack/4.png',
+        'img/2_enemies/troll_grey/Troll_02_1_ATTACK_000.png',
+        'img/2_enemies/troll_grey/Troll_02_1_ATTACK_001.png',
+        'img/2_enemies/troll_grey/Troll_02_1_ATTACK_002.png',
+        'img/2_enemies/troll_grey/Troll_02_1_ATTACK_003.png',
+        'img/2_enemies/troll_grey/Troll_02_1_ATTACK_004.png',
+        'img/2_enemies/troll_grey/Troll_02_1_ATTACK_005.png',
+        'img/2_enemies/troll_grey/Troll_02_1_ATTACK_006.png',
+        'img/2_enemies/troll_grey/Troll_02_1_ATTACK_007.png',
+        'img/2_enemies/troll_grey/Troll_02_1_ATTACK_008.png',
+        'img/2_enemies/troll_grey/Troll_02_1_ATTACK_009.png',
     ];
 
     constructor() {
-        super().loadImage('img/2_enemies/Zombie Woman/walk/1.png');
+        super().loadImage('img/2_enemies/troll_grey/Troll_02_1_WALK_000.png');
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
@@ -177,7 +218,7 @@ class WomanZombie extends MovableObject {
         this.speed = 1.75 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
-        // animateEnemy(this);
+        animateEnemy(this);
     }
 }
 

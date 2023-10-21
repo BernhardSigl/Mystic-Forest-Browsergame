@@ -56,6 +56,39 @@ class DrawableObject {
         }
     }
 
+    drawFrameOnFollowingLeft(ctx) {
+        if (
+
+            this instanceof Endboss) {
+            ctx.beginPath();
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = 'blue';
+            ctx.rect(
+                this.x + this.offsetOnFollowingLeft.left, // offset x
+                this.y + this.offsetOnFollowingLeft.top, // offset y
+                this.width - this.offsetOnFollowingLeft.right, // offset width
+                this.height - this.offsetOnFollowingLeft.bottom, // offset height
+            );
+            ctx.stroke();
+        }
+    }
+    drawFrameOnFollowingRight(ctx) {
+        if (
+
+            this instanceof Endboss) {
+            ctx.beginPath();
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = 'green';
+            ctx.rect(
+                this.x + this.offsetOnFollowingRight.left, // offset x
+                this.y + this.offsetOnFollowingRight.top, // offset y
+                this.width - this.offsetOnFollowingRight.right, // offset width
+                this.height - this.offsetOnFollowingRight.bottom, // offset height
+            );
+            ctx.stroke();
+        }
+    }
+
     addItem(item) {
         switch (item) {
             case 'coin':

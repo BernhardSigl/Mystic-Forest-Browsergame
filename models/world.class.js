@@ -61,9 +61,11 @@ class World {
 
     collisionEndBoss() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isFollowingLeft(enemy)) {
                 let endboss = this.level.enemies.length;
                 // console.log(endboss);
+            } else if (this.character.isFollowingRight(enemy)) {
+                let endboss = this.level.enemies.length;
             }
         });
     }
@@ -121,12 +123,12 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.fogs);
         this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.backgroundObjectsFront);
-
         this.addObjectsToMap(this.throwableObjects);
 
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.sticks);
+
+        this.addObjectsToMap(this.level.backgroundObjectsFront);
 
         this.ctx.translate(-this.camera_x, 0);
 
@@ -157,6 +159,8 @@ class World {
 
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
+        mo.drawFrameOnFollowingLeft(this.ctx);
+        mo.drawFrameOnFollowingRight(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

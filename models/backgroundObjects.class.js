@@ -1,5 +1,5 @@
 class BackgroundObjectsBack extends MovableObject {
-    width = 720;
+    width = 718;
     height = 480;
 
     constructor(imagePath, x) {
@@ -12,7 +12,7 @@ class BackgroundObjectsBack extends MovableObject {
 
 class BackgroundObjectsFront extends MovableObject {
 
-    width = 720;
+    width = 718;
     height = 480;
 
     constructor(imagePath, x) {

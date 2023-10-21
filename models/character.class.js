@@ -1,7 +1,19 @@
 class Character extends MovableObject {
     x = 100;
-    y = 198;
+    y = 210;
     offset = {
+        top: 132 * 0.7,
+        bottom: 132,
+        left: 350 / 2,
+        right: 350,
+    }
+    offsetOnFollowingLeft = {
+        top: 132 * 0.7,
+        bottom: 132,
+        left: 350 / 2,
+        right: 350,
+    }
+    offsetOnFollowingRight = {
         top: 132 * 0.7,
         bottom: 132,
         left: 350 / 2,

@@ -30,7 +30,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) {
             return true; // item soll aus der Welt fallen
         } else {
-            return this.y <= 190;
+            return this.y <= 200;
         }
     }
 
@@ -42,6 +42,28 @@ class MovableObject extends DrawableObject {
             mo.y + mo.offset.top &&
             this.x + this.offset.left <= mo.x + mo.offset.left + mo.width - mo.offset.right &&
             this.y + this.offset.top <= mo.y + mo.offset.top + mo.height - mo.offset.bottom
+        );
+    }
+
+    isFollowingLeft(mo) {
+        return (
+            this.x + this.offsetOnFollowingLeft.left + this.width - this.offsetOnFollowingLeft.right >=
+            mo.x + mo.offset.left &&
+            this.y + this.offsetOnFollowingLeft.top + this.height - this.offsetOnFollowingLeft.bottom >=
+            mo.y + mo.offset.top &&
+            this.x + this.offsetOnFollowingLeft.left <= mo.x + mo.offset.left + mo.width - mo.offset.right &&
+            this.y + this.offsetOnFollowingLeft.top <= mo.y + mo.offset.top + mo.height - mo.offset.bottom
+        );
+    }
+
+    isFollowingRight(mo) {
+        return (
+            this.x + this.offsetOnFollowingRight.left + this.width - this.offsetOnFollowingRight.right >=
+            mo.x + mo.offset.left &&
+            this.y + this.offsetOnFollowingRight.top + this.height - this.offsetOnFollowingRight.bottom >=
+            mo.y + mo.offset.top &&
+            this.x + this.offsetOnFollowingRight.left <= mo.x + mo.offset.left + mo.width - mo.offset.right &&
+            this.y + this.offsetOnFollowingRight.top <= mo.y + mo.offset.top + mo.height - mo.offset.bottom
         );
     }
 
@@ -109,7 +131,7 @@ class MovableObject extends DrawableObject {
     jump() {
         if (this.characterMovable === true) {
             this.speedY = 24;
-            world.character.y = 198; // höhe nach dem sprung
+            world.character.y = 210; // höhe nach dem sprung
         }
     }
 
