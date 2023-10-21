@@ -43,6 +43,7 @@ class World {
         this.collisionCoins();
         this.collisionSticks();
         this.collisionThrowableObjectWithEnemy();
+        this.collisionEndBoss();
     }
 
     collisionEnemies() {
@@ -54,6 +55,15 @@ class World {
                 }
                 this.character.damageCharacterToEnemy(enemy);
                 this.statusBar.setPercentage(this.character.energyCharacter);
+            }
+        });
+    }
+
+    collisionEndBoss() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                let endboss = this.level.enemies.length;
+                // console.log(endboss);
             }
         });
     }

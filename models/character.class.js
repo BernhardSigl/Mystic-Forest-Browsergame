@@ -1,8 +1,14 @@
 class Character extends MovableObject {
     x = 100;
-    y = 298;
-    width = 60;
-    height = 120;
+    y = 198;
+    offset = {
+        top: 132 * 0.7,
+        bottom: 132,
+        left: 350 / 2,
+        right: 350,
+    }
+    width = 420;
+    height = 250;
     speed = 3.5;
     otherDirection = false;
     camera_x = 100;
@@ -10,61 +16,103 @@ class Character extends MovableObject {
     maxAttackDuration = 1000;
 
     IMAGES_WALK = [
-        'img/1_characters/Raider_3/walk/1.png',
-        'img/1_characters/Raider_3/walk/2.png',
-        'img/1_characters/Raider_3/walk/3.png',
-        'img/1_characters/Raider_3/walk/4.png',
-        'img/1_characters/Raider_3/walk/6.png',
-        'img/1_characters/Raider_3/walk/7.png',
+        'img/1_characters/elf_sword/Elf_02__WALK_000.png',
+        'img/1_characters/elf_sword/Elf_02__WALK_001.png',
+        'img/1_characters/elf_sword/Elf_02__WALK_002.png',
+        'img/1_characters/elf_sword/Elf_02__WALK_003.png',
+        'img/1_characters/elf_sword/Elf_02__WALK_004.png',
+        'img/1_characters/elf_sword/Elf_02__WALK_005.png',
+        'img/1_characters/elf_sword/Elf_02__WALK_006.png',
+        'img/1_characters/elf_sword/Elf_02__WALK_007.png',
+        'img/1_characters/elf_sword/Elf_02__WALK_008.png',
+        'img/1_characters/elf_sword/Elf_02__WALK_009.png',
     ];
     IMAGES_JUMP = [
-        'img/1_characters/Raider_3/jump/1.png',
-        'img/1_characters/Raider_3/jump/2.png',
-        'img/1_characters/Raider_3/jump/3.png',
-        'img/1_characters/Raider_3/jump/4.png',
-        'img/1_characters/Raider_3/jump/5.png',
-        'img/1_characters/Raider_3/jump/6.png',
-        'img/1_characters/Raider_3/jump/7.png',
-        'img/1_characters/Raider_3/jump/8.png',
+        'img/1_characters/elf_sword/Elf_02__JUMP_000.png',
+        'img/1_characters/elf_sword/Elf_02__JUMP_001.png',
+        'img/1_characters/elf_sword/Elf_02__JUMP_002.png',
+        'img/1_characters/elf_sword/Elf_02__JUMP_003.png',
+        'img/1_characters/elf_sword/Elf_02__JUMP_004.png',
+        'img/1_characters/elf_sword/Elf_02__JUMP_005.png',
+        'img/1_characters/elf_sword/Elf_02__JUMP_006.png',
+        'img/1_characters/elf_sword/Elf_02__JUMP_007.png',
+        'img/1_characters/elf_sword/Elf_02__JUMP_008.png',
+        'img/1_characters/elf_sword/Elf_02__JUMP_009.png',
+
     ]
     IMAGES_DEAD = [
-        // 'img/1_characters/Raider_3/dead/1.png',
-        // 'img/1_characters/Raider_3/dead/2.png',
-        'img/1_characters/Raider_3/dead/3.png',
-        // 'img/1_characters/Raider_3/dead/4.png',
-    ];
+        'img/1_characters/elf_sword/Elf_02__DIE_000.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_001.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_002.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_003.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_004.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_005.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_006.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_007.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_008.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
 
+    ];
     IMAGES_HURT = [
-        'img/1_characters/Raider_3/hurt/1.png',
-        'img/1_characters/Raider_3/hurt/3.png',
-    ];
+        'img/1_characters/elf_sword/Elf_02__HURT_000.png',
+        'img/1_characters/elf_sword/Elf_02__HURT_001.png',
+        'img/1_characters/elf_sword/Elf_02__HURT_002.png',
+        'img/1_characters/elf_sword/Elf_02__HURT_003.png',
+        'img/1_characters/elf_sword/Elf_02__HURT_004.png',
+        'img/1_characters/elf_sword/Elf_02__HURT_005.png',
+        'img/1_characters/elf_sword/Elf_02__HURT_006.png',
+        'img/1_characters/elf_sword/Elf_02__HURT_007.png',
+        'img/1_characters/elf_sword/Elf_02__HURT_008.png',
+        'img/1_characters/elf_sword/Elf_02__HURT_009.png',
 
-    IMAGES_ATTACK = [
-        'img/1_characters/Raider_3/attack/1.png',
-        'img/1_characters/Raider_3/attack/2.png',
-        'img/1_characters/Raider_3/attack/3.png',
-        'img/1_characters/Raider_3/attack/4.png',
-        'img/1_characters/Raider_3/attack/5.png',
     ];
-    // IMAGES_IDLE = [
-    //     'img/1_characters/Raider_3/idle/1.png',
-    //     'img/1_characters/Raider_3/idle/2.png',
-    //     'img/1_characters/Raider_3/idle/3.png',
-    //     'img/1_characters/Raider_3/idle/4.png',
-    //     'img/1_characters/Raider_3/idle/5.png',
-    //     'img/1_characters/Raider_3/idle/6.png',
-    // ];
+    IMAGES_ATTACK = [
+        'img/1_characters/elf_sword/Elf_02__ATTACK_000.png',
+        'img/1_characters/elf_sword/Elf_02__ATTACK_001.png',
+        'img/1_characters/elf_sword/Elf_02__ATTACK_002.png',
+        'img/1_characters/elf_sword/Elf_02__ATTACK_003.png',
+        'img/1_characters/elf_sword/Elf_02__ATTACK_004.png',
+        'img/1_characters/elf_sword/Elf_02__ATTACK_005.png',
+        'img/1_characters/elf_sword/Elf_02__ATTACK_006.png',
+        'img/1_characters/elf_sword/Elf_02__ATTACK_007.png',
+        'img/1_characters/elf_sword/Elf_02__ATTACK_008.png',
+        'img/1_characters/elf_sword/Elf_02__ATTACK_009.png',
+    ];
+    IMAGES_IDLE = [
+        'img/1_characters/elf_sword/Elf_02__IDLE_000.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_001.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_002.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_003.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_004.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_005.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_006.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_007.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_008.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_009.png',
+    ];
+    IMAGES_IDLE = [
+        'img/1_characters/elf_sword/Elf_02__IDLE_000.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_001.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_002.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_003.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_004.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_005.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_006.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_007.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_008.png',
+        'img/1_characters/elf_sword/Elf_02__IDLE_009.png',
+    ]
 
     world;
 
     constructor() {
-        super().loadImage('img/1_characters/Raider_3/walk/1.png');
+        super().loadImage('img/1_characters/elf_sword/Elf_02__IDLE_000.png');
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_JUMP);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
-        // this.loadImages(this.IMAGES_IDLE);
+        this.loadImages(this.IMAGES_IDLE);
         this.animate();
         this.walking_sound = new Audio('audio/character_walk.wav');
         this.applyGravity();
@@ -106,11 +154,12 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMP);
+            } else if (this.world.keyboard.D && this.x < this.world.level.level_end_x || this.world.keyboard.A && this.x > 0) {
+                this.playAnimation(this.IMAGES_WALK);
             } else {
-                if (this.world.keyboard.D && this.x < this.world.level.level_end_x || this.world.keyboard.A && this.x > 0) {
-                    this.playAnimation(this.IMAGES_WALK);
-                }
+                this.playAnimation(this.IMAGES_IDLE);
             }
+
         }, 100);
 
         setInterval(() => {
@@ -132,7 +181,7 @@ class Character extends MovableObject {
                 this.lastAttackTime = 0;
                 this.isAttacking = false;
             }
-        }, 125); // schlaggeschwindigkeit
+        }, 40); // schlaggeschwindigkeit
 
     }
 }

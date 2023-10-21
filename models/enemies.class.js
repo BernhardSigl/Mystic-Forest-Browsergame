@@ -1,8 +1,14 @@
 class WildZombie extends MovableObject {
     x = 100;
     y = 348;
-    width = 90;
-    height = 65;
+    offset = {
+        top: 130 * 0.7,
+        bottom: 130,
+        left: 300 / 2,
+        right: 300,
+    }
+    width = 400;
+    height = 250;
     IMAGES_WALK = [
         'img/2_enemies/Wild Zombie/walk/1.png',
         'img/2_enemies/Wild Zombie/walk/2.png',
@@ -41,44 +47,73 @@ class WildZombie extends MovableObject {
         this.speed = 1.5 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
-        animateEnemy(this);
+        // animateEnemy(this);
     }
 }
 
 class ManZombie extends MovableObject {
     x = 100;
-    y = 302;
-    width = 60;
-    height = 112;
+    y = 195;
+    offset = {
+        top: 130 * 0.7,
+        bottom: 130,
+        left: 300 / 2,
+        right: 300,
+    }
+    width = 400;
+    height = 250;
 
     IMAGES_WALK = [
-        'img/2_enemies/Zombie Man/walk/3.png',
-        'img/2_enemies/Zombie Man/walk/4.png',
-        'img/2_enemies/Zombie Man/walk/5.png',
-        'img/2_enemies/Zombie Man/walk/8.png',
+        'img/2_enemies/troll_green/Troll_01_1_WALK_000.png',
+        'img/2_enemies/troll_green/Troll_01_1_WALK_001.png',
+        'img/2_enemies/troll_green/Troll_01_1_WALK_002.png',
+        'img/2_enemies/troll_green/Troll_01_1_WALK_003.png',
+        'img/2_enemies/troll_green/Troll_01_1_WALK_004.png',
+        'img/2_enemies/troll_green/Troll_01_1_WALK_005.png',
+        'img/2_enemies/troll_green/Troll_01_1_WALK_006.png',
+        'img/2_enemies/troll_green/Troll_01_1_WALK_007.png',
+        'img/2_enemies/troll_green/Troll_01_1_WALK_008.png',
+        'img/2_enemies/troll_green/Troll_01_1_WALK_009.png',
     ];
     IMAGES_DEAD = [
-        'img/2_enemies/Zombie Man/dead/1.png',
-        'img/2_enemies/Zombie Man/dead/2.png',
-        'img/2_enemies/Zombie Man/dead/3.png',
-        // 'img/2_enemies/Zombie Man/dead/4.png',
-        // 'img/2_enemies/Zombie Man/dead/5.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_000.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_001.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_002.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_003.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_004.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_005.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_006.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_007.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_008.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
     ];
     IMAGES_HURT = [
-        'img/2_enemies/Zombie Man/hurt/1.png',
-        'img/2_enemies/Zombie Man/hurt/2.png',
-        'img/2_enemies/Zombie Man/hurt/3.png',
+        'img/2_enemies/troll_green/Troll_01_1_HURT_000.png',
+        'img/2_enemies/troll_green/Troll_01_1_HURT_001.png',
+        'img/2_enemies/troll_green/Troll_01_1_HURT_002.png',
+        'img/2_enemies/troll_green/Troll_01_1_HURT_003.png',
+        'img/2_enemies/troll_green/Troll_01_1_HURT_004.png',
+        'img/2_enemies/troll_green/Troll_01_1_HURT_005.png',
+        'img/2_enemies/troll_green/Troll_01_1_HURT_006.png',
+        'img/2_enemies/troll_green/Troll_01_1_HURT_007.png',
+        'img/2_enemies/troll_green/Troll_01_1_HURT_008.png',
+        'img/2_enemies/troll_green/Troll_01_1_HURT_009.png',
     ];
     IMAGES_ATTACK = [
-        'img/2_enemies/Zombie Man/attack/1.png',
-        'img/2_enemies/Zombie Man/attack/2.png',
-        'img/2_enemies/Zombie Man/attack/3.png',
-        'img/2_enemies/Zombie Man/attack/4.png',
-        'img/2_enemies/Zombie Man/attack/5.png',
+        'img/2_enemies/troll_green/Troll_01_1_ATTACK_000.png',
+        'img/2_enemies/troll_green/Troll_01_1_ATTACK_001.png',
+        'img/2_enemies/troll_green/Troll_01_1_ATTACK_002.png',
+        'img/2_enemies/troll_green/Troll_01_1_ATTACK_003.png',
+        'img/2_enemies/troll_green/Troll_01_1_ATTACK_004.png',
+        'img/2_enemies/troll_green/Troll_01_1_ATTACK_005.png',
+        'img/2_enemies/troll_green/Troll_01_1_ATTACK_006.png',
+        'img/2_enemies/troll_green/Troll_01_1_ATTACK_007.png',
+        'img/2_enemies/troll_green/Troll_01_1_ATTACK_008.png',
+        'img/2_enemies/troll_green/Troll_01_1_ATTACK_009.png',
     ];
 
     constructor() {
-        super().loadImage('img/2_enemies/Zombie Man/walk/1.png');
+        super().loadImage('img/2_enemies/troll_green/Troll_01_1_WALK_000.png');
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
@@ -94,8 +129,14 @@ class ManZombie extends MovableObject {
 class WomanZombie extends MovableObject {
     x = 105;
     y = 311;
-    width = 65;
-    height = 100;
+    offset = {
+        top: 130 * 0.7,
+        bottom: 130,
+        left: 300 / 2,
+        right: 300,
+    }
+    width = 400;
+    height = 250;
     IMAGES_WALK = [
         'img/2_enemies/Zombie Woman/walk/1.png',
         'img/2_enemies/Zombie Woman/walk/2.png',
@@ -136,7 +177,7 @@ class WomanZombie extends MovableObject {
         this.speed = 1.75 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
-        animateEnemy(this);
+        // animateEnemy(this);
     }
 }
 
@@ -152,17 +193,16 @@ function animateEnemy(o) {
                 }, 200);
             }, 500);
         }
-        else if (o.energyEnemy !== 0 && !o.isColliding(world.character) || world.character.energyCharacter === 0) {
+        else if (o.energyEnemy !== 0 && !o.isColliding(world.character) || world.character.energyCharacter === 0 && world.character.isAttacking === false) {
             o.playAnimation(o.IMAGES_WALK);
-            // o.moveLeft();
-            o.x -= o.speed;
-            o.otherDirection = true;
+            o.moveLeft();
+            // o.otherDirection = true;
         }
-        else if (o.isColliding(world.character) && world.character.isAttacking === true) {
+        else if (world.character.isAttacking === true || (o.isColliding(world.character) && world.character.isAboveGround())) {
             o.playAnimation(o.IMAGES_HURT);
         }
         else if (o.isColliding(world.character) && world.character.isAttacking === false && world.character.energyCharacter !== 0) {
             o.playAnimation(o.IMAGES_ATTACK);
         }
-    }, 150);
+    }, 60);
 }

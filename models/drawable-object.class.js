@@ -2,6 +2,12 @@ class DrawableObject {
     otherDirection = false;
     img;
     imageCache = {};
+    offset = {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+    }
     currentImage = 0;
     collectedCoins = 0;
     collectedSticks = 0;
@@ -34,13 +40,18 @@ class DrawableObject {
             this instanceof ManZombie ||
             this instanceof WomanZombie ||
             this instanceof ThrowableObject ||
-            // this instanceof Endboss ||
+            this instanceof Endboss ||
             this instanceof Coins ||
             this instanceof Sticks) {
             ctx.beginPath();
             ctx.lineWidth = 2;
             ctx.strokeStyle = 'red';
-            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.rect(
+                this.x + this.offset.left, // offset x
+                this.y + this.offset.top, // offset y
+                this.width - this.offset.right, // offset width
+                this.height - this.offset.bottom, // offset height
+            );
             ctx.stroke();
         }
     }

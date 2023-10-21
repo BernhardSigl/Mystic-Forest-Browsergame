@@ -3,6 +3,7 @@ class MovableObject extends DrawableObject {
     acceleration = 2;
     energyCharacter = 100;
     energyEnemy = 50;
+    energyEndboss = 100;
     lastHit = 0;
     collectedCoins = 0;
     collectedSticks = 0;
@@ -29,17 +30,19 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) {
             return true; // item soll aus der Welt fallen
         } else {
-            return this.y < 298;
+            return this.y <= 190;
         }
     }
 
-    // this.x und this.width ist der character; mo ist das Colliding-Objekt
     isColliding(mo) {
-        return (this.x + this.width) >= mo.x
-            && this.x <= (mo.x + mo.width)
-            && (this.y + this.height) >= mo.y
-            // && this.x < mo.x // von hinten darf nicht angegriffen werden
-            && this.y <= (mo.y + mo.height);
+        return (
+            this.x + this.offset.left + this.width - this.offset.right >=
+            mo.x + mo.offset.left &&
+            this.y + this.offset.top + this.height - this.offset.bottom >=
+            mo.y + mo.offset.top &&
+            this.x + this.offset.left <= mo.x + mo.offset.left + mo.width - mo.offset.right &&
+            this.y + this.offset.top <= mo.y + mo.offset.top + mo.height - mo.offset.bottom
+        );
     }
 
     damageEnemyToCharacter() {
@@ -65,7 +68,8 @@ class MovableObject extends DrawableObject {
 
     damageCharacterToEnemy(enemy) {
         if (this.isAttacking === true) {
-            enemy.energyEnemy -= 10;;
+            enemy.energyEnemy -= 10;
+            enemy.energyEndboss -= 10;
             if (enemy.energyEnemy < 0) {
                 enemy.energyEnemy = 0;
             }
@@ -105,7 +109,7 @@ class MovableObject extends DrawableObject {
     jump() {
         if (this.characterMovable === true) {
             this.speedY = 24;
-            world.character.y = 298;
+            world.character.y = 198; // höhe nach dem sprung
         }
     }
 
