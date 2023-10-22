@@ -22,7 +22,7 @@ class MovableObject extends DrawableObject {
     applyGravityDelay() {
         setInterval(() => {
             this.applyGravity();
-        }, 800);
+        }, 500);
     }
 
     isAboveGround() {
@@ -82,7 +82,7 @@ class MovableObject extends DrawableObject {
         }
     }
     throwableObjectsDamage(enemy) {
-        enemy.energyEnemy -= 100;;
+        enemy.energyEnemy -= 10;;
         if (enemy.energyEnemy < 0) {
             enemy.energyEnemy = 0;
         }
@@ -92,8 +92,10 @@ class MovableObject extends DrawableObject {
         if (this.isAttacking === true) {
             enemy.energyEnemy -= 10;
             enemy.energyEndboss -= 10;
-            if (enemy.energyEnemy < 0) {
+            if (enemy.energyEnemy <= 0) {
                 enemy.energyEnemy = 0;
+            } else if (enemy.energyEndboss <= 0) {
+                enemy.energyEndboss = 0;
             }
         }
     }
@@ -105,7 +107,7 @@ class MovableObject extends DrawableObject {
     }
 
     isDead() {
-        return this.energyCharacter == 0;
+        return this.energyCharacter == 0
     }
 
     isManZombieDead() {
@@ -130,7 +132,7 @@ class MovableObject extends DrawableObject {
 
     jump() {
         if (this.characterMovable === true) {
-            this.speedY = 24;
+            this.speedY = 26;
             world.character.y = 210; // höhe nach dem sprung
         }
     }

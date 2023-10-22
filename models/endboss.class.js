@@ -102,8 +102,9 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 600; // 2225
-        this.speed = 5 + Math.random() * 2;
+        this.x = 2000; // 2225
+        this.speed = 8 + Math.random() * 2;
+        this.otherDirection = true;
         // this.walking_sound = new Audio('audio/zombie_walk.wav');
         // this.walking_sound.volume = 0.15;
         animateEndboss(this);
@@ -111,53 +112,26 @@ class Endboss extends MovableObject {
 }
 
 function animateEndboss(o) {
-    o.moveLeft();
     setInterval(() => {
-        // if (o.energyEndboss < 100 && o.energyEndboss >= 80 && o.x <= 620 && o.x >= 150) {
-        //     o.playAnimation(o.IMAGES_RUN);
-        //     o.moveLeft();
-        //     if (o.x <= 160 && o.x >= 130) { // console.log(world.level.enemies
-        //         o.otherDirection = false;
-        //     }
-
-        // } else if (o.energyEndboss < 80 && o.energyEndboss >= 60 && o.x <= 630 && o.x >= 140) {
-        //     o.playAnimation(o.IMAGES_RUN);
-        //     o.moveRight();
-        //     if (o.x <= 640 && o.x >= 590) {
-        //         o.otherDirection = true;
-        //     }
-        // } else if (o.energyEndboss < 60 && o.energyEndboss >= 40 && o.x <= 640 && o.x >= 130) {
-        //     o.playAnimation(o.IMAGES_RUN);
-        //     o.moveLeft();
-        //     if (o.x <= 160 && o.x >= 120) {
-        //         o.otherDirection = false;
-        //     }
-        // } else if (o.energyEndboss < 40 && o.energyEndboss >= 20 && o.x <= 650 && o.x >= 120) {
-        //     o.playAnimation(o.IMAGES_RUN);
-        //     o.moveRight();
-        //     if (o.x <= 660 && o.x >= 650) {
-        //         o.otherDirection = true;
-        //     }
-        // }
-        // else
-        //     o.playAnimation(o.IMAGES_IDLE);
-        // // console.log(`live: `, o.energyEndboss);
-        // // console.log(`x: `, o.x);
-        // NEU
-        if (o.isFollowingLeft(world.character) && !o.isColliding(world.character)) {
+        if (o.isFollowingLeft(world.character) && !o.isColliding(world.character) && o.energyEndboss > 0) {
             o.moveLeft();
             o.playAnimation(o.IMAGES_RUN);
-        } else if (o.isFollowingRight(world.character) && !o.isColliding(world.character)) {
+        } else if (o.isFollowingRight(world.character) && !o.isColliding(world.character) && o.energyEndboss > 0) {
             o.moveRight();
             o.playAnimation(o.IMAGES_RUN);
-        } else if (o.isColliding(world.character) && world.character.isAttacking === false) {
+        } else if (o.isColliding(world.character) && world.character.isAttacking === false && o.energyEndboss > 0) {
             o.playAnimation(o.IMAGES_ATTACK);
-        } else if (world.character.energyCharacter === 0 || !o.isFollowingLeft(world.character) || !o.isFollowingRight(world.character) && world.character.isAttacking === false) {
-            o.playAnimation(o.IMAGES_IDLE);
         } else if (world.character.isAttacking === true || world.character.isAboveGround()) {
             o.playAnimation(o.IMAGES_HURT);
-        } else if (o.energyEndboss === 0) {
+        } else if (o.energyEndboss <= 0) {
             o.playAnimation(o.IMAGES_DEAD);
-        }
+            o.applyGravityDelay();
+            setTimeout(() => {
+                setInterval(() => {
+                    o.y -= o.speedY;
+                    o.speedY -= 0.5;
+                }, 200);
+            }, 500);
+        } else o.playAnimation(o.IMAGES_IDLE)
     }, 70);
 }

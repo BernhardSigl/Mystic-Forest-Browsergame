@@ -13,7 +13,7 @@ class ThrowableObject extends MovableObject {
     constructor(x, y) {
         super().loadImage('img/7_items/weapon-1.png');
         this.loadImages(this.IMAGES_WEOPON);
-        this.x = x;
+        this.x = x + 150;
         this.y = y;
         this.width = 40;
         this.height = this.width;

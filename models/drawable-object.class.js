@@ -59,7 +59,7 @@ class DrawableObject {
     drawFrameOnFollowingLeft(ctx) {
         if (
 
-            this instanceof Endboss) {
+            this instanceof Endboss || this instanceof ManZombie) {
             ctx.beginPath();
             ctx.lineWidth = 2;
             ctx.strokeStyle = 'blue';
@@ -75,7 +75,7 @@ class DrawableObject {
     drawFrameOnFollowingRight(ctx) {
         if (
 
-            this instanceof Endboss) {
+            this instanceof Endboss || this instanceof ManZombie) {
             ctx.beginPath();
             ctx.lineWidth = 2;
             ctx.strokeStyle = 'green';

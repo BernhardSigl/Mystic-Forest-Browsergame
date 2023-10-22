@@ -7,6 +7,18 @@ class WildZombie extends MovableObject {
         left: 300 / 2,
         right: 300,
     }
+    offsetOnFollowingLeft = {
+        top: 130 * 0.7,
+        bottom: 130,
+        left: 0,
+        right: 225,
+    }
+    offsetOnFollowingRight = {
+        top: 130 * 0.7,
+        bottom: 130,
+        left: 225,
+        right: 0,
+    }
     width = 400;
     height = 250;
     IMAGES_WALK = [
@@ -59,17 +71,32 @@ class WildZombie extends MovableObject {
         'img/2_enemies/trol_red/Troll_03_1_ATTACK_008.png',
         'img/2_enemies/trol_red/Troll_03_1_ATTACK_009.png',
     ];
+    IMAGES_IDLE = [
+        'img/2_enemies/trol_red/Troll_03_1_IDLE_000.png',
+        'img/2_enemies/trol_red/Troll_03_1_IDLE_001.png',
+        'img/2_enemies/trol_red/Troll_03_1_IDLE_002.png',
+        'img/2_enemies/trol_red/Troll_03_1_IDLE_003.png',
+        'img/2_enemies/trol_red/Troll_03_1_IDLE_004.png',
+        'img/2_enemies/trol_red/Troll_03_1_IDLE_005.png',
+        'img/2_enemies/trol_red/Troll_03_1_IDLE_006.png',
+        'img/2_enemies/trol_red/Troll_03_1_IDLE_007.png',
+        'img/2_enemies/trol_red/Troll_03_1_IDLE_008.png',
+        'img/2_enemies/trol_red/Troll_03_1_IDLE_009.png',
+    ];
+
     constructor() {
         super().loadImage('img/2_enemies/trol_red/Troll_03_1_WALK_000.png');
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_IDLE);
         this.x = 200 + Math.random() * 450;
         this.speed = 1.5 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
         animateEnemy(this);
+        this.otherDirection = true;
     }
 }
 
@@ -81,6 +108,18 @@ class ManZombie extends MovableObject {
         bottom: 130,
         left: 300 / 2,
         right: 300,
+    }
+    offsetOnFollowingLeft = {
+        top: 130 * 0.7,
+        bottom: 130,
+        left: 0,
+        right: 225,
+    }
+    offsetOnFollowingRight = {
+        top: 130 * 0.7,
+        bottom: 130,
+        left: 225,
+        right: 0,
     }
     width = 400;
     height = 250;
@@ -133,6 +172,18 @@ class ManZombie extends MovableObject {
         'img/2_enemies/troll_green/Troll_01_1_ATTACK_008.png',
         'img/2_enemies/troll_green/Troll_01_1_ATTACK_009.png',
     ];
+    IMAGES_IDLE = [
+        'img/2_enemies/troll_green/Troll_01_1_IDLE_000.png',
+        'img/2_enemies/troll_green/Troll_01_1_IDLE_001.png',
+        'img/2_enemies/troll_green/Troll_01_1_IDLE_002.png',
+        'img/2_enemies/troll_green/Troll_01_1_IDLE_003.png',
+        'img/2_enemies/troll_green/Troll_01_1_IDLE_004.png',
+        'img/2_enemies/troll_green/Troll_01_1_IDLE_005.png',
+        'img/2_enemies/troll_green/Troll_01_1_IDLE_006.png',
+        'img/2_enemies/troll_green/Troll_01_1_IDLE_007.png',
+        'img/2_enemies/troll_green/Troll_01_1_IDLE_008.png',
+        'img/2_enemies/troll_green/Troll_01_1_IDLE_009.png',
+    ];
 
     constructor() {
         super().loadImage('img/2_enemies/troll_green/Troll_01_1_WALK_000.png');
@@ -140,11 +191,13 @@ class ManZombie extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_IDLE);
         this.x = 200 + Math.random() * 450;
-        this.speed = 2 + Math.random() * 0.15;
+        this.speed = 4 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
         animateEnemy(this);
+        this.otherDirection = true;
     }
 }
 
@@ -156,6 +209,18 @@ class WomanZombie extends MovableObject {
         bottom: 130,
         left: 300 / 2,
         right: 300,
+    }
+    offsetOnFollowingLeft = {
+        top: 130 * 0.7,
+        bottom: 130,
+        left: 0,
+        right: 225,
+    }
+    offsetOnFollowingRight = {
+        top: 130 * 0.7,
+        bottom: 130,
+        left: 225,
+        right: 0,
     }
     width = 400;
     height = 250;
@@ -207,6 +272,18 @@ class WomanZombie extends MovableObject {
         'img/2_enemies/troll_grey/Troll_02_1_ATTACK_008.png',
         'img/2_enemies/troll_grey/Troll_02_1_ATTACK_009.png',
     ];
+    IMAGES_IDLE = [
+        'img/2_enemies/troll_grey/Troll_02_1_IDLE_000.png',
+        'img/2_enemies/troll_grey/Troll_02_1_IDLE_001.png',
+        'img/2_enemies/troll_grey/Troll_02_1_IDLE_002.png',
+        'img/2_enemies/troll_grey/Troll_02_1_IDLE_003.png',
+        'img/2_enemies/troll_grey/Troll_02_1_IDLE_004.png',
+        'img/2_enemies/troll_grey/Troll_02_1_IDLE_005.png',
+        'img/2_enemies/troll_grey/Troll_02_1_IDLE_006.png',
+        'img/2_enemies/troll_grey/Troll_02_1_IDLE_007.png',
+        'img/2_enemies/troll_grey/Troll_02_1_IDLE_008.png',
+        'img/2_enemies/troll_grey/Troll_02_1_IDLE_009.png',
+    ];
 
     constructor() {
         super().loadImage('img/2_enemies/troll_grey/Troll_02_1_WALK_000.png');
@@ -214,11 +291,13 @@ class WomanZombie extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_IDLE);
         this.x = 200 + Math.random() * 450;
         this.speed = 1.75 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
         animateEnemy(this);
+        this.otherDirection = true;
     }
 }
 
@@ -226,24 +305,23 @@ function animateEnemy(o) {
     setInterval(() => {
         if (o.energyEnemy === 0) {
             o.playAnimation(o.IMAGES_DEAD);
-            o.applyGravityDelay();
-            setTimeout(() => {
-                setInterval(() => {
-                    o.y -= o.speedY;
-                    o.speedY -= 0.5;
-                }, 200);
-            }, 500);
-        }
-        else if (o.energyEnemy !== 0 && !o.isColliding(world.character) || world.character.energyCharacter === 0 && world.character.isAttacking === false) {
+            setInterval(() => {
+                o.y -= o.speedY;
+                o.speedY -= 0.5;
+            }, 200);
+        } else if (!o.isColliding(world.character) && world.character.isAttacking === false && o.isFollowingLeft(world.character)) {
             o.playAnimation(o.IMAGES_WALK);
             o.moveLeft();
-            // o.otherDirection = true;
+        } else if (o.isFollowingRight(world.character) && !o.isColliding(world.character) && world.character.isAttacking === false) {
+            o.playAnimation(o.IMAGES_WALK);
+            o.moveRight();
         }
         else if (world.character.isAttacking === true || (o.isColliding(world.character) && world.character.isAboveGround())) {
             o.playAnimation(o.IMAGES_HURT);
         }
         else if (o.isColliding(world.character) && world.character.isAttacking === false && world.character.energyCharacter !== 0) {
             o.playAnimation(o.IMAGES_ATTACK);
-        }
+        } else
+            o.playAnimation(o.IMAGES_IDLE);
     }, 60);
 }
