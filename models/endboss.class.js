@@ -135,6 +135,8 @@ function animateEndboss(o) {
             setTimeout(() => {
                 o.enemyIsThrownOff = false;
             }, 625);
+            // } else if (o.checkColliding === true && o.charackterIsJumpingOnOpponent === true) {
+            //     o.playAnimation(o.IMAGES_HURT);
         } else if (o.checkColliding === true && o.enemyIsAttacked === false && o.checkColliding === true) {
             o.playAnimation(o.IMAGES_ATTACK);
         } else

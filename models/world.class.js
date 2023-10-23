@@ -45,8 +45,8 @@ class World {
         this.collisionCoins();
         this.collisionSticks();
         this.collisionThrowableObjectWithEnemy();
-        this.collisionEnemiesFollowCharacter();
-        this.collisionEndbossFollowCharacter();
+        this.collisionEnemiesCharacter();
+        this.collisionEndbossCharacter();
     }
     /**
      * This function is used to check if the effects due to collisions between character and enemies.
@@ -113,24 +113,32 @@ class World {
     /**
      * This function is used to check if the enemy is following the character
      */
-    collisionEnemiesFollowCharacter() {
+    collisionEnemiesCharacter() {
         this.level.enemies.forEach((enemy) => {
             this.checkObjectFollowsCharacter(enemy);
+            this.checkJumpOnOpponent(enemy);
         });
     }
 
     /**
       * This function is used to check if the endboss is following the character
       */
-    collisionEndbossFollowCharacter() {
+    collisionEndbossCharacter() {
         this.level.endboss.forEach((endboss) => {
             this.checkObjectFollowsCharacter(endboss);
+            this.checkJumpOnOpponent(endboss);
         });
     }
 
+    checkJumpOnOpponent(opponent) {
+        if (this.character.isAboveGround() && this.character.speedY < 0) {
+            opponent.charackterIsJumpingOnOpponent = true;
+        }
+    }
+
     /**
-  * This function is used to check if an object is following the character
-  */
+    * This function is used to check if an object is following the character
+    */
     checkObjectFollowsCharacter(obj) {
         if (obj.isFollowingLeft(this.character)) {
             obj.checkFollowingLeft = true;
@@ -164,6 +172,8 @@ class World {
     objectIsThrownOff(opponent, obj) {
         if (obj.isColliding(opponent)) {
             opponent.enemyIsThrownOff = true;
+        } else {
+            opponent.enemyIsThrownOff = false;
         }
     }
 
