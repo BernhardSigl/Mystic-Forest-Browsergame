@@ -11,6 +11,7 @@ class MovableObject extends DrawableObject {
     enemyIsAttacked = false;
     characterMovable = true;
     checkColliding = false;
+    enemyIsThrownOff = false;
 
     offset = {
         top: 0,
@@ -102,25 +103,6 @@ class MovableObject extends DrawableObject {
             }
         }
     }
-
-    throwableObjectsDamage(enemy) {
-        enemy.energyEnemy -= 5;;
-        if (enemy.energyEnemy < 0) {
-            enemy.energyEnemy = 0;
-        }
-    }
-
-    // damageCharacterToEnemy(enemy) {
-    //     if (this.isAttacking === true) {
-    //         enemy.energyEnemy -= 10;
-    //         enemy.energyEndboss -= 10;
-    //         if (enemy.energyEnemy <= 0) {
-    //             enemy.energyEnemy = 0;
-    //         } else if (enemy.energyEndboss <= 0) {
-    //             enemy.energyEndboss = 0;
-    //         }
-    //     }
-    // }
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;

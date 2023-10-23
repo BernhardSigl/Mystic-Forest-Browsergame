@@ -92,7 +92,7 @@ class WildZombie extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_IDLE);
         this.x = 300 + Math.random() * 1500;
-        this.speed = 1.5 + Math.random() * 0.15;
+        this.speed = 6 + Math.random() * 0.5;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
         animateEnemy(this);
@@ -193,7 +193,7 @@ class ManZombie extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_IDLE);
         this.x = 300 + Math.random() * 1500;
-        this.speed = 4 + Math.random() * 0.15;
+        this.speed = 5 + Math.random() * 0.5;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
         animateEnemy(this);
@@ -293,7 +293,7 @@ class WomanZombie extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_IDLE);
         this.x = 300 + Math.random() * 1500;
-        this.speed = 1.75 + Math.random() * 0.15;
+        this.speed = 5.5 + Math.random() * 0.5;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
         animateEnemy(this);
@@ -316,17 +316,18 @@ function animateEnemy(o) {
             o.playAnimation(o.IMAGES_WALK);
             o.moveRight();
         }
-        else if (o.enemyIsAttacked = true && o.checkColliding === true)
-        // || o.isColliding(world.throwableObjects[0])
-        // || o.isColliding(world.throwableObjects[1])
-        // || o.isColliding(world.throwableObjects[2])
-        // || o.isColliding(world.throwableObjects[3])
-        {
+        else if (o.enemyIsAttacked = true && o.checkColliding === true) {
+            o.energyEnemy -= 1;
+            o.playAnimation(o.IMAGES_HURT);
+        } else if (o.enemyIsThrownOff === true) {
+
             o.energyEnemy -= 1;
             o.playAnimation(o.IMAGES_HURT);
             console.log(`hurt`);
-        }
-        else if (o.checkColliding === true && o.isAttacking === false) {
+            setTimeout(() => {
+                o.enemyIsThrownOff = false;
+            }, 625);
+        } else if (o.checkColliding === true && o.isAttacking === false) {
             o.playAnimation(o.IMAGES_ATTACK);
         } else
             o.playAnimation(o.IMAGES_IDLE);

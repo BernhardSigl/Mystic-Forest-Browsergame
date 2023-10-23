@@ -21,7 +21,7 @@ class Character extends MovableObject {
     }
     width = 420;
     height = 250;
-    speed = 3.5;
+    speed = 3.0;
     otherDirection = false;
     camera_x = 100;
     lastAttackTime = 0;

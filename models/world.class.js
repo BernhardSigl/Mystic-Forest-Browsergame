@@ -100,7 +100,7 @@ class World {
         this.throwableObjects.forEach((stick) => {
             this.level.enemies.forEach((enemy) => {
                 if (stick.isColliding(enemy)) {
-                    stick.throwableObjectsDamage(enemy);
+                    enemy.enemyIsThrownOff = true;
                 }
             })
         });
