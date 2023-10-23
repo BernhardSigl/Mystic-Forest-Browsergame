@@ -309,25 +309,23 @@ function animateEnemy(o) {
                 o.y -= o.speedY;
                 o.speedY -= 0.5;
             }, 200);
-        } else if (o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false) {
+        } else if (o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false && o.enemyIsThrownOff === false) {
             o.playAnimation(o.IMAGES_WALK);
             o.moveLeft();
-        } else if (o.checkFollowingLeft === false && o.checkFollowingRight === true && o.checkColliding === false) {
+        } else if (o.checkFollowingLeft === false && o.checkFollowingRight === true && o.checkColliding === false && o.enemyIsThrownOff === false) {
             o.playAnimation(o.IMAGES_WALK);
             o.moveRight();
         }
-        else if (o.enemyIsAttacked = true && o.checkColliding === true) {
+        else if (o.checkGettingAttacked === true && o.checkColliding === true) {
             o.energyEnemy -= 1;
             o.playAnimation(o.IMAGES_HURT);
         } else if (o.enemyIsThrownOff === true) {
-
             o.energyEnemy -= 1;
             o.playAnimation(o.IMAGES_HURT);
-            console.log(`hurt`);
             setTimeout(() => {
                 o.enemyIsThrownOff = false;
             }, 625);
-        } else if (o.checkColliding === true && o.isAttacking === false) {
+        } else if (o.checkColliding === true && o.enemyIsAttacked === false && o.checkColliding === true) {
             o.playAnimation(o.IMAGES_ATTACK);
         } else
             o.playAnimation(o.IMAGES_IDLE);

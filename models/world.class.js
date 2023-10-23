@@ -3,6 +3,7 @@ class World {
     manZombie = new ManZombie();
     womanZombie = new WomanZombie();
     wildZombie = new WildZombie();
+    endboss = new Endboss();
     level = level1;
     canvas;
     ctx;
@@ -39,71 +40,131 @@ class World {
     }
 
     checkCollisions() {
-        this.collisionDamage();
+        this.collisionsEnemies();
+        this.collisionsEndboss();
         this.collisionCoins();
         this.collisionSticks();
         this.collisionThrowableObjectWithEnemy();
-        this.collisionFollowCharacter();
-        this.collisionAttacking();
+        this.collisionEnemiesFollowCharacter();
+        this.collisionEndbossFollowCharacter();
     }
-
-    collisionDamage() {
+    /**
+     * This function is used to check if the effects due to collisions between character and enemies.
+     */
+    collisionsEnemies() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                this.character.damageEnemyToCharacter();
-                if (this.character.isAboveGround() && this.character.speedY < 0) {
-                    this.character.jump();
-                }
-                this.enemyIsAttacked(enemy);
-                this.statusBar.setPercentage(this.character.energyCharacter);
-            }
+            this.checkDamageToCharacter(enemy);
+            this.checkGenerallyCollision(enemy);
+            this.checkCharacterIsAttacking(enemy);
         });
     }
 
-    enemyIsAttacked(enemy) {
-        if (this.characterMovable === true && this.character.isAttacking === true) {
-            enemy.enemyIsAttacked = true;
-            if (enemy.energyEnemy <= 0) {
-                enemy.energyEnemy = 0;
+    /**
+     * This function is used to check if the effects due to collisions between character and endboss.
+     */
+    collisionsEndboss() {
+        this.level.endboss.forEach((endboss) => {
+            this.checkDamageToCharacter(endboss);
+            this.checkGenerallyCollision(endboss);
+            this.checkCharacterIsAttacking(endboss);
+        });
+    }
+
+    /**
+     * This function is to check the effects of opoonents on character
+     */
+    checkDamageToCharacter(obj) {
+        if (this.character.isColliding(obj)) {
+            this.character.damageObjectToCharacter();
+            if (this.character.isAboveGround() && this.character.speedY < 0) {
+                this.character.jump();
             }
-        } else {
-            enemy.enemyIsAttacked = false;
-            this.character.isAttacking = true;
+            this.statusBar.setPercentage(this.character.energyCharacter);
         }
     }
 
-    collisionAttacking() {
-        this.level.enemies.forEach((enemy) => {
-            if (enemy.isColliding(this.character)) {
-                enemy.checkColliding = true;
-            } else
-                enemy.checkColliding = false;
-        });
+    /**
+     * This function is used to check if a collision is happening
+     */
+    checkGenerallyCollision(obj) {
+        if (obj.isColliding(this.character)) {
+            obj.checkColliding = true;
+        } else {
+            obj.checkColliding = false;
+        }
     }
 
-    collisionFollowCharacter() {
-        this.level.enemies.forEach((enemy) => {
-            if (enemy.isFollowingLeft(this.character)) {
-                enemy.checkFollowingLeft = true;
-                enemy.checkFollowingRight = false;
-            } else if (enemy.isFollowingRight(this.character)) {
-                enemy.checkFollowingLeft = false;
-                enemy.checkFollowingRight = true;
-            } else {
-                enemy.checkFollowingLeft = false;
-                enemy.checkFollowingRight = false;
+    /**
+     * This function is used to check if the character is attacking
+     */
+    checkCharacterIsAttacking(obj) {
+        if (this.character.isAttacking === true) {
+            obj.checkGettingAttacked = true;
+            obj.energyEnemy -= 1;
+            if (obj.energyEnemy <= 0) {
+                obj.energyEnemy = 0;
             }
+        } else {
+            obj.checkGettingAttacked = false;
+            this.character.isAttacking = false;
+        }
+    }
+
+    /**
+     * This function is used to check if the enemy is following the character
+     */
+    collisionEnemiesFollowCharacter() {
+        this.level.enemies.forEach((enemy) => {
+            this.checkObjectFollowsCharacter(enemy);
         });
     }
 
+    /**
+      * This function is used to check if the endboss is following the character
+      */
+    collisionEndbossFollowCharacter() {
+        this.level.endboss.forEach((endboss) => {
+            this.checkObjectFollowsCharacter(endboss);
+        });
+    }
+
+    /**
+  * This function is used to check if an object is following the character
+  */
+    checkObjectFollowsCharacter(obj) {
+        if (obj.isFollowingLeft(this.character)) {
+            obj.checkFollowingLeft = true;
+            obj.checkFollowingRight = false;
+        } else if (obj.isFollowingRight(this.character)) {
+            obj.checkFollowingLeft = false;
+            obj.checkFollowingRight = true;
+        } else {
+            obj.checkFollowingLeft = false;
+            obj.checkFollowingRight = false;
+        }
+    }
+
+    /**
+     * This function is used to check if the enemy or the endboss is thrown off by an magic-ball
+     */
     collisionThrowableObjectWithEnemy() {
-        this.throwableObjects.forEach((stick) => {
+        this.throwableObjects.forEach((magicball) => {
             this.level.enemies.forEach((enemy) => {
-                if (stick.isColliding(enemy)) {
-                    enemy.enemyIsThrownOff = true;
-                }
+                this.objectIsThrownOff(enemy, magicball);
+            })
+            this.level.endboss.forEach((endboss) => {
+                this.objectIsThrownOff(endboss, magicball);
             })
         });
+    }
+
+    /**
+     * This function is used to check if an opponent is thrown off by an object
+     */
+    objectIsThrownOff(opponent, obj) {
+        if (obj.isColliding(opponent)) {
+            opponent.enemyIsThrownOff = true;
+        }
     }
 
     collisionCoins() {
@@ -149,6 +210,7 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.fogs);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.throwableObjects);
 
         this.addObjectsToMap(this.level.coins);

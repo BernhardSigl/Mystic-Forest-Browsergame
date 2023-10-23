@@ -11,6 +11,8 @@ class MovableObject extends DrawableObject {
     enemyIsAttacked = false;
     characterMovable = true;
     checkColliding = false;
+    checkFollowingLeftEndboss = false;
+    checkFollowingRightEndboss = false;
     enemyIsThrownOff = false;
 
     offset = {
@@ -89,7 +91,7 @@ class MovableObject extends DrawableObject {
         );
     }
 
-    damageEnemyToCharacter() {
+    damageObjectToCharacter() {
         if (this.isAttacking === false) {
             if (world.character.isAboveGround()) {
                 this.energyCharacter -= 5;
@@ -118,7 +120,6 @@ class MovableObject extends DrawableObject {
         return this.energyEnemy == 0;
     }
 
-
     moveRight() {
         if (this.characterMovable === true) {
             this.characterMovable = true;
@@ -140,8 +141,6 @@ class MovableObject extends DrawableObject {
             world.character.y = 210; // höhe nach dem sprung
         }
     }
-
-
 
     playAnimation(images) {
         let i = this.currentImage % images.length;

@@ -21,7 +21,7 @@ class Character extends MovableObject {
     }
     width = 420;
     height = 250;
-    speed = 3.0;
+    speed = 3.5;
     otherDirection = false;
     camera_x = 100;
     lastAttackTime = 0;
@@ -183,7 +183,6 @@ class Character extends MovableObject {
                 } else if (!this.isDead() && difference <= this.maxAttackDuration) {
                     this.playAnimation(this.IMAGES_ATTACK);
                     this.isAttacking = true;
-
                 } else if (difference > this.maxAttackDuration) {
                     this.world.keyboard.J = false;
                     this.isAttacking = false;

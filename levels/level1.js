@@ -1,5 +1,5 @@
 const level1 = new Level([
-    // new ManZombie(),
+    new ManZombie(),
     // new ManZombie(),
     // new ManZombie(),
     // new WildZombie(),
@@ -8,8 +8,11 @@ const level1 = new Level([
     // new WomanZombie(),
     // new WomanZombie(),
     // new WomanZombie(),
-    new Endboss(),
+
 ],
+    [
+        new Endboss(),
+    ],
     [
         new FogsSmall(),
         new FogsSmall(),

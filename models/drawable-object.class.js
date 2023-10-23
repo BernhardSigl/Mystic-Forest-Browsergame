@@ -57,7 +57,8 @@ class DrawableObject {
             this instanceof Sticks) {
             ctx.beginPath();
             ctx.lineWidth = 2;
-            ctx.strokeStyle = 'red';
+            // ctx.strokeStyle = 'red';
+            ctx.strokeStyle = 'transparent';
             ctx.rect(
                 this.x + this.offset.left, // offset x
                 this.y + this.offset.top, // offset y
@@ -74,7 +75,8 @@ class DrawableObject {
             this instanceof Endboss || this instanceof ManZombie) {
             ctx.beginPath();
             ctx.lineWidth = 2;
-            ctx.strokeStyle = 'blue';
+            // ctx.strokeStyle = 'blue';
+            ctx.strokeStyle = 'transparent';
             ctx.rect(
                 this.x + this.offsetOnFollowingLeft.left, // offset x
                 this.y + this.offsetOnFollowingLeft.top, // offset y
@@ -90,7 +92,8 @@ class DrawableObject {
             this instanceof Endboss || this instanceof ManZombie) {
             ctx.beginPath();
             ctx.lineWidth = 2;
-            ctx.strokeStyle = 'green';
+            // ctx.strokeStyle = 'green';
+            ctx.strokeStyle = 'transparent';
             ctx.rect(
                 this.x + this.offsetOnFollowingRight.left, // offset x
                 this.y + this.offsetOnFollowingRight.top, // offset y

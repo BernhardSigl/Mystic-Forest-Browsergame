@@ -1,5 +1,6 @@
 class Level {
     enemies;
+    endboss;
     fogs;
     backgroundObjectsFront;
     backgroundObjectsBack;
@@ -7,8 +8,9 @@ class Level {
     coins;
     sticks;
 
-    constructor(enemies, fogs, backgroundObjectsFront, backgroundObjectsBack, coins, sticks) {
+    constructor(enemies, endboss, fogs, backgroundObjectsFront, backgroundObjectsBack, coins, sticks) {
         this.enemies = enemies;
+        this.endboss = endboss;
         this.fogs = fogs;
         this.backgroundObjectsFront = backgroundObjectsFront;
         this.backgroundObjectsBack = backgroundObjectsBack;

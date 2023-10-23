@@ -113,25 +113,31 @@ class Endboss extends MovableObject {
 
 function animateEndboss(o) {
     setInterval(() => {
-        if (o.isFollowingLeft(world.character) && !o.isColliding(world.character) && o.energyEndboss > 0) {
-            o.moveLeft();
-            o.playAnimation(o.IMAGES_RUN);
-        } else if (o.isFollowingRight(world.character) && !o.isColliding(world.character) && o.energyEndboss > 0) {
-            o.moveRight();
-            o.playAnimation(o.IMAGES_RUN);
-        } else if (o.isColliding(world.character) && world.character.isAttacking === false && o.energyEndboss > 0) {
-            o.playAnimation(o.IMAGES_ATTACK);
-        } else if (world.character.isAttacking === true || world.character.isAboveGround()) {
-            o.playAnimation(o.IMAGES_HURT);
-        } else if (o.energyEndboss <= 0) {
+        if (o.energyEndboss === 0) {
             o.playAnimation(o.IMAGES_DEAD);
-            o.applyGravityDelay();
+            setInterval(() => {
+                o.y -= o.speedY;
+                o.speedY -= 0.5;
+            }, 200);
+        } else if (o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false && o.enemyIsThrownOff === false) {
+            o.playAnimation(o.IMAGES_RUN);
+            o.moveLeft();
+        } else if (o.checkFollowingLeft === false && o.checkFollowingRight === true && o.checkColliding === false && o.enemyIsThrownOff === false) {
+            o.playAnimation(o.IMAGES_RUN);
+            o.moveRight();
+        }
+        else if (o.checkGettingAttacked === true && o.checkColliding === true) {
+            o.energyEndboss -= 1;
+            o.playAnimation(o.IMAGES_HURT);
+        } else if (o.enemyIsThrownOff === true) {
+            o.energyEndboss -= 1;
+            o.playAnimation(o.IMAGES_HURT);
             setTimeout(() => {
-                setInterval(() => {
-                    o.y -= o.speedY;
-                    o.speedY -= 0.5;
-                }, 200);
-            }, 500);
-        } else o.playAnimation(o.IMAGES_IDLE)
-    }, 70);
+                o.enemyIsThrownOff = false;
+            }, 625);
+        } else if (o.checkColliding === true && o.enemyIsAttacked === false && o.checkColliding === true) {
+            o.playAnimation(o.IMAGES_ATTACK);
+        } else
+            o.playAnimation(o.IMAGES_IDLE);
+    }, 60);
 }
