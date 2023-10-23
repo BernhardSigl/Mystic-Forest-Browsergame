@@ -8,7 +8,28 @@ class MovableObject extends DrawableObject {
     collectedCoins = 0;
     collectedSticks = 0;
     isAttacking = false;
+    enemyIsAttacked = false;
     characterMovable = true;
+    checkColliding = false;
+
+    offset = {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+    }
+    offsetOnFollowingLeft = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+    }
+    offsetOnFollowingRight = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+    }
 
     applyGravity() {
         setInterval(() => {
@@ -81,24 +102,25 @@ class MovableObject extends DrawableObject {
             }
         }
     }
+
     throwableObjectsDamage(enemy) {
-        enemy.energyEnemy -= 10;;
+        enemy.energyEnemy -= 5;;
         if (enemy.energyEnemy < 0) {
             enemy.energyEnemy = 0;
         }
     }
 
-    damageCharacterToEnemy(enemy) {
-        if (this.isAttacking === true) {
-            enemy.energyEnemy -= 10;
-            enemy.energyEndboss -= 10;
-            if (enemy.energyEnemy <= 0) {
-                enemy.energyEnemy = 0;
-            } else if (enemy.energyEndboss <= 0) {
-                enemy.energyEndboss = 0;
-            }
-        }
-    }
+    // damageCharacterToEnemy(enemy) {
+    //     if (this.isAttacking === true) {
+    //         enemy.energyEnemy -= 10;
+    //         enemy.energyEndboss -= 10;
+    //         if (enemy.energyEnemy <= 0) {
+    //             enemy.energyEnemy = 0;
+    //         } else if (enemy.energyEndboss <= 0) {
+    //             enemy.energyEndboss = 0;
+    //         }
+    //     }
+    // }
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
@@ -137,14 +159,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    attack() {
-        if (this.characterMovable === true) {
-            this.isAttacking = true;
-            if (this.isColliding === true) {
-                enemy.energyEnemy -= 50;
-            }
-        }
-    }
+
 
     playAnimation(images) {
         let i = this.currentImage % images.length;

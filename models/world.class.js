@@ -39,33 +39,59 @@ class World {
     }
 
     checkCollisions() {
-        this.collisionEnemies();
+        this.collisionDamage();
         this.collisionCoins();
         this.collisionSticks();
         this.collisionThrowableObjectWithEnemy();
-        this.collisionEndBoss();
+        this.collisionFollowCharacter();
+        this.collisionAttacking();
     }
 
-    collisionEnemies() {
+    collisionDamage() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.damageEnemyToCharacter();
                 if (this.character.isAboveGround() && this.character.speedY < 0) {
                     this.character.jump();
                 }
-                this.character.damageCharacterToEnemy(enemy);
+                this.enemyIsAttacked(enemy);
                 this.statusBar.setPercentage(this.character.energyCharacter);
             }
         });
     }
 
-    collisionEndBoss() {
+    enemyIsAttacked(enemy) {
+        if (this.characterMovable === true && this.character.isAttacking === true) {
+            enemy.enemyIsAttacked = true;
+            if (enemy.energyEnemy <= 0) {
+                enemy.energyEnemy = 0;
+            }
+        } else {
+            enemy.enemyIsAttacked = false;
+            this.character.isAttacking = true;
+        }
+    }
+
+    collisionAttacking() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isFollowingLeft(enemy)) {
-                let endboss = this.level.enemies.length;
-                // console.log(endboss);
-            } else if (this.character.isFollowingRight(enemy)) {
-                let endboss = this.level.enemies.length;
+            if (enemy.isColliding(this.character)) {
+                enemy.checkColliding = true;
+            } else
+                enemy.checkColliding = false;
+        });
+    }
+
+    collisionFollowCharacter() {
+        this.level.enemies.forEach((enemy) => {
+            if (enemy.isFollowingLeft(this.character)) {
+                enemy.checkFollowingLeft = true;
+                enemy.checkFollowingRight = false;
+            } else if (enemy.isFollowingRight(this.character)) {
+                enemy.checkFollowingLeft = false;
+                enemy.checkFollowingRight = true;
+            } else {
+                enemy.checkFollowingLeft = false;
+                enemy.checkFollowingRight = false;
             }
         });
     }

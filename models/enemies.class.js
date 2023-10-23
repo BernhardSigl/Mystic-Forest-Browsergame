@@ -91,7 +91,7 @@ class WildZombie extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_IDLE);
-        this.x = 200 + Math.random() * 450;
+        this.x = 300 + Math.random() * 1500;
         this.speed = 1.5 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
@@ -192,7 +192,7 @@ class ManZombie extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_IDLE);
-        this.x = 200 + Math.random() * 450;
+        this.x = 300 + Math.random() * 1500;
         this.speed = 4 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
@@ -292,7 +292,7 @@ class WomanZombie extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_IDLE);
-        this.x = 200 + Math.random() * 450;
+        this.x = 300 + Math.random() * 1500;
         this.speed = 1.75 + Math.random() * 0.15;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
@@ -309,17 +309,24 @@ function animateEnemy(o) {
                 o.y -= o.speedY;
                 o.speedY -= 0.5;
             }, 200);
-        } else if (!o.isColliding(world.character) && world.character.isAttacking === false && o.isFollowingLeft(world.character)) {
+        } else if (o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false) {
             o.playAnimation(o.IMAGES_WALK);
             o.moveLeft();
-        } else if (o.isFollowingRight(world.character) && !o.isColliding(world.character) && world.character.isAttacking === false) {
+        } else if (o.checkFollowingLeft === false && o.checkFollowingRight === true && o.checkColliding === false) {
             o.playAnimation(o.IMAGES_WALK);
             o.moveRight();
         }
-        else if (world.character.isAttacking === true || (o.isColliding(world.character) && world.character.isAboveGround())) {
+        else if (o.enemyIsAttacked = true && o.checkColliding === true)
+        // || o.isColliding(world.throwableObjects[0])
+        // || o.isColliding(world.throwableObjects[1])
+        // || o.isColliding(world.throwableObjects[2])
+        // || o.isColliding(world.throwableObjects[3])
+        {
+            o.energyEnemy -= 1;
             o.playAnimation(o.IMAGES_HURT);
+            console.log(`hurt`);
         }
-        else if (o.isColliding(world.character) && world.character.isAttacking === false && world.character.energyCharacter !== 0) {
+        else if (o.checkColliding === true && o.isAttacking === false) {
             o.playAnimation(o.IMAGES_ATTACK);
         } else
             o.playAnimation(o.IMAGES_IDLE);

@@ -14,7 +14,7 @@ class SticksBar extends DrawableObject {
         super();
         this.loadImages(this.IMAGES_STICKSBAR);
         this.x = 30;
-        this.y = 32;
+        this.y = 39;
         this.setAmountSticks(0);
     }
 

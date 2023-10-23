@@ -8,6 +8,18 @@ class DrawableObject {
         bottom: 0,
         left: 0,
     }
+    offsetOnFollowingLeft = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+    }
+    offsetOnFollowingRight = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+    }
     currentImage = 0;
     collectedCoins = 0;
     collectedSticks = 0;

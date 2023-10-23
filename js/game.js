@@ -1,6 +1,8 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+const enemy = new ManZombie();
+animateEnemy(enemy);
 
 function init() {
     canvas = document.getElementById('canvasId');

@@ -182,7 +182,7 @@ class Character extends MovableObject {
                     this.lastAttackTime = currentTime; // beim drücken soll lastAttackTime die aktuelle Zeit in echt bekommen
                 } else if (!this.isDead() && difference <= this.maxAttackDuration) {
                     this.playAnimation(this.IMAGES_ATTACK);
-                    this.attack();
+                    this.isAttacking = true;
 
                 } else if (difference > this.maxAttackDuration) {
                     this.world.keyboard.J = false;
