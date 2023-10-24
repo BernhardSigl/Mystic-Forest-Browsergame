@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html translate="no">
 
 <head>
     <meta charset="UTF-8">
@@ -31,10 +32,113 @@
 
 <body onload="init()">
 
-    <!-- <h1 class="gameName">Mystic Forest</h1> -->
+    <h1 class="gameName">Mystic Forest</h1>
 
-    <canvas id="canvasId" width="720" height="480">
-    </canvas>
+    <div id="fullscreen">
+        <div class="startingScreen">
+            <section id="menu">
+                <a class="startGame cursorPointer" onclick="startGame()">
+                    <img src="img/9_menu/startgame.png">
+                    <h2>START</h2>
+                </a>
+                <a class="playerinfo cursorPointer" onclick="openPlayerinfo()">
+                    <img src="img/9_menu/playerinfo.png">
+                    <h2>PLAYER INFO</h2>
+                </a>
+                <a class="controls cursorPointer" onclick="openControls()">
+                    <img src="img/9_menu/joystick.png">
+                    <h2>CONTROLS</h2>
+                </a>
+            </section>
+            <section id="playerinfoDescription" class="d-none">
+                <div class="characterInfo">
+                    <img src="img/9_menu/character.png">
+                    <h2>HEALTH</h2>
+                    <h3 class="orangeFont">100</h3>
+                    <h2>HIT</h2>
+                    <h3 class="greenFont">+10</h3>
+                    <h2>THROW</h2>
+                    <h3 class="greenFont">+10</h3>
+                    <h2>JUMP</h2>
+                    <h3 class="redFont">-5</h3>
+                </div>
+                <div class="enemyInfo">
+                    <img src="img/9_menu/trollgrey.png">
+                    <h2>HEALTH</h2>
+                    <h3 class="orangeFont">50</h3>
+                    <h2>HIT</h2>
+                    <h3 class="greenFont">+10</h3>
+                    <h2>THROWN OFF</h2>
+                    <h3 class="redFont">-10</h3>
+                    <h2>JUMPED ON</h2>
+                    <h3 class="redFont">0</h3>
+                </div>
+                <div class="endbossInfo">
+                    <img src="img/9_menu/endboss.png">
+                    <h2>HEALTH</h2>
+                    <h3 class="orangeFont">100</h3>
+                    <h2>HIT</h2>
+                    <h3 class="greenFont">+10</h3>
+                    <h2>THROWN OFF</h2>
+                    <h3 class="redFont">-10</h3>
+                    <h2>JUMPED ON</h2>
+                    <h3 class="redFont">0</h3>
+                </div>
+            </section>
+            <section id="controls" class="d-none">
+                <div class="horicontal gap8 minWidth">
+                    <div class="keyboardButton">
+                        <h1>W</h1>
+                    </div>
+                    <h2>JUMP</h2>
+                </div>
+                <div class="horicontal gap8 minWidth">
+                    <div class="keyboardButton">
+                        <h1>A</h1>
+                    </div>
+                    <h2>MOVE LEFT</h2>
+                </div>
+                <div class="horicontal gap8 minWidth">
+                    <div class="keyboardButton">
+                        <h1>D</h1>
+                    </div>
+                    <h2>MOVE RIGHT</h2>
+                </div>
+                <div class="horicontal gap8 minWidth">
+                    <div class="keyboardButton">
+                        <h1>J</h1>
+                    </div>
+                    <h2>ATTACK</h2>
+                </div>
+                <div class="horicontal gap8 minWidth">
+                    <div class="keyboardButton">
+                        <h1>K</h1>
+                    </div>
+                    <h2>THROW</h2>
+                </div>
+            </section>
+            <canvas id="canvasId" width="720" height="480" class="fullscreen d-none">
+            </canvas>
+            <div class="buttons">
+                <button onclick="backToMenu()" class="buttonsOnFullscreen d-none cursorPointer" id="backToMenuId">
+                    <img src="img/9_menu/arrow-left-solid.png">
+                </button>
+                <button onclick="fullscreen()" class="buttonsOnFullscreen cursorPointer" id="enterFullscreen">
+                    <img src="img/8_buttons/fullscreen.png">
+                </button>
+                <button onclick="closeFullscreen()" class="d-none buttonsOnFullscreen cursorPointer"
+                    id="closeFullscreen">
+                    <img src="img/8_buttons/closefullscreen.png">
+                </button>
+                <button onclick="" class="buttonsOnFullscreen cursorPointer">
+                    <img src="img/8_buttons/soundoff.png">
+                </button>
+            </div>
+            <section class="winningScreen d-none" id="winning">
+
+            </section>
+
+        </div>
 
 </body>
 

@@ -145,9 +145,7 @@ class Character extends MovableObject {
             if (!this.isDead() && this.world.keyboard.W && !this.isAboveGround()) {
                 this.jump();
             }
-
-
-            this.world.camera_x = -this.x + 100;
+            this.world.camera_x = -this.x;
         }, 1000 / 60);
 
         setInterval(() => {
@@ -161,7 +159,9 @@ class Character extends MovableObject {
                         this.speedY -= 0.5;
                     }, 200);
                 }, 2000);
-
+                setTimeout(() => {
+                    characterDied();
+                }, 3500);
             } else if (this.isHurt() && !this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {

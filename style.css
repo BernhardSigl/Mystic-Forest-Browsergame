@@ -14,6 +14,28 @@ body {
     background-size: cover;
 }
 
+h1,
+h2,
+h3,
+h4 {
+    text-shadow: 2px 2px 1px black;
+    margin: 0;
+    color: white;
+    font-weight: 200;
+}
+
+.greenFont {
+    color: green;
+}
+
+.redFont {
+    color: red;
+}
+
+.orangeFont {
+    color: orange;
+}
+
 .gameName {
     position: absolute;
     top: 10%;
@@ -27,7 +49,184 @@ body {
 
 canvas {
     background-color: black;
-    border: 3px solid white;
+    border: 2px solid white;
+
+}
+
+#fullscreen {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background-image: url('img/5_background/BACKGROUND.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.enterFullscreen {
+    width: auto;
+    height: 100vh;
+    border: none;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.horicontal {
+    display: flex;
+    align-items: center;
+}
+
+.gap8 {
+    gap: 8px;
+}
+
+.minWidth {
+    min-width: 185px;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    position: absolute;
+    top: 16px;
+    left: calc(50% - 100px / 2);
+    z-index: 1;
+}
+
+button {
+    width: 32px;
+    height: 32px;
+    margin: 0 6px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 4px;
+}
+
+button img {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.startGame:hover,
+.playerinfo:hover,
+.controls:hover,
+button:hover {
+    transform: scale(1.05);
+}
+
+.winningScreen,
+#controls,
+#playerinfoDescription,
+.startingScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('img/9_menu/Artboard 1.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 720px;
+    height: 480px;
+    border: 2px solid white;
+}
+
+#menu {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.startGame,
+.playerinfo,
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.playerinfo img {
+    width: auto;
+    height: 150px;
+}
+
+.startGame img {
+    width: auto;
+    height: 150px;
+}
+
+.controls img {
+    width: auto;
+    height: 150px;
+}
+
+#playerinfoDescription {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#playerinfoDescription img {
+    height: 150px;
+    width: auto;
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.keyboardButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 8px;
+    border: solid 1px black;
+    box-shadow: -2px 0 6px 0 rgb(0, 0, 0, 0.5);
+}
+
+.keyboardButton h1 {
+    color: black;
+    text-shadow: none;
+    font-weight: 600;
+}
+
+#winning img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+.endScreenText {
+    font-size: 80px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @media(max-width: 786px) {

@@ -232,22 +232,16 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.level.backgroundObjectsBack);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.fogs);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.throwableObjects);
-
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.sticks);
-
         this.addObjectsToMap(this.level.backgroundObjectsFront);
-
         this.ctx.translate(-this.camera_x, 0);
-
-        // bars
         this.addToMap(this.statusBar);
         this.addToMap(this.sticksBar);
         this.addToMap(this.coinsBar);
