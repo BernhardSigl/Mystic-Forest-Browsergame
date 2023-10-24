@@ -12,6 +12,7 @@ class World {
     statusBar = new StatusBar();
     sticksBar = new SticksBar();
     coinsBar = new CoinsBar();
+    statusBarEndBoss = new StatusBarEndBoss();
 
     throwableObjects = [];
     collectedCoins = [];
@@ -71,7 +72,7 @@ class World {
     }
 
     /**
-     * This function is to check the effects of opoonents on character
+     * This function is to check the effects of opponent on character
      */
     checkDamageToCharacter(obj) {
         if (this.character.isColliding(obj)) {
@@ -127,9 +128,15 @@ class World {
         this.level.endboss.forEach((endboss) => {
             this.checkObjectFollowsCharacter(endboss);
             this.checkJumpOnOpponent(endboss);
+            if (this.character.isAttacking === true && this.character.isColliding(endboss)) {
+                this.statusBarEndBoss.setPercentageEndboss(endboss.energyEndboss);
+            }
         });
     }
 
+    /**
+     * This function is used to check if the character is jumping on an opponent
+     */
     checkJumpOnOpponent(opponent) {
         if (this.character.isAboveGround() && this.character.speedY < 0) {
             opponent.charackterIsJumpingOnOpponent = true;
@@ -162,6 +169,7 @@ class World {
             })
             this.level.endboss.forEach((endboss) => {
                 this.objectIsThrownOff(endboss, magicball);
+                this.statusBarEndBoss.setPercentageEndboss(endboss.energyEndboss);
             })
         });
     }
@@ -177,6 +185,9 @@ class World {
         }
     }
 
+    /**
+     * This function is used to check if the character is collecting a coin
+     */
     collisionCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
@@ -188,6 +199,9 @@ class World {
         })
     }
 
+    /**
+ * This function is used to check if the character is collecting a throwable object
+ */
     collisionSticks() {
         this.level.sticks.forEach((stick) => {
             if (this.character.isColliding(stick)) {
@@ -199,6 +213,9 @@ class World {
         })
     }
 
+    /**
+     * This function is used to check if the character is able to throw a throwable object
+     */
     checkThrowObject() {
         for (let i = 0; i < this.collectedSticks.length; i++) {
             let throwableStick = this.collectedSticks[i];
@@ -234,6 +251,7 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.sticksBar);
         this.addToMap(this.coinsBar);
+        this.addToMap(this.statusBarEndBoss);
 
         // this.drawDeathMessage();
 
