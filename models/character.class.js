@@ -1,6 +1,6 @@
 class Character extends MovableObject {
     x = 0;
-    y = 210;
+    y = 212;
     offset = {
         top: 132 * 0.7,
         bottom: 132,
@@ -54,16 +54,39 @@ class Character extends MovableObject {
     ]
     IMAGES_DEAD = [
         'img/1_characters/elf_sword/Elf_02__DIE_000.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_000.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_000.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_001.png',
         'img/1_characters/elf_sword/Elf_02__DIE_001.png',
         'img/1_characters/elf_sword/Elf_02__DIE_002.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_002.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_003.png',
         'img/1_characters/elf_sword/Elf_02__DIE_003.png',
         'img/1_characters/elf_sword/Elf_02__DIE_004.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_004.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_005.png',
         'img/1_characters/elf_sword/Elf_02__DIE_005.png',
         'img/1_characters/elf_sword/Elf_02__DIE_006.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_006.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_007.png',
         'img/1_characters/elf_sword/Elf_02__DIE_007.png',
         'img/1_characters/elf_sword/Elf_02__DIE_008.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_008.png',
         'img/1_characters/elf_sword/Elf_02__DIE_009.png',
-
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
+        'img/1_characters/elf_sword/Elf_02__DIE_009.png',
     ];
     IMAGES_HURT = [
         'img/1_characters/elf_sword/Elf_02__HURT_000.png',
@@ -130,8 +153,15 @@ class Character extends MovableObject {
         this.applyGravity();
         this.walking_sound.volume = 0.2;
     }
-    animate() {
 
+    // fallInterval() {
+    //     return setInterval(() => {
+    //         this.y -= this.speedY;
+    //         this.speedY -= 0.5;
+    //     }, 200);
+    // }
+
+    animate() {
         setInterval(() => {
             this.walking_sound.pause();
             if (!this.isDead() && this.world.keyboard.D && this.x < this.world.level.level_end_x) {
@@ -149,19 +179,16 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            if (this.isDead()) {
+            if (this.energyCharacter === 0) {
                 this.characterMovable = false;
                 this.playAnimation(this.IMAGES_DEAD);
+                setTimeout(() => {
+                    resetGame();
+                }, 2500);
 
-                setTimeout(() => {
-                    setInterval(() => {
-                        this.y -= this.speedY;
-                        this.speedY -= 0.5;
-                    }, 200);
-                }, 2000);
-                setTimeout(() => {
-                    characterDied();
-                }, 3500);
+                // setTimeout(() => {
+                // this.fallInterval();
+                // }, 2000);
             } else if (this.isHurt() && !this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {

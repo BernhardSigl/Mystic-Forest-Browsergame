@@ -13,6 +13,8 @@ class World {
     sticksBar = new SticksBar();
     coinsBar = new CoinsBar();
     statusBarEndBoss = new StatusBarEndBoss();
+    coins = new Coins();
+    magicalBalls = new Sticks();
 
     throwableObjects = [];
     collectedCoins = [];

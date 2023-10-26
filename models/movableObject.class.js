@@ -14,6 +14,7 @@ class MovableObject extends DrawableObject {
     checkFollowingLeftEndboss = false;
     checkFollowingRightEndboss = false;
     enemyIsThrownOff = false;
+    characterDied = false;
 
     offset = {
         top: 0,
@@ -41,12 +42,6 @@ class MovableObject extends DrawableObject {
                 this.speedY -= this.acceleration;
             }
         }, 1000 / 25);
-    }
-
-    applyGravityDelay() {
-        setInterval(() => {
-            this.applyGravity();
-        }, 500);
     }
 
     isAboveGround() {
@@ -138,7 +133,7 @@ class MovableObject extends DrawableObject {
     jump() {
         if (this.characterMovable === true) {
             this.speedY = 26;
-            world.character.y = 210; // höhe nach dem sprung
+            world.character.y = 212; // höhe nach dem sprung
         }
     }
 

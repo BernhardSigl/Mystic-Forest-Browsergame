@@ -35,22 +35,24 @@
     <h1 class="gameName">Mystic Forest</h1>
 
     <div id="fullscreen">
-        <div class="startingScreen">
+        <div id="fullscreenContent" class="center border">
             <section id="menu">
-                <a class="startGame cursorPointer" onclick="startGame()">
+                <a class="startGame scaleOnHover cursorPointer" onclick="startGame()">
                     <img src="img/9_menu/startgame.png">
                     <h2>START</h2>
                 </a>
-                <a class="playerinfo cursorPointer" onclick="openPlayerinfo()">
+                <a class="playerinfo scaleOnHover cursorPointer" onclick="openPlayerinfo()">
                     <img src="img/9_menu/playerinfo.png">
                     <h2>PLAYER INFO</h2>
                 </a>
-                <a class="controls cursorPointer" onclick="openControls()">
+                <a class="controls scaleOnHover cursorPointer" onclick="openControls()">
                     <img src="img/9_menu/joystick.png">
                     <h2>CONTROLS</h2>
                 </a>
             </section>
-            <section id="playerinfoDescription" class="d-none">
+
+            <!-- player info -->
+            <section id="playerinfoDescription" class="menuBackground center d-none">
                 <div class="characterInfo">
                     <img src="img/9_menu/character.png">
                     <h2>HEALTH</h2>
@@ -85,7 +87,9 @@
                     <h3 class="redFont">0</h3>
                 </div>
             </section>
-            <section id="controls" class="d-none">
+
+            <!-- menu / controls -->
+            <section id="controls" class="center d-none">
                 <div class="horicontal gap8 minWidth">
                     <div class="keyboardButton">
                         <h1>W</h1>
@@ -117,25 +121,32 @@
                     <h2>THROW</h2>
                 </div>
             </section>
-            <canvas id="canvasId" width="720" height="480" class="fullscreen d-none">
+
+            <!-- gameplay -->
+            <canvas id="canvasId" width="720" height="480" class="d-none">
             </canvas>
-            <div class="buttons">
-                <button onclick="backToMenu()" class="buttonsOnFullscreen d-none cursorPointer" id="backToMenuId">
+
+            <!-- buttons -->
+            <section class="buttons">
+                <button onclick="resetGame()" class="scaleOnHover d-none cursorPointer" id="reloadGameId">
                     <img src="img/9_menu/arrow-left-solid.png">
                 </button>
-                <button onclick="fullscreen()" class="buttonsOnFullscreen cursorPointer" id="enterFullscreen">
+                <button onclick="showMenu()" class="scaleOnHover d-none cursorPointer" id="backToMenuId">
+                    <img src="img/9_menu/arrow-left-solid.png">
+                </button>
+                <button onclick="fullscreen()" class="scaleOnHover cursorPointer" id="enterFullscreen">
                     <img src="img/8_buttons/fullscreen.png">
                 </button>
-                <button onclick="closeFullscreen()" class="d-none buttonsOnFullscreen cursorPointer"
-                    id="closeFullscreen">
+                <button onclick="closeFullscreen()" class="scaleOnHover  cursorPointer d-none" id="closeFullscreen">
                     <img src="img/8_buttons/closefullscreen.png">
                 </button>
-                <button onclick="" class="buttonsOnFullscreen cursorPointer">
+                <button onclick="" class="scaleOnHover cursorPointer">
                     <img src="img/8_buttons/soundoff.png">
                 </button>
-            </div>
-            <section class="winningScreen d-none" id="winning">
+            </section>
 
+            <!-- winning screen -->
+            <section class="winningScreen center d-none" id="winningScreenId">
             </section>
 
         </div>

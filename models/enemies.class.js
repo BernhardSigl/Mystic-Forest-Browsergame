@@ -101,7 +101,6 @@ class WildZombie extends MovableObject {
 }
 
 class ManZombie extends MovableObject {
-    x = 100;
     y = 205;
     offset = {
         top: 130 * 0.7,
@@ -305,10 +304,11 @@ function animateEnemy(o) {
     setInterval(() => {
         if (o.energyEnemy === 0) {
             o.playAnimation(o.IMAGES_DEAD);
-            setInterval(() => {
-                o.y -= o.speedY;
-                o.speedY -= 0.5;
-            }, 200);
+            o.y = 100;
+            // setInterval(() => {
+            //     o.y -= o.speedY;
+            //     o.speedY -= 0.5;
+            // }, 200);
         } else if (o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false && o.enemyIsThrownOff === false) {
             o.playAnimation(o.IMAGES_WALK);
             o.moveLeft();
