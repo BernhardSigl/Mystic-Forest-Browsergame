@@ -10,13 +10,24 @@ function init() {
     world.character.characterMovable = false;
 }
 
+/**
+ * This function is used to make the character movable if the game starts
+ */
 function startGame() {
     world.character.characterMovable = true;
+    startGameVisibilities();
+}
+
+/**
+ * This function is to show or hide elements if the game starts
+ */
+function startGameVisibilities() {
     toggleVisibility('menu', false);
+    toggleVisibility('backToMenuId', false);
+    toggleVisibility('reloadGameId', true);
     toggleVisibility('canvasId', true);
     document.getElementById('fullscreenContent').classList.remove('center');
     document.getElementById('fullscreenContent').classList.remove('menuFullscreen');
-    toggleVisibility('backToMenuId', true);
 }
 
 function setStoppableInterval(fn, time) {
@@ -29,33 +40,50 @@ function stopGame() {
     // for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
+/**
+ * This function is to reset the hole game
+ */
 function resetGame() {
+    toggleVisibility('reloadGameId', false);
+    showMenu();
     resetCharacter();
     resetEnemies();
     resetObjects();
 }
 
+/**
+ * This function is to reset the character
+ */
 function resetCharacter() {
+    world.character.characterMovable = false;
     world.character.energyCharacter = 100;
-    world.character.characterMovable = true;
     world.character.x = 0;
     world.character.y = 212;
     world.character.isAttacking = false;
     world.character.characterDied = false;
 }
 
+/**
+ * This function is to reset the enemies
+ */
 function resetEnemies() {
     world.level.enemies[0].energyEnemy = 100;
     world.level.enemies[0].x = 300 + Math.random() * 1500;;
     world.level.enemies[0].y = 205;
 }
 
+/**
+ * This function is to reset the objects
+ */
 function resetObjects() {
     resetCoins();
     resetMagicalBalls();
     resetHealth();
 }
 
+/**
+ * This function is to reset the coins
+ */
 function resetCoins() {
     world.coinsBar.setAmountCoins(0);
     world.collectedCoins = [];
@@ -66,6 +94,9 @@ function resetCoins() {
     }
 }
 
+/**
+ * This function is to reset the throwable object
+ */
 function resetMagicalBalls() {
     world.throwableObjects = [];
     world.collectedSticks = [];
@@ -77,6 +108,9 @@ function resetMagicalBalls() {
     }
 }
 
+/**
+ * This function is to reset the health-bar
+ */
 function resetHealth() {
     world.statusBar.setPercentage(100);
 }
@@ -165,7 +199,6 @@ function toggleVisibility(id, show) {
 }
 
 function showMenu() {
-    world.character.characterMovable = false;
     toggleVisibility('controls', false);
     toggleVisibility('playerinfoDescription', false);
     toggleVisibility('backToMenuId', false);
@@ -192,6 +225,7 @@ function openControls() {
 
 function characterDied() {
     toggleVisibility('reloadGameId', true);
+    toggleVisibility('backToMenuId', false);
     toggleVisibility('canvasId', false);
     toggleVisibility('winningScreenId', true);
     document.getElementById('winningScreenId').innerHTML = /* html */ `

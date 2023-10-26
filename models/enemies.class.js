@@ -306,7 +306,7 @@ function animateEnemy(o) {
             o.playAnimation(o.IMAGES_DEAD);
             setTimeout(() => {
                 o.y = 400;
-            },);
+            }, 2000);
         } else if (o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false && o.enemyIsThrownOff === false) {
             o.playAnimation(o.IMAGES_WALK);
             o.moveLeft();
