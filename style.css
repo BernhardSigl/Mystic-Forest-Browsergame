@@ -54,17 +54,14 @@ canvas {
     height: 480px;
 }
 
+.menuFullscreen,
 .canvasFullscreen {
-    width: 100vw;
-    height: auto;
-    max-height: 100vh;
-    border: none;
-}
-
-.menuFullscreen {
-    width: auto !important;
+    width: 100vw !important;
     height: 100vh !important;
-    aspect-ratio: 4/3 !important;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #fullscreen {

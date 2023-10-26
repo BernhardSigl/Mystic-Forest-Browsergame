@@ -119,7 +119,7 @@ window.addEventListener('keyup', (e) => {
 })
 
 function fullscreen() {
-    enterFullscreen(document.getElementById('fullscreen'));
+    full = true;
     document.getElementById('closeFullscreen').classList.remove('d-none');
     document.getElementById('fullscreenContent').classList.remove('border');
     document.getElementById('fullscreenContent').classList.add('enterFullscreen');
@@ -129,7 +129,7 @@ function fullscreen() {
 }
 
 function closeFullscreen() {
-    exitFullscreen(document.getElementById('fullscreen'));
+    full = false;
     document.getElementById('canvasId').classList.remove('enterFullscreen');
     document.getElementById('closeFullscreen').classList.add('d-none');
     document.getElementById('fullscreenContent').classList.add('border');
@@ -138,25 +138,26 @@ function closeFullscreen() {
     document.getElementById('fullscreenContent').classList.remove('menuFullscreen');
 }
 
-function enterFullscreen(element) {
-    full = true;
-    if (element.requestFullscreen) {
-        element.requestFullscreen();
-    } else if (element.msRequestFullscreen) {
-        element.msRequestFullscreen();
-    } else if (element.webkitRequestFullscreen) {
-        element.webkitRequestFullscreen();
-    }
-}
+// function enterFullscreenCustom(element) {
+//     if (element.requestFullscreen) {
+//         element.requestFullscreen();
+//     } else if (element.msRequestFullscreen) {
+//         element.msRequestFullscreen();
+//     } else if (element.webkitRequestFullscreen) {
+//         element.webkitRequestFullscreen();
+//     }
+// }
 
-function exitFullscreen() {
-    full = false;
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-    }
-}
+// function enterFullscreen(element) {
+//     full = true;
+//     if (element.requestFullscreen) {
+//         element.requestFullscreen();
+//     } else if (element.msRequestFullscreen) {
+//         element.msRequestFullscreen();
+//     } else if (element.webkitRequestFullscreen) {
+//         element.webkitRequestFullscreen();
+//     }
+// }
 
 function toggleVisibility(id, show) {
     const showHide = document.getElementById(id);
