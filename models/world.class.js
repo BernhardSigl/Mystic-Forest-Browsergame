@@ -118,9 +118,25 @@ class World {
      */
     collisionEnemiesCharacter() {
         this.level.enemies.forEach((enemy) => {
-            this.checkObjectFollowsCharacter(enemy);
+            this.checkEnemyFollowsCharacter(enemy);
             this.checkJumpOnOpponent(enemy);
         });
+    }
+
+    /**
+     * This function is used to check if the enemy is right or left to the character
+     */
+    checkEnemyFollowsCharacter(enemy) {
+        if (enemy.x > this.character.x) {
+            enemy.checkFollowingLeft = true;
+            enemy.checkFollowingRight = false;
+        } else if (enemy.x < this.character.x) {
+            enemy.checkFollowingLeft = false;
+            enemy.checkFollowingRight = true;
+        } else {
+            enemy.checkFollowingLeft = false;
+            enemy.checkFollowingRight = false;
+        }
     }
 
     /**
@@ -128,7 +144,7 @@ class World {
       */
     collisionEndbossCharacter() {
         this.level.endboss.forEach((endboss) => {
-            this.checkObjectFollowsCharacter(endboss);
+            this.checkEndbossFollowsCharacter(endboss);
             this.checkJumpOnOpponent(endboss);
             if (this.character.isAttacking === true && this.character.isColliding(endboss)) {
                 this.statusBarEndBoss.setPercentageEndboss(endboss.energyEndboss);
@@ -146,18 +162,18 @@ class World {
     }
 
     /**
-    * This function is used to check if an object is following the character
+    * This function is used to check if the endboss is near to the character
     */
-    checkObjectFollowsCharacter(obj) {
-        if (obj.isFollowingLeft(this.character)) {
-            obj.checkFollowingLeft = true;
-            obj.checkFollowingRight = false;
-        } else if (obj.isFollowingRight(this.character)) {
-            obj.checkFollowingLeft = false;
-            obj.checkFollowingRight = true;
+    checkEndbossFollowsCharacter(endboss) {
+        if (endboss.endbossIsFollowingLeft(this.character)) {
+            endboss.checkFollowingLeft = true;
+            endboss.checkFollowingRight = false;
+        } else if (endboss.endbossIsFollowingRight(this.character)) {
+            endboss.checkFollowingLeft = false;
+            endboss.checkFollowingRight = true;
         } else {
-            obj.checkFollowingLeft = false;
-            obj.checkFollowingRight = false;
+            endboss.checkFollowingLeft = false;
+            endboss.checkFollowingRight = false;
         }
     }
 

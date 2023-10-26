@@ -1,5 +1,4 @@
 class Endboss extends MovableObject {
-    x = 100;
     y = 65;
     offset = {
         top: 230 * 0.7,

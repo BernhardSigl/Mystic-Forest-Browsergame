@@ -8,13 +8,20 @@ function init() {
     canvas = document.getElementById('canvasId');
     world = new World(canvas, keyboard);
     world.character.characterMovable = false;
+    world.level.enemies.forEach((enemy) => {
+        enemy.enemiesMovable = false;
+    });
 }
 
 /**
  * This function is used to make the character movable if the game starts
  */
 function startGame() {
+    resetGame();
     world.character.characterMovable = true;
+    world.level.enemies.forEach((enemy) => {
+        enemy.enemiesMovable = true;
+    });
     startGameVisibilities();
 }
 
@@ -49,6 +56,7 @@ function resetGame() {
     resetCharacter();
     resetEnemies();
     resetObjects();
+    resetEndboss();
 }
 
 /**
@@ -67,9 +75,24 @@ function resetCharacter() {
  * This function is to reset the enemies
  */
 function resetEnemies() {
-    world.level.enemies[0].energyEnemy = 100;
-    world.level.enemies[0].x = 300 + Math.random() * 1500;;
-    world.level.enemies[0].y = 205;
+    world.level.enemies.forEach((enemy) => {
+        enemy.enemiesMovable = false;
+        enemy.energyEnemy = 50;
+        enemy.x = Math.random() < 0.6 ? Math.random() * 2000 + 300 : Math.random() * 900 - 1000;
+        console.log(Math.random());
+        enemy.y = 205;
+    });
+}
+
+/**
+ * This function is to reset the endboss
+ */
+function resetEndboss() {
+    world.level.endboss.forEach((endboss) => {
+        endboss.energyEndboss = 100;
+        endboss.x = 2000;
+        endboss.y = 65;
+    });
 }
 
 /**
@@ -225,7 +248,6 @@ function openControls() {
 
 function characterDied() {
     toggleVisibility('reloadGameId', true);
-    toggleVisibility('backToMenuId', false);
     toggleVisibility('canvasId', false);
     toggleVisibility('winningScreenId', true);
     document.getElementById('winningScreenId').innerHTML = /* html */ `

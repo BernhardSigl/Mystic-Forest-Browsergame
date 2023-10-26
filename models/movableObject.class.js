@@ -10,6 +10,7 @@ class MovableObject extends DrawableObject {
     isAttacking = false;
     enemyIsAttacked = false;
     characterMovable = true;
+    enemiesMovable = true;
     checkColliding = false;
     checkFollowingLeftEndboss = false;
     checkFollowingRightEndboss = false;
@@ -64,7 +65,7 @@ class MovableObject extends DrawableObject {
         );
     }
 
-    isFollowingLeft(mo) {
+    endbossIsFollowingLeft(mo) {
         return (
             this.x + this.offsetOnFollowingLeft.left + this.width - this.offsetOnFollowingLeft.right >=
             mo.x + mo.offset.left &&
@@ -75,7 +76,7 @@ class MovableObject extends DrawableObject {
         );
     }
 
-    isFollowingRight(mo) {
+    endbossIsFollowingRight(mo) {
         return (
             this.x + this.offsetOnFollowingRight.left + this.width - this.offsetOnFollowingRight.right >=
             mo.x + mo.offset.left &&

@@ -1,11 +1,11 @@
 class WildZombie extends MovableObject {
-    x = 100;
+    x = Math.random() < 0.6 ? Math.random() * 2000 + 300 : Math.random() * 900 - 1000;
     y = 205;
     offset = {
         top: 130 * 0.7,
         bottom: 130,
-        left: 300 / 2,
-        right: 300,
+        left: 250 / 2,
+        right: 250,
     }
     offsetOnFollowingLeft = {
         top: 130 * 0.7,
@@ -91,8 +91,8 @@ class WildZombie extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_IDLE);
-        this.x = 300 + Math.random() * 1500;
-        this.speed = 6 + Math.random() * 0.5;
+        this.x = -300 + Math.random() * 1500;
+        this.speed = 3 + Math.random() * 0.5;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
         animateEnemy(this);
@@ -101,12 +101,13 @@ class WildZombie extends MovableObject {
 }
 
 class ManZombie extends MovableObject {
+    x = Math.random() < 0.6 ? Math.random() * 2000 + 300 : Math.random() * 900 - 1000;
     y = 205;
     offset = {
         top: 130 * 0.7,
         bottom: 130,
-        left: 300 / 2,
-        right: 300,
+        left: 250 / 2,
+        right: 250,
     }
     offsetOnFollowingLeft = {
         top: 130 * 0.7,
@@ -191,8 +192,8 @@ class ManZombie extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_IDLE);
-        this.x = 300 + Math.random() * 1500;
-        this.speed = 5 + Math.random() * 0.5;
+        this.x = -300 + Math.random() * 1500;
+        this.speed = 3 + Math.random() * 0.5;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
         animateEnemy(this);
@@ -201,13 +202,13 @@ class ManZombie extends MovableObject {
 }
 
 class WomanZombie extends MovableObject {
-    x = 100;
+    x = Math.random() < 0.6 ? Math.random() * 2000 + 300 : Math.random() * 900 - 1000;
     y = 205;
     offset = {
         top: 130 * 0.7,
         bottom: 130,
-        left: 300 / 2,
-        right: 300,
+        left: 250 / 2,
+        right: 250,
     }
     offsetOnFollowingLeft = {
         top: 130 * 0.7,
@@ -291,8 +292,7 @@ class WomanZombie extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_IDLE);
-        this.x = 300 + Math.random() * 1500;
-        this.speed = 5.5 + Math.random() * 0.5;
+        this.speed = 3 + Math.random() * 0.5;
         this.walking_sound = new Audio('audio/zombie_walk.wav');
         this.walking_sound.volume = 0.15;
         animateEnemy(this);
@@ -306,13 +306,13 @@ function animateEnemy(o) {
             o.playAnimation(o.IMAGES_DEAD);
             setTimeout(() => {
                 o.y = 400;
-            }, 2000);
-        } else if (o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false && o.enemyIsThrownOff === false) {
-            o.playAnimation(o.IMAGES_WALK);
-            o.moveLeft();
-        } else if (o.checkFollowingLeft === false && o.checkFollowingRight === true && o.checkColliding === false && o.enemyIsThrownOff === false) {
-            o.playAnimation(o.IMAGES_WALK);
-            o.moveRight();
+            }, 2500);
+            // } else if (o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false && o.enemyIsThrownOff === false) {
+            //     o.playAnimation(o.IMAGES_WALK);
+            //     o.moveLeft();
+            // } else if (o.checkFollowingLeft === false && o.checkFollowingRight === true && o.checkColliding === false && o.enemyIsThrownOff === false) {
+            //     o.playAnimation(o.IMAGES_WALK);
+            //     o.moveRight();
         }
         else if ((o.checkGettingAttacked === true && o.checkColliding === true)) {
             o.energyEnemy -= 1;
@@ -327,7 +327,13 @@ function animateEnemy(o) {
             //     o.playAnimation(o.IMAGES_HURT);
         } else if (o.checkColliding === true && o.enemyIsAttacked === false && o.checkColliding === true) {
             o.playAnimation(o.IMAGES_ATTACK);
-        } else
-            o.playAnimation(o.IMAGES_IDLE);
+        }
+        else if (o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false && o.enemyIsThrownOff === false) {
+            o.playAnimation(o.IMAGES_WALK);
+            o.moveLeft();
+        } else if (o.checkFollowingLeft === false && o.checkFollowingRight === true && o.checkColliding === false && o.enemyIsThrownOff === false) {
+            o.playAnimation(o.IMAGES_WALK);
+            o.moveRight();
+        }
     }, 60);
 }
