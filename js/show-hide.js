@@ -5,26 +5,24 @@ function startGameVisibilities() {
     toggleVisibility('menu', false);
     toggleVisibility('backToMenuId', false);
     toggleVisibility('cheatButtonId', false);
-    toggleVisibility('reloadGameId', true);
-    toggleVisibility('canvasId', true);
     toggleClass('gameContent', 'center', false);
     toggleClass('gameContent', 'menuFullscreen', false);
+    toggleVisibility('reloadGameId', true);
+    toggleVisibility('canvasId', true);
+    toggleVisibility('mobileButtonsId', true);
 }
 
 function enterWindowMode() {
     full = true;
-    // toggleClass('closeWindowMode', 'd-none', false);
     toggleVisibility('enterFullscreen', false);
     toggleVisibility('closeFullscreen', true);
     toggleClass('gameContent', 'border', false);
-    // toggleClass('enterWindowMode', 'd-none', true);
     toggleClass('canvasId', 'canvasFullscreen', true);
     toggleClass('gameContent', 'menuFullscreen', true);
 }
 
 function closeWindowMode() {
     full = false;
-    // toggleClass('closeWindowMode', 'd-none', true);
     toggleVisibility('enterFullscreen', true);
     toggleVisibility('closeFullscreen', false);
     toggleClass('gameContent', 'border', true);
@@ -34,6 +32,7 @@ function closeWindowMode() {
 }
 
 function showMenu() {
+    toggleVisibility('mobileButtonsId', false);
     toggleVisibility('controls', false);
     toggleVisibility('playerinfoDescription', false);
     toggleVisibility('backToMenuId', false);
@@ -57,6 +56,7 @@ function endScreenVisibilites() {
     toggleVisibility('canvasId', false);
     toggleVisibility('menu', false);
     toggleVisibility('cheatButtonId', false);
+    toggleVisibility('mobileButtonsId', false);
 }
 
 function openPlayerinfo() {
