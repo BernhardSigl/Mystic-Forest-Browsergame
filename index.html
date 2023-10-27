@@ -26,6 +26,9 @@
     <script src="models/throwable-object.class.js"></script>
     <script src="levels/level1.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/show-hide.js"></script>
+    <script src="js/reset.js"></script>
     <title>Mystic Forest</title>
     <link rel="icon" href="img/1_head_.png">
 </head>
@@ -131,6 +134,9 @@
                 <button onclick="resetGame()" class="scaleOnHover d-none cursorPointer" id="reloadGameId">
                     <img src="img/9_menu/arrow-left-solid.png">1
                 </button>
+                <button onclick="startGame()" class="scaleOnHover d-none cursorPointer" id="playAgainId">
+                    <img src="img/9_menu/rotate-right-solid.png">
+                </button>
                 <button onclick="showMenu()" class="scaleOnHover d-none cursorPointer" id="backToMenuId">
                     <img src="img/9_menu/arrow-left-solid.png">
                 </button>
@@ -143,10 +149,18 @@
                 <button onclick="" class="scaleOnHover cursorPointer">
                     <img src="img/8_buttons/soundoff.png">
                 </button>
+                <button onclick="cheatsVisibility()" class="scaleOnHover cursorPointer" id="cheatButtonId">
+                    <img src="img/9_menu/skull-solid.png">
+                </button>
             </section>
 
             <!-- winning screen -->
-            <section class="winningScreen center d-none" id="winningScreenId">
+            <section class="endScreen d-none" id="endScreenId">
+            </section>
+
+            <section class="horicontalAndVertical gap8 d-none" id="cheatId">
+                <h1 id="cheatSuccessfullId">Enter Cheat Code</h1>
+                <input oninput="checkCheatCode(this.value)" id="cheatInputFieldId">
             </section>
 
         </div>

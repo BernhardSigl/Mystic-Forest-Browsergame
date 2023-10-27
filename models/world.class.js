@@ -15,6 +15,7 @@ class World {
     statusBarEndBoss = new StatusBarEndBoss();
     coins = new Coins();
     magicalBalls = new Sticks();
+    cheatActivated = false;
 
     throwableObjects = [];
     collectedCoins = [];
@@ -43,8 +44,8 @@ class World {
     }
 
     checkCollisions() {
-        this.collisionsEnemies();
-        this.collisionsEndboss();
+        this.loadEnemies();
+        this.loadEndboss();
         this.collisionCoins();
         this.collisionSticks();
         this.collisionThrowableObjectWithEnemy();
@@ -54,22 +55,21 @@ class World {
     /**
      * This function is used to check if the effects due to collisions between character and enemies.
      */
-    collisionsEnemies() {
+    loadEnemies() {
         this.level.enemies.forEach((enemy) => {
             this.checkDamageToCharacter(enemy);
             this.checkGenerallyCollision(enemy);
-            this.checkCharacterIsAttacking(enemy);
+
         });
     }
 
     /**
      * This function is used to check if the effects due to collisions between character and endboss.
      */
-    collisionsEndboss() {
+    loadEndboss() {
         this.level.endboss.forEach((endboss) => {
             this.checkDamageToCharacter(endboss);
             this.checkGenerallyCollision(endboss);
-            this.checkCharacterIsAttacking(endboss);
         });
     }
 
@@ -92,6 +92,7 @@ class World {
     checkGenerallyCollision(obj) {
         if (obj.isColliding(this.character)) {
             obj.checkColliding = true;
+            this.checkCharacterIsAttacking(obj);
         } else {
             obj.checkColliding = false;
         }
@@ -103,9 +104,16 @@ class World {
     checkCharacterIsAttacking(obj) {
         if (this.character.isAttacking === true) {
             obj.checkGettingAttacked = true;
-            obj.energyEnemy -= 1;
-            if (obj.energyEnemy <= 0) {
+            if (this.cheatActivated === false) {
+                obj.energyEnemy -= 1;
+                obj.energyEndboss -= 2;
+            } else if (this.cheatActivated === true) {
+                obj.energyEnemy -= 100;
+                obj.energyEndboss -= 200;
+            }
+            if (obj.energyEnemy <= 0 || obj.energyEndboss <= 0) {
                 obj.energyEnemy = 0;
+                obj.energyEndboss = 0;
             }
         } else {
             obj.checkGettingAttacked = false;

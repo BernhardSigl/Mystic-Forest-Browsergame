@@ -11,6 +11,7 @@ class MovableObject extends DrawableObject {
     enemyIsAttacked = false;
     characterMovable = true;
     enemiesMovable = true;
+    enemiesAttacking = true;
     checkColliding = false;
     checkFollowingLeftEndboss = false;
     checkFollowingRightEndboss = false;
@@ -88,11 +89,19 @@ class MovableObject extends DrawableObject {
     }
 
     damageObjectToCharacter() {
-        if (this.isAttacking === false) {
+        if (this.isAttacking === false && this.enemiesAttacking === true) {
             if (world.character.isAboveGround()) {
-                this.energyCharacter -= 5;
+                if (world.cheatActivated === false) {
+                    this.energyCharacter -= 5;
+                } else if (this.cheatActivated === true) {
+                    this.energyCharacter -= 0;
+                }
             } else if (!world.character.isAboveGround()) {
-                this.energyCharacter -= 10;
+                if (world.cheatActivated === false) {
+                    this.energyCharacter -= 10;
+                } else if (this.cheatActivated === true) {
+                    this.energyCharacter -= 0;
+                }
             }
             if (this.energyCharacter < 0) {
                 this.energyCharacter = 0;
@@ -132,9 +141,12 @@ class MovableObject extends DrawableObject {
     }
 
     jump() {
-        if (this.characterMovable === true) {
+        if (this.characterMovable === true && world.cheatActivated === false) {
             this.speedY = 26;
             world.character.y = 212; // höhe nach dem sprung
+        } else if (this.characterMovable === true && world.cheatActivated === true) {
+            this.speedY = 35;
+            world.character.y = 212;
         }
     }
 

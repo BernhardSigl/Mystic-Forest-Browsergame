@@ -185,10 +185,6 @@ class Character extends MovableObject {
                 setTimeout(() => {
                     characterDied();
                 }, 2500);
-
-                // setTimeout(() => {
-                // this.fallInterval();
-                // }, 2000);
             } else if (this.isHurt() && !this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {

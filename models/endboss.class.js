@@ -118,6 +118,9 @@ function animateEndboss(o) {
                 o.y -= o.speedY;
                 o.speedY -= 0.5;
             }, 200);
+            setTimeout(() => {
+                endbossDied();
+            }, 2500);
         } else if (o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false && o.enemyIsThrownOff === false) {
             o.playAnimation(o.IMAGES_RUN);
             o.moveLeft();
@@ -126,10 +129,8 @@ function animateEndboss(o) {
             o.moveRight();
         }
         else if (o.checkGettingAttacked === true && o.checkColliding === true) {
-            o.energyEndboss -= 1;
             o.playAnimation(o.IMAGES_HURT);
         } else if (o.enemyIsThrownOff === true) {
-            o.energyEndboss -= 1;
             o.playAnimation(o.IMAGES_HURT);
             setTimeout(() => {
                 o.enemyIsThrownOff = false;

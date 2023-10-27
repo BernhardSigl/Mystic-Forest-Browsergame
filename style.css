@@ -84,6 +84,17 @@ canvas {
     align-items: center;
 }
 
+.horicontalAndVertical {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .gap8 {
     gap: 8px;
 }
@@ -217,21 +228,24 @@ button img {
     font-weight: 600;
 }
 
-#winningScreenId img {
+#endScreenId img {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
+    width: 720px;
+    height: 480px;
 }
 
 .endScreenText {
     font-size: 80px;
+    width: auto;
+    height: auto;
     position: absolute;
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 @media(max-width: 786px) {
