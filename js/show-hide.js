@@ -7,27 +7,29 @@ function startGameVisibilities() {
     toggleVisibility('cheatButtonId', false);
     toggleVisibility('reloadGameId', true);
     toggleVisibility('canvasId', true);
-    toggleClass('fullscreenContent', 'center', false);
-    toggleClass('fullscreenContent', 'menuFullscreen', false);
+    toggleClass('gameContent', 'center', false);
+    toggleClass('gameContent', 'menuFullscreen', false);
 }
 
-function fullscreen() {
+function enterWindowMode() {
     full = true;
-    toggleClass('closeFullscreen', 'd-none', false);
-    toggleClass('fullscreenContent', 'border', false);
-    toggleClass('fullscreenContent', 'enterFullscreen', true);
-    toggleClass('enterFullscreen', 'd-none', true);
+    // toggleClass('closeWindowMode', 'd-none', false);
+    toggleVisibility('enterFullscreen', false);
+    toggleVisibility('closeFullscreen', true);
+    toggleClass('gameContent', 'border', false);
+    // toggleClass('enterWindowMode', 'd-none', true);
     toggleClass('canvasId', 'canvasFullscreen', true);
-    toggleClass('fullscreenContent', 'menuFullscreen', true);
+    toggleClass('gameContent', 'menuFullscreen', true);
 }
 
-function closeFullscreen() {
+function closeWindowMode() {
     full = false;
-    toggleClass('closeFullscreen', 'd-none', true);
-    toggleClass('fullscreenContent', 'border', true);
-    toggleClass('enterFullscreen', 'd-none', false);
-    toggleClass('canvasId', 'enterFullscreen', false);
-    toggleClass('fullscreenContent', 'menuFullscreen', false);
+    // toggleClass('closeWindowMode', 'd-none', true);
+    toggleVisibility('enterFullscreen', true);
+    toggleVisibility('closeFullscreen', false);
+    toggleClass('gameContent', 'border', true);
+    toggleClass('canvasId', 'enterWindowMode', false);
+    toggleClass('gameContent', 'menuFullscreen', false);
     toggleClass('canvasId', 'canvasFullscreen', false);
 }
 
@@ -41,11 +43,11 @@ function showMenu() {
     toggleVisibility('menu', true);
     toggleClass('cheatId', 'd-none', true);
     toggleVisibility('cheatButtonId', true);
-    toggleClass('fullscreenContent', 'center', true);
+    toggleClass('gameContent', 'center', true);
     if (full === true) {
-        toggleClass('fullscreenContent', 'menuFullscreen', true);
+        toggleClass('gameContent', 'menuFullscreen', true);
     } else
-        toggleClass('fullscreenContent', 'menuFullscreen', false);
+        toggleClass('gameContent', 'menuFullscreen', false);
 }
 
 function endScreenVisibilites() {

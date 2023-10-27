@@ -12,6 +12,7 @@ function init() {
     world = new World(canvas, keyboard);
     notMovable();
     resetGame();
+    mobileButtons();
 }
 
 /**

@@ -38,7 +38,7 @@
     <h1 class="gameName">Mystic Forest</h1>
 
     <div id="fullscreen">
-        <div id="fullscreenContent" class="center border">
+        <div id="gameContent" class="center border">
             <section id="menu">
                 <a class="startGame scaleOnHover cursorPointer" onclick="startGame()">
                     <img src="img/9_menu/startgame.png">
@@ -140,11 +140,11 @@
                 <button onclick="showMenu()" class="scaleOnHover d-none cursorPointer" id="backToMenuId">
                     <img src="img/9_menu/arrow-left-solid.png">
                 </button>
-                <button onclick="fullscreen()" class="scaleOnHover cursorPointer" id="enterFullscreen">
+                <button class="scaleOnHover cursorPointer" id="enterFullscreen">
                     <img src="img/8_buttons/fullscreen.png">
                 </button>
-                <button onclick="closeFullscreen()" class="scaleOnHover  cursorPointer d-none" id="closeFullscreen">
-                    <img src="img/8_buttons/closefullscreen.png">
+                <button onclick="exitFullscreen()" class="scaleOnHover  cursorPointer d-none" id="closeFullscreen">
+                    <img src="img/8_buttons/closefullscreen.png">2
                 </button>
                 <button onclick="" class="scaleOnHover cursorPointer">
                     <img src="img/8_buttons/soundoff.png">
@@ -158,15 +158,39 @@
             <section class="endScreen d-none" id="endScreenId">
             </section>
 
+            <!-- cheats -->
             <section class="horicontalAndVertical absoluteMiddle gap8 d-none" id="cheatId">
                 <h1 id="cheatSuccessfullId">Enter Cheat Code</h1>
                 <input oninput="checkCheatCode(this.value)" id="cheatInputFieldId">
             </section>
 
+            <!-- loading message -->
             <section class="loading d-none" id="loadingId">
                 <h1>Loading...</h1>
             </section>
 
+            <!-- mobile buttons -->
+            <selection>
+                <div class="buttonsLeft">
+                    <button class="mobileButton" id="btnLeft">
+                        <img src="img/8_buttons/angle-left-solid.png">
+                    </button>
+                    <button class="mobileButton" id="btnRight">
+                        <img src="img/8_buttons/angle-right-solid.png">
+                    </button>
+                </div>
+                <div class="buttonsRight">
+                    <button class="mobileButton" id="btnUp">
+                        <img src="img/8_buttons/angle-up-solid.png">
+                    </button>
+                    <button class="mobileButton" id="btnThrow">
+                        <img src="img/8_buttons/circle-regular.png">
+                    </button>
+                    <button class="mobileButton" id="btnAttack">
+                        <img src="img/8_buttons/hand-back-fist-regular.png">
+                    </button>
+                </div>
+            </selection>
         </div>
 
 </body>

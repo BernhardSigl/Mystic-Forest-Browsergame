@@ -35,22 +35,64 @@ window.addEventListener('keydown', (e) => {
         keyboard.J = true;
     }
     // console.log(e.keyCode);
-})
+});
 
-window.addEventListener('keyup', (e) => {
-    if (e.keyCode == 65) {
-        keyboard.A = false;
+document.addEventListener('DOMContentLoaded', function () {
+    let toggleButton = document.getElementById('enterFullscreen');
+    let closeButton = document.getElementById('closeFullscreen');
+
+    toggleButton.addEventListener('click', toggleFullscreen);
+    document.addEventListener('keydown', handleKeyPress);
+
+    function toggleFullscreen() {
+        if (isFullscreen()) {
+            exitFullscreen();
+        } else {
+            enterFullscreen();
+        }
     }
-    if (e.keyCode == 68) {
-        keyboard.D = false;
+
+    function handleKeyPress(event) {
+        if (event.key === 'Escape' && isFullscreen()) {
+            exitFullscreen();
+        }
     }
-    if (e.keyCode == 87) {
-        keyboard.W = false;
+
+    document.addEventListener("fullscreenchange", updateButton);
+
+    function updateButton(event) {
+        toggleButton.classList.toggle('d-none', isFullscreen());
+        closeButton.classList.toggle('d-none', !isFullscreen());
+
+        if (isFullscreen()) {
+            enterWindowMode();
+        } else {
+            closeWindowMode();
+        }
     }
-    if (e.keyCode == 75) {
-        keyboard.K = false;
+});
+
+function isFullscreen() {
+    return document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+}
+
+function enterFullscreen() {
+    const element = document.getElementById('fullscreen');
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
     }
-    if (e.keyCode == 74) {
-        keyboard.J = false;
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
     }
-})
+}
