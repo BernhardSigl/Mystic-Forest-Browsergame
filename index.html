@@ -132,7 +132,7 @@
             <!-- buttons -->
             <section class="buttons">
                 <button onclick="resetGame()" class="scaleOnHover d-none cursorPointer" id="reloadGameId">
-                    <img src="img/9_menu/arrow-left-solid.png">1
+                    <img src="img/9_menu/arrow-left-solid.png">
                 </button>
                 <button onclick="startGame()" class="scaleOnHover d-none cursorPointer" id="playAgainId">
                     <img src="img/9_menu/rotate-right-solid.png">
@@ -158,9 +158,13 @@
             <section class="endScreen d-none" id="endScreenId">
             </section>
 
-            <section class="horicontalAndVertical gap8 d-none" id="cheatId">
+            <section class="horicontalAndVertical absoluteMiddle gap8 d-none" id="cheatId">
                 <h1 id="cheatSuccessfullId">Enter Cheat Code</h1>
                 <input oninput="checkCheatCode(this.value)" id="cheatInputFieldId">
+            </section>
+
+            <section class="loading d-none" id="loadingId">
+                <h1>Loading...</h1>
             </section>
 
         </div>

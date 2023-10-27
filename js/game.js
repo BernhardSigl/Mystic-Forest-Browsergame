@@ -18,9 +18,19 @@ function init() {
  * This function is used to make the players movable
  */
 function startGame() {
-    resetGame();
-    isMovable();
-    startGameVisibilities();
+    loading();
+    setTimeout(() => {
+        resetGame();
+        isMovable();
+        startGameVisibilities();
+    }, 3000);
+}
+
+function loading() {
+    toggleClass('loadingId', 'd-none', false);
+    setTimeout(() => {
+        toggleClass('loadingId', 'd-none', true);
+    }, 3000);
 }
 
 /**
@@ -71,21 +81,11 @@ function winning() {
     <img src="img/9_menu/winningscreen.png">`
 }
 
-function cheatsVisibility() {
-    toggleVisibility('menu', false);
-    toggleVisibility('reloadGameId', false);
-    toggleVisibility('endScreenId', false);
-    toggleClass('cheatId', 'd-none', false);
-    toggleVisibility('cheatButtonId', false);
-    toggleVisibility('backToMenuId', true);
-}
-
 function checkCheatCode(inputValue) {
     let cheatKeyword = "godmode";
     if (inputValue === cheatKeyword) {
         world.cheatActivated = true;
         document.getElementById('cheatSuccessfullId').textContent = "Cheat is activated";
         toggleVisibility('cheatInputFieldId', false);
-        // document.getElementById('cheatInputFieldId').value = "";
     }
 }

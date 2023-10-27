@@ -89,8 +89,20 @@ canvas {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+.absoluteMiddle {
     position: absolute;
     top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loading {
+    height: auto;
+    width: auto;
+    position: absolute;
+    bottom: 0;
     left: 50%;
     transform: translate(-50%, -50%);
 }

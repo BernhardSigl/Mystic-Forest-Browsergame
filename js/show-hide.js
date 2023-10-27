@@ -68,3 +68,12 @@ function openControls() {
     toggleVisibility('backToMenuId', true);
     toggleVisibility('cheatButtonId', false);
 }
+
+function cheatsVisibility() {
+    toggleVisibility('menu', false);
+    toggleVisibility('reloadGameId', false);
+    toggleVisibility('endScreenId', false);
+    toggleClass('cheatId', 'd-none', false);
+    toggleVisibility('cheatButtonId', false);
+    toggleVisibility('backToMenuId', true);
+}

@@ -76,8 +76,9 @@ function resetMagicalBalls() {
 }
 
 /**
- * This function is to reset the health-bar
+ * This function is to reset the health-bars
  */
 function resetHealth() {
     world.statusBar.setPercentage(100);
+    world.statusBarEndBoss.setPercentageEndboss(100);
 }
