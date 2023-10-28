@@ -18,25 +18,6 @@ function toggleClass(id, setClass, shouldShow) {
     }
 }
 
-window.addEventListener('keydown', (e) => {
-    if (e.keyCode == 65) {
-        keyboard.A = true;
-    }
-    if (e.keyCode == 68) {
-        keyboard.D = true;
-    }
-    if (e.keyCode == 87) {
-        keyboard.W = true;
-    }
-    if (e.keyCode == 75) {
-        keyboard.K = true;
-    }
-    if (e.keyCode == 74) {
-        keyboard.J = true;
-    }
-    // console.log(e.keyCode);
-});
-
 document.addEventListener('DOMContentLoaded', function () {
     let toggleButton = document.getElementById('enterFullscreen');
     let closeButton = document.getElementById('closeFullscreen');

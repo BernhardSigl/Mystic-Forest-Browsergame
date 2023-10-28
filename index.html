@@ -131,25 +131,30 @@
 
             <!-- buttons -->
             <section class="buttons">
-                <button onclick="resetGame()" class="scaleOnHover d-none cursorPointer" id="reloadGameId">
+                <button onclick="resetGame()" class="upperMenuButtons scaleOnHover d-none cursorPointer"
+                    id="reloadGameId">
                     <img src="img/9_menu/arrow-left-solid.png">
                 </button>
-                <button onclick="startGame()" class="scaleOnHover d-none cursorPointer" id="playAgainId">
+                <button onclick="startGame()" class="upperMenuButtons scaleOnHover d-none cursorPointer"
+                    id="playAgainId">
                     <img src="img/9_menu/rotate-right-solid.png">
                 </button>
-                <button onclick="showMenu()" class="scaleOnHover d-none cursorPointer" id="backToMenuId">
+                <button onclick="showMenu()" class="upperMenuButtons scaleOnHover d-none cursorPointer"
+                    id="backToMenuId">
                     <img src="img/9_menu/arrow-left-solid.png">
                 </button>
-                <button class="scaleOnHover cursorPointer" id="enterFullscreen">
+                <button class="upperMenuButtons scaleOnHover cursorPointer" id="enterFullscreen">
                     <img src="img/8_buttons/fullscreen.png">
                 </button>
-                <button onclick="exitFullscreen()" class="scaleOnHover  cursorPointer d-none" id="closeFullscreen">
+                <button onclick="exitFullscreen()" class="upperMenuButtons scaleOnHover  cursorPointer d-none"
+                    id="closeFullscreen">
                     <img src="img/8_buttons/closefullscreen.png">
                 </button>
-                <button onclick="" class="scaleOnHover cursorPointer">
+                <button onclick="" class="upperMenuButtons scaleOnHover cursorPointer">
                     <img src="img/8_buttons/soundoff.png">
                 </button>
-                <button onclick="cheatsVisibility()" class="scaleOnHover cursorPointer" id="cheatButtonId">
+                <button onclick="cheatsVisibility()" class="upperMenuButtons scaleOnHover cursorPointer"
+                    id="cheatButtonId">
                     <img src="img/9_menu/skull-solid.png">
                 </button>
             </section>
@@ -162,6 +167,38 @@
             <section class="horicontalAndVertical absoluteMiddle gap8 d-none" id="cheatId">
                 <h1 id="cheatSuccessfullId">Enter Cheat Code</h1>
                 <input oninput="checkCheatCode(this.value)" id="cheatInputFieldId">
+                <div class="cheatCodeNumbersContainer gap8">
+                    <button class="cheatCodeNumbers" onclick="addNumberToInput(0)">
+                        <h3>0</h3>
+                    </button>
+                    <button class="cheatCodeNumbers" onclick="addNumberToInput(1)">
+                        <h3>1</h3>
+                    </button>
+                    <button class="cheatCodeNumbers" onclick="addNumberToInput(2)">
+                        <h3>2</h3>
+                    </button>
+                    <button class="cheatCodeNumbers" onclick="addNumberToInput(3)">
+                        <h3>3</h3>
+                    </button>
+                    <button class="cheatCodeNumbers" onclick="addNumberToInput(4)">
+                        <h3>4</h3>
+                    </button>
+                    <button class="cheatCodeNumbers" onclick="addNumberToInput(5)">
+                        <h3>5</h3>
+                    </button>
+                    <button class="cheatCodeNumbers" onclick="addNumberToInput(6)">
+                        <h3>6</h3>
+                    </button>
+                    <button class="cheatCodeNumbers" onclick="addNumberToInput(7)">
+                        <h3>7</h3>
+                    </button>
+                    <button class="cheatCodeNumbers" onclick="addNumberToInput(8)">
+                        <h3>8</h3>
+                    </button>
+                    <button class="cheatCodeNumbers" onclick="addNumberToInput(9)">
+                        <h3>9</h3>
+                    </button>
+                </div>
             </section>
 
             <!-- loading message -->

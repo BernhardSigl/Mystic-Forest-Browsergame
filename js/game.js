@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let enteredCode = "";
 
 /**
  * if you launch the game-url fullscreen is false
@@ -83,11 +84,21 @@ function winning() {
 }
 
 function checkCheatCode(inputValue) {
-    let cheatKeyword = "godmode";
+    // console.log(inputValue);
+    let cheatKeyword = "1994";
     if (inputValue === cheatKeyword) {
         world.cheatActivated = true;
         document.getElementById('cheatSuccessfullId').textContent = "Cheat is activated";
         toggleVisibility('cheatInputFieldId', false);
+    }
+}
+
+function addNumberToInput(code) {
+    const inputField = document.getElementById('cheatInputFieldId');
+    inputField.value += code;
+    enteredCode += code;
+    if (enteredCode.length === 4) {
+        checkCheatCode(enteredCode);
     }
 }
 

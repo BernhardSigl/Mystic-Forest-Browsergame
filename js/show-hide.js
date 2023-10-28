@@ -47,6 +47,8 @@ function showMenu() {
         toggleClass('gameContent', 'menuFullscreen', true);
     } else
         toggleClass('gameContent', 'menuFullscreen', false);
+    document.getElementById('cheatInputFieldId').value = '';
+    enteredCode = "";
 }
 
 function endScreenVisibilites() {
