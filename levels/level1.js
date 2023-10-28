@@ -35,6 +35,7 @@ const level1 = new Level([
         new BackgroundObjectsBack('img/5_background/layers/5/Ground.png', 718),
         new BackgroundObjectsBack('img/5_background/layers/5/Ground.png', 718 * 2),
         new BackgroundObjectsBack('img/5_background/layers/5/Ground.png', 718 * 3),
+        new BackgroundObjectsBack('img/5_background/layers/5/Ground.png', 718 * 4),
     ],
     [
         new BackgroundObjectsBack('img/5_background/layers/1/Sky.png', -718),
@@ -66,6 +67,12 @@ const level1 = new Level([
             718 * 3),
         new BackgroundObjectsBack('img/5_background/layers/3/Middle_Decor.png', 718 * 3),
         new BackgroundObjectsBack('img/5_background/layers/4/Foreground.png', 718 * 3),
+
+        new BackgroundObjectsBack('img/5_background/layers/1/Sky.png', 718 * 4),
+        new BackgroundObjectsBack('img/5_background/layers/2/BG_Decor.png',
+            718 * 4),
+        new BackgroundObjectsBack('img/5_background/layers/3/Middle_Decor.png', 718 * 4),
+        new BackgroundObjectsBack('img/5_background/layers/4/Foreground.png', 718 * 4),
     ],
     [
         new Coins(),

@@ -1,6 +1,4 @@
 class WildZombie extends MovableObject {
-    x = Math.random() < 0.6 ? Math.random() * 2000 + 300 : Math.random() * 900 - 1000;
-    y = 205;
     offset = {
         top: 130 * 0.7,
         bottom: 130,
@@ -101,8 +99,6 @@ class WildZombie extends MovableObject {
 }
 
 class ManZombie extends MovableObject {
-    x = Math.random() < 0.6 ? Math.random() * 2000 + 300 : Math.random() * 900 - 1000;
-    y = 205;
     offset = {
         top: 130 * 0.7,
         bottom: 130,
@@ -202,8 +198,6 @@ class ManZombie extends MovableObject {
 }
 
 class WomanZombie extends MovableObject {
-    x = Math.random() < 0.6 ? Math.random() * 2000 + 300 : Math.random() * 900 - 1000;
-    y = 205;
     offset = {
         top: 130 * 0.7,
         bottom: 130,

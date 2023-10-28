@@ -18,7 +18,7 @@ function resetGame() {
 function resetCharacter() {
     world.character.characterMovable = false;
     world.character.energyCharacter = 100;
-    world.character.x = 0;
+    world.character.x = 200;
     world.character.y = 212;
     world.character.isAttacking = false;
     world.character.characterDied = false;
@@ -32,7 +32,7 @@ function resetEnemies() {
         enemy.enemiesMovable = false;
         enemy.enemiesAttacking = false;
         enemy.energyEnemy = 50;
-        enemy.x = Math.random() < 0.6 ? Math.random() * 2000 + 300 : Math.random() * 900 - 1000;
+        enemy.x = Math.random() < 0.6 ? Math.random() * 2000 + 500 : Math.random() * 900 - 1000;
         enemy.y = 205;
     });
 }

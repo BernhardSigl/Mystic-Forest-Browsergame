@@ -40,7 +40,7 @@
     <div id="fullscreen">
         <div id="gameContent" class="center border">
             <section id="menu">
-                <a class="startGame scaleOnHover cursorPointer" onclick="startGame()">
+                <a class="startGame scaleOnHover cursorPointer" onclick="startGame(), resetCheatCode()">
                     <img src="img/9_menu/startgame.png">
                     <h2>START</h2>
                 </a>
@@ -135,8 +135,8 @@
                     id="reloadGameId">
                     <img src="img/9_menu/arrow-left-solid.png">
                 </button>
-                <button onclick="startGame()" class="upperMenuButtons scaleOnHover d-none cursorPointer"
-                    id="playAgainId">
+                <button onclick="startGame(), resetCheatCode()"
+                    class="upperMenuButtons scaleOnHover d-none cursorPointer" id="playAgainId">
                     <img src="img/9_menu/rotate-right-solid.png">
                 </button>
                 <button onclick="showMenu()" class="upperMenuButtons scaleOnHover d-none cursorPointer"
@@ -166,6 +166,7 @@
             <!-- cheats -->
             <section class="horicontalAndVertical absoluteMiddle gap8 d-none" id="cheatId">
                 <h1 id="cheatSuccessfullId">Enter Cheat Code</h1>
+                <h3 class="howToGetCheatCode">Defeat endboss and collect all coins to get the code</h3>
                 <input oninput="checkCheatCode(this.value)" id="cheatInputFieldId">
                 <div class="cheatCodeNumbersContainer gap8">
                     <button class="cheatCodeNumbers" onclick="addNumberToInput(0)">
@@ -207,7 +208,7 @@
             </section>
 
             <!-- mobile buttons -->
-            <selection id="mobileButtonsId">
+            <selection id="mobileButtonsId" class="d-none">
                 <div class="buttonsLeft">
                     <div class="mobileButton horicontalAndVertical" id="btnLeft">
                         <img src="img/8_buttons/angle-left-solid.png">
@@ -217,18 +218,25 @@
                     </div>
                 </div>
                 <div class="buttonsRight">
+                    <div class="mobileButton horicontalAndVertical" id="btnAttack">
+                        <img src="img/8_buttons/hand-back-fist-regular.png">
+                    </div>
                     <div class="mobileButton horicontalAndVertical" id="btnUp">
                         <img src="img/8_buttons/angle-up-solid.png">
                     </div>
                     <div class="mobileButton horicontalAndVertical" id="btnThrow">
                         <img src="img/8_buttons/circle-regular.png">
                     </div>
-                    <div class="mobileButton horicontalAndVertical" id="btnAttack">
-                        <img src="img/8_buttons/hand-back-fist-regular.png">
-                        </button>
-                    </div>
+                </div>
             </selection>
+
+            <!-- turn phone -->
+            <section class="turnPhoneArea horicontalAndVertical absoluteMiddle">
+                <img src="img/9_menu/turnphone.png">
+            </section>
         </div>
+
+    </div>
 
 </body>
 

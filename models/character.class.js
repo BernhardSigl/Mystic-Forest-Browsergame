@@ -1,6 +1,4 @@
 class Character extends MovableObject {
-    x = 0;
-    y = 212;
     offset = {
         top: 132 * 0.7,
         bottom: 132,
@@ -23,7 +21,6 @@ class Character extends MovableObject {
     height = 250;
     speed = 3.5;
     otherDirection = false;
-    camera_x = 100;
     lastAttackTime = 0;
     maxAttackDuration = 1000;
 
@@ -153,13 +150,6 @@ class Character extends MovableObject {
         this.applyGravity();
         this.walking_sound.volume = 0.2;
     }
-
-    // fallInterval() {
-    //     return setInterval(() => {
-    //         this.y -= this.speedY;
-    //         this.speedY -= 0.5;
-    //     }, 200);
-    // }
 
     animate() {
         setInterval(() => {

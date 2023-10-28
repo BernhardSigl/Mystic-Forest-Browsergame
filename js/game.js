@@ -65,10 +65,21 @@ function characterDied() {
 }
 
 function endbossDied() {
-    resetGame();
-    endScreenVisibilites();
     let endScreen = document.getElementById('endScreenId');
     endScreen.innerHTML = winning();
+    unlockCheatCode();
+    resetGame();
+    endScreenVisibilites();
+}
+
+function unlockCheatCode() {
+    if (world.unlockCheat.length == 5) {
+        toggleVisibility('cheatCodeVisbibleId', true);
+    } else toggleVisibility('cheatCodeVisbibleId', false);
+}
+
+function resetCheatCode() {
+    world.unlockCheat = [];
 }
 
 function losing() {
@@ -80,16 +91,16 @@ function losing() {
 function winning() {
     return /* html */ `
     <h1 class="endScreenText">YOU WON!<h1>
+    <h3 class="cheatCodeVisbible d-none" id="cheatCodeVisbibleId">Code: "1994"</h3>
     <img src="img/9_menu/winningscreen.png">`
 }
 
 function checkCheatCode(inputValue) {
-    // console.log(inputValue);
     let cheatKeyword = "1994";
     if (inputValue === cheatKeyword) {
         world.cheatActivated = true;
         document.getElementById('cheatSuccessfullId').textContent = "Cheat is activated";
-        toggleVisibility('cheatInputFieldId', false);
+        checkCheatCodeVisibilites()
     }
 }
 
@@ -102,6 +113,10 @@ function addNumberToInput(code) {
     }
 }
 
+
+/**
+ * Fullscreen in opera browser
+ */
 function checkOrientation() {
     if (window.matchMedia("(orientation: landscape)").matches) {
         if (window.innerHeight < 480) {

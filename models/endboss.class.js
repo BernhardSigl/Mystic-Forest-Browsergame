@@ -114,10 +114,10 @@ function animateEndboss(o) {
     setInterval(() => {
         if (o.energyEndboss === 0) {
             o.playAnimation(o.IMAGES_DEAD);
-            setInterval(() => {
-                o.y -= o.speedY;
-                o.speedY -= 0.5;
-            }, 200);
+            // setInterval(() => {
+            //     o.y -= o.speedY;
+            //     o.speedY -= 0.5;
+            // }, 200);
             setTimeout(() => {
                 endbossDied();
             }, 2500);

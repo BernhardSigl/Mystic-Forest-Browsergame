@@ -20,6 +20,7 @@ class World {
     throwableObjects = [];
     collectedCoins = [];
     collectedSticks = [];
+    unlockCheat = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -105,8 +106,8 @@ class World {
         if (this.character.isAttacking === true) {
             obj.checkGettingAttacked = true;
             if (this.cheatActivated === false) {
-                obj.energyEnemy -= 1;
-                obj.energyEndboss -= 2;
+                obj.energyEnemy -= 6;
+                obj.energyEndboss -= 6;
             } else if (this.cheatActivated === true) {
                 obj.energyEnemy -= 100;
                 obj.energyEndboss -= 200;
@@ -221,6 +222,7 @@ class World {
                 this.coinsBar.setAmountCoins(this.collectedCoins.length + 1);
                 this.character.removeItem(level1.coins, coin);
                 this.collectedCoins.push(coin);
+                this.unlockCheat.push(coin);
             }
         })
     }
@@ -273,8 +275,6 @@ class World {
         this.addToMap(this.coinsBar);
         this.addToMap(this.statusBarEndBoss);
 
-        // this.drawDeathMessage();
-
         // Draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {
@@ -314,11 +314,4 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
-
-    // drawDeathMessage() {
-    //     // Zeichne die Todesnachricht im Canvas
-    //     this.ctx.fillStyle = 'red';
-    //     this.ctx.font = '30px Arial';
-    //     this.ctx.fillText('Game Over', 200, 200);
-    // }
 }

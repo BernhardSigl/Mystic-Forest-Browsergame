@@ -12,6 +12,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
 }
 
 h1,
@@ -271,9 +272,18 @@ button img {
     text-align: center;
 }
 
+.cheatCodeVisbible {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.cheatCodeVisbible,
 .mobileButton {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     box-shadow: -2px 0 6px 0 rgb(0, 0, 0, 0.5);
     margin: 0;
     background-color: #EFEFEF;
@@ -287,16 +297,16 @@ button img {
 
 .buttonsLeft {
     position: absolute;
-    left: 32px;
-    bottom: 32px;
+    left: 40px;
+    bottom: 40px;
     display: flex;
     gap: 32px;
 }
 
 .buttonsRight {
     position: absolute;
-    right: 32px;
-    bottom: 32px;
+    right: 40px;
+    bottom: 40px;
     display: flex;
     gap: 24px;
 }
@@ -325,6 +335,23 @@ button img {
     color: black;
     text-shadow: none;
     font-family: 'Pixelify Sans';
+}
+
+.turnPhoneArea {
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.turnPhoneArea img {
+    width: 30%;
+    height: auto;
+}
+
+.howToGetCheatCode {
+    width: 500px;
 }
 
 @media only screen and (max-width: 724px) {
@@ -359,6 +386,7 @@ button img {
         height: 100vh;
         display: flex;
         justify-content: center;
+        align-items: center;
     }
 
     #playerinfoDescription img {
@@ -372,6 +400,26 @@ button img {
 
     .controls {
         display: none;
+    }
+
+    .turnPhoneArea {
+        visibility: visible;
+    }
+
+    .turnPhoneArea img {
+        animation: turnPhoneImage 2s infinite;
+    }
+
+    @keyframes turnPhoneImage {
+
+        0%,
+        100% {
+            transform: rotate(0deg);
+        }
+
+        50% {
+            transform: rotate(90deg);
+        }
     }
 }
 
@@ -407,6 +455,7 @@ button img {
         height: 100vh;
         display: flex;
         justify-content: center;
+        align-items: center;
     }
 
     #playerinfoDescription img {
@@ -420,5 +469,31 @@ button img {
 
     .controls {
         display: none;
+    }
+
+    #enterFullscreen {
+        animation: shakingFullscreenBtn 0.5s infinite;
+    }
+
+    @keyframes shakingFullscreenBtn {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        20% {
+            transform: rotate(-8deg);
+        }
+
+        50% {
+            transform: rotate(0deg);
+        }
+
+        70% {
+            transform: rotate(8deg);
+        }
+
+        100% {
+            transform: rotate(0deg);
+        }
     }
 }

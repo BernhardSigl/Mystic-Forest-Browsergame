@@ -22,7 +22,7 @@ window.addEventListener('keydown', (e) => {
     if (e.keyCode == 74) {
         keyboard.J = true;
     }
-    console.log(e.keyCode);
+    // console.log(e.keyCode);
 });
 
 window.addEventListener('keyup', (e) => {

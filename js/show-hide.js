@@ -81,3 +81,9 @@ function cheatsVisibility() {
     toggleVisibility('cheatButtonId', false);
     toggleVisibility('backToMenuId', true);
 }
+
+function checkCheatCodeVisibilites() {
+    toggleVisibility('cheatInputFieldId', false);
+    document.querySelector('.cheatCodeNumbersContainer').innerHTML = "";
+    document.querySelector('.howToGetCheatCode').innerHTML = "";
+}
