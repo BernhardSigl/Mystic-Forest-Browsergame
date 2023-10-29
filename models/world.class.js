@@ -52,15 +52,14 @@ class World {
         this.collisionSticks();
         this.collisionThrowableObjectWithEnemy();
         this.collisionEnemiesCharacter();
-        this.collisionEndbossCharacter();
     }
     /**
      * This function is used to check if the effects due to collisions between character and enemies.
      */
     loadEnemies() {
         this.level.enemies.forEach((enemy) => {
-            this.checkDamageToCharacter(enemy);
-            this.checkGenerallyCollision(enemy);
+            this.checkDamageToCharacter(enemy); // important
+            this.checkCollisionEnemies(enemy);
         });
     }
 
@@ -69,16 +68,16 @@ class World {
      */
     loadEndboss() {
         this.level.endboss.forEach((endboss) => {
-            this.checkDamageToCharacter(endboss);
-            this.checkGenerallyCollision(endboss);
+            this.checkDamageToCharacter(endboss);  // important
+            this.checkCollisionEndboss(endboss);
         });
     }
 
     /**
      * This function is to check the effects of opponent on character
      */
-    checkDamageToCharacter(obj) {
-        if (this.character.isColliding(obj)) {
+    checkDamageToCharacter(enemyOrEndboss) {  // important
+        if (this.character.isColliding(enemyOrEndboss)) {
             this.character.damageObjectToCharacter();
             if (this.character.isAboveGround() && this.character.speedY < 0) {
                 this.character.jump();
@@ -87,41 +86,69 @@ class World {
         }
     }
 
+    checkCollisionEnemies(enemy) {
+        if (enemy.isColliding(this.character)) {
+            enemy.checkColliding = true;
+            this.checkCharacterIsAttackingEnemy(enemy);
+        } else {
+            enemy.checkColliding = false;
+        }
+    }
+
     /**
      * This function is used to check if a collision is happening
      */
-    checkGenerallyCollision(obj) {
-        if (obj.isColliding(this.character)) {
-            obj.checkColliding = true;
-            this.checkCharacterIsAttacking(obj);
+    checkCollisionEndboss(endboss) {
+        if (endboss.isColliding(this.character)) {
+            endboss.checkColliding = true;
+            this.checkCharacterIsAttackingEndboss(endboss);
         } else {
-            obj.checkColliding = false;
+            endboss.checkColliding = false;
+        }
+        this.checkEndbossFollowsCharacter(endboss);
+        if (this.character.isAttacking === true && this.character.isColliding(endboss)) {
+            this.statusBarEndBoss.setPercentageEndboss(endboss.energyEndboss);
         }
     }
 
     /**
      * This function is used to check if the character is attacking
      */
-    checkCharacterIsAttacking(obj) {
+    checkCharacterIsAttackingEnemy(enemy) {
         if (this.character.isAttacking === true) {
-            obj.checkGettingAttacked = true;
+            enemy.checkGettingAttacked = true;
             if (this.cheatActivated === false) {
-                obj.energyEnemy -= 10;
-                console.log(`energyEnemy: `, obj.energyEnemy);
-                obj.energyEndboss -= 10;
-                console.log(`energyEndboss: `, obj.energyEndboss);
+                enemy.energyEnemy -= 10;
             } else if (this.cheatActivated === true) {
-                obj.energyEnemy -= 50;
-                console.log(`energyEnemy: `, obj.energyEnemy);
-                obj.energyEndboss -= 100;
-                console.log(`energyEndboss: `, obj.energyEndboss);
+                enemy.energyEnemy -= 50;
             }
-            if (obj.energyEnemy <= 0 || obj.energyEndboss <= 0) {
-                obj.energyEnemy = 0;
-                obj.energyEndboss = 0;
+            if (enemy.energyEnemy <= 0) {
+                enemy.energyEnemy = 0;
             }
         } else {
-            obj.checkGettingAttacked = false;
+            enemy.checkGettingAttacked = false;
+            this.character.isAttacking = false;
+        }
+    }
+
+    /**
+ * This function is used to check if the character is attacking
+ */
+    checkCharacterIsAttackingEndboss(endboss) {
+        if (this.character.isAttacking === true) {
+            endboss.checkGettingAttacked = true;
+            if (this.cheatActivated === false) {
+                endboss.energyEndboss -= 10;
+            } else if (this.cheatActivated === true) {
+                endboss.energyEndboss -= 100;
+            }
+            console.log(`enboss: `, endboss.energyEndboss);
+            if (endboss.energyEndboss <= 0) {
+                endboss.energyEndboss = 0;
+                endboss.endbossIsDead = true;
+            }
+        } else {
+            endboss.checkGettingAttacked = false;
             this.character.isAttacking = false;
         }
     }
@@ -132,7 +159,7 @@ class World {
     collisionEnemiesCharacter() {
         this.level.enemies.forEach((enemy) => {
             this.checkEnemyFollowsCharacter(enemy);
-            this.checkJumpOnOpponent(enemy);
+            // this.checkJumpOnOpponent(enemy);
         });
     }
 
@@ -149,28 +176,6 @@ class World {
         } else {
             enemy.checkFollowingLeft = false;
             enemy.checkFollowingRight = false;
-        }
-    }
-
-    /**
-      * This function is used to check if the endboss is following the character
-      */
-    collisionEndbossCharacter() {
-        this.level.endboss.forEach((endboss) => {
-            this.checkEndbossFollowsCharacter(endboss);
-            this.checkJumpOnOpponent(endboss);
-            if (this.character.isAttacking === true && this.character.isColliding(endboss)) {
-                this.statusBarEndBoss.setPercentageEndboss(endboss.energyEndboss);
-            }
-        });
-    }
-
-    /**
-     * This function is used to check if the character is jumping on an opponent
-     */
-    checkJumpOnOpponent(opponent) {
-        if (this.character.isAboveGround() && this.character.speedY < 0) {
-            opponent.charackterIsJumpingOnOpponent = true;
         }
     }
 
@@ -196,10 +201,10 @@ class World {
     collisionThrowableObjectWithEnemy() {
         this.throwableObjects.forEach((magicball) => {
             this.level.enemies.forEach((enemy) => {
-                this.objectIsThrownOff(enemy, magicball);
+                this.enemyIsThrownOff(enemy, magicball);
             })
             this.level.endboss.forEach((endboss) => {
-                this.objectIsThrownOff(endboss, magicball);
+                this.endbossIsThrownOff(endboss, magicball);
                 this.statusBarEndBoss.setPercentageEndboss(endboss.energyEndboss);
             })
         });
@@ -208,11 +213,23 @@ class World {
     /**
      * This function is used to check if an opponent is thrown off by an object
      */
-    objectIsThrownOff(opponent, obj) {
-        if (obj.isColliding(opponent)) {
-            opponent.enemyIsThrownOff = true;
+    enemyIsThrownOff(enemy, obj) {
+        if (obj.isColliding(enemy)) {
+            enemy.enemyIsThrownOff = true;
+            enemy.energyEnemy -= 5;
+            console.log(`energyEnemy: `, enemy.energyEnemy);
         } else {
-            opponent.enemyIsThrownOff = false;
+            enemy.enemyIsThrownOff = false;
+        }
+    }
+
+    endbossIsThrownOff(endboss, obj) {
+        if (obj.isColliding(endboss)) {
+            endboss.enemyIsThrownOff = true;
+            endboss.energyendboss -= 5;
+            console.log(`energyEndboss: `, endboss.energyEnemy);
+        } else {
+            endboss.enemyIsThrownOff = false;
         }
     }
 

@@ -238,18 +238,14 @@ function animateEnemy(o) {
             setTimeout(() => {
                 o.y = 400;
             }, 2500);
-        } else if ((o.checkGettingAttacked === true && o.checkColliding === true)) {
-            o.energyEnemy -= 1;
+        } else if (o.checkGettingAttacked === true && o.checkColliding === true) {
             o.playAnimation(o.IMAGES_HURT);
         } else if (o.enemyIsThrownOff === true) {
-            o.energyEnemy -= 1;
             o.playAnimation(o.IMAGES_HURT);
             setTimeout(() => {
                 o.enemyIsThrownOff = false;
             }, 625);
-            // } else if (o.checkColliding === true && o.charackterIsJumpingOnOpponent === true) {
-            //     o.playAnimation(o.IMAGES_HURT);
-        } else if (o.checkColliding === true && o.enemyIsAttacked === false && o.checkColliding === true) {
+        } else if (o.checkColliding === true && o.enemyIsAttacked === false && o.checkColliding === true && o.charackterIsJumpingOnOpponent === false) {
             o.playAnimation(o.IMAGES_ATTACK);
         }
         else if (o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false && o.enemyIsThrownOff === false && o.enemiesMovable === true) {
@@ -258,6 +254,6 @@ function animateEnemy(o) {
         } else if (o.checkFollowingLeft === false && o.checkFollowingRight === true && o.checkColliding === false && o.enemyIsThrownOff === false && o.enemiesMovable === true) {
             o.playAnimation(o.IMAGES_WALK);
             o.moveRight();
-        }
+        } else o.playAnimation(o.IMAGES_HURT);
     }, 60);
 }

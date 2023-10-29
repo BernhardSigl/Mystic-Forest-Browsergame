@@ -84,40 +84,36 @@ class Endboss extends MovableObject {
         this.otherDirection = true;
         // this.walking_sound = new Audio('audio/zombie_walk.wav');
         // this.walking_sound.volume = 0.15;
-        animateEndboss(this);
+        // animateEndboss(this);
+        this.animateEndboss();
+        this.endbossInterval;
     }
-}
-
-function animateEndboss(o) {
-    setInterval(() => {
-        if (o.energyEndboss === 0) {
-            o.playAnimation(o.IMAGES_DEAD);
-            // setInterval(() => {
-            //     o.y -= o.speedY;
-            //     o.speedY -= 0.5;
-            // }, 200);
-            setTimeout(() => {
-                endbossDied();
-            }, 2500);
-        } else if (o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false && o.enemyIsThrownOff === false) {
-            o.playAnimation(o.IMAGES_RUN);
-            o.moveLeft();
-        } else if (o.checkFollowingLeft === false && o.checkFollowingRight === true && o.checkColliding === false && o.enemyIsThrownOff === false) {
-            o.playAnimation(o.IMAGES_RUN);
-            o.moveRight();
-        }
-        else if (o.checkGettingAttacked === true && o.checkColliding === true) {
-            o.playAnimation(o.IMAGES_HURT);
-        } else if (o.enemyIsThrownOff === true) {
-            o.playAnimation(o.IMAGES_HURT);
-            setTimeout(() => {
-                o.enemyIsThrownOff = false;
-            }, 625);
-            // } else if (o.checkColliding === true && o.charackterIsJumpingOnOpponent === true) {
-            //     o.playAnimation(o.IMAGES_HURT);
-        } else if (o.checkColliding === true && o.enemyIsAttacked === false && o.checkColliding === true) {
-            o.playAnimation(o.IMAGES_ATTACK);
-        } else
-            o.playAnimation(o.IMAGES_IDLE);
-    }, 60);
+    animateEndboss() {
+        let endbossInterval = setInterval(() => {
+            if (this.energyEndboss === 0 && this.endbossIsDead === true) {
+                this.playAnimation(this.IMAGES_DEAD);
+                setTimeout(() => {
+                    endbossDied();
+                    clearInterval(endbossInterval);
+                }, 2500);
+            } else if (this.checkFollowingLeft === true && this.checkFollowingRight === false && this.checkColliding === false && this.enemyIsThrownOff === false) {
+                this.playAnimation(this.IMAGES_RUN);
+                this.moveLeft();
+            } else if (this.checkFollowingLeft === false && this.checkFollowingRight === true && this.checkColliding === false && this.enemyIsThrownOff === false) {
+                this.playAnimation(this.IMAGES_RUN);
+                this.moveRight();
+            }
+            else if ((this.checkGettingAttacked === true && this.checkColliding === true) || (this.checkColliding === true && world.character.isAboveGround())) {
+                this.playAnimation(this.IMAGES_HURT);
+            } else if (this.enemyIsThrownOff === true) {
+                this.playAnimation(this.IMAGES_HURT);
+                setTimeout(() => {
+                    this.enemyIsThrownOff = false;
+                }, 625);
+            } else if (this.checkColliding === true && this.enemyIsAttacked === false && !world.character.isAboveGround()) {
+                this.playAnimation(this.IMAGES_ATTACK);
+            } else
+                this.playAnimation(this.IMAGES_IDLE);
+        }, 60);
+    }
 }

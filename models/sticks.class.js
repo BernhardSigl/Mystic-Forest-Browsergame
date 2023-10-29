@@ -1,6 +1,4 @@
 class Sticks extends MovableObject {
-    x = 100;
-    y = 385;
     width = 40;
     height = 40;
     offset = {

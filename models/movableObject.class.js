@@ -4,6 +4,7 @@ class MovableObject extends DrawableObject {
     energyCharacter = 100;
     energyEnemy = 50;
     energyEndboss = 100;
+    endbossIsDead = false;
     lastHit = 0;
     collectedCoins = 0;
     collectedSticks = 0;

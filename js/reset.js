@@ -10,27 +10,6 @@ function resetGame() {
     resetHealth();
     resetEndboss();
     toggleVisibility('reloadGameId', false);
-    // resetInterval();
-    // clearAllIntervals();
-    // world.character.animate();
-    // world.level.enemies[0].animateEnemy();
-    // world.run();
-}
-
-// function resetInterval() {
-//     clearInterval(world.runInterval);
-//     world.run(); // Starte das Intervall erneut
-// }
-
-function clearAllIntervals() {
-    // for (let i = 1; i < 9999; i++) {
-    // window.clearInterval(i);
-    // }
-    clearInterval(world.level.enemies[0].enemiesInterval);
-    // clearInterval(world.character.character60FpsInterval);
-    // clearInterval(world.character.character10FpsInterval);
-    // clearInterval(world.character.character30FpsInterval);
-    // clearInterval(world.runInterval);
 }
 
 /**
@@ -49,6 +28,11 @@ function resetCharacter() {
  * This function is to reset the enemies
  */
 function resetEnemies() {
+    resetEnemiesArray();
+    resetEnemiesValues();
+}
+
+function resetEnemiesArray() {
     world.level.enemies.forEach((enemy) => {
         world.level.enemies.splice(enemy);
         world.level.enemies.push(new ManZombie());
@@ -58,11 +42,14 @@ function resetEnemies() {
         world.level.enemies.push(new WildZombie());
         world.level.enemies.push(new WildZombie());
     });
+}
+
+function resetEnemiesValues() {
     world.level.enemies.forEach((enemy) => {
         enemy.enemiesMovable = false;
         enemy.enemiesAttacking = false;
         enemy.energyEnemy = 50;
-        enemy.x = Math.random() < 0.6 ? Math.random() * 2000 + 500 : Math.random() * 800 - 1000;
+        enemy.x = Math.random() < 0.7 ? Math.random() * 1900 + 500 : Math.random() * 800 - 800;
         enemy.y = 205;
         enemy.energyEnemy = 50;
         enemy.offset = {
@@ -92,11 +79,21 @@ function resetEnemies() {
  * This function is to reset the endboss
  */
 function resetEndboss() {
+    resetEndbossArray();
+    resetEndbossValues();
+}
+
+function resetEndbossArray() {
     world.level.endboss.forEach((endboss) => {
         world.level.endboss.splice(endboss);
         world.level.endboss.push(new Endboss());
     });
+}
+
+function resetEndbossValues() {
     world.level.endboss.forEach((endboss) => {
+        clearInterval(endboss.endbossInterval);
+        endboss.endbossIsDead = false;
         endboss.energyEndboss = 100;
         endboss.y = 65;
         endboss.x = 2000;
@@ -129,11 +126,14 @@ function resetEndboss() {
 function resetCoins() {
     world.coinsBar.setAmountCoins(0);
     world.collectedCoins = [];
+    world.level.coins = [];
     world.coins.x = 200 + Math.random() * 2000;
     world.coins.y = 345 - Math.random() * 200;
-    if (world.level.coins.length < 5) {
-        world.level.coins.push(new Coins());
-    }
+    world.level.coins.push(new Coins());
+    world.level.coins.push(new Coins());
+    world.level.coins.push(new Coins());
+    world.level.coins.push(new Coins());
+    world.level.coins.push(new Coins());
 }
 
 /**
@@ -142,12 +142,15 @@ function resetCoins() {
 function resetMagicalBalls() {
     world.throwableObjects = [];
     world.collectedSticks = [];
-    world.magicalBalls.x = 200 + Math.random() * 2000;
+    world.level.sticks = [];
+    world.magicalBalls.x = 200 + Math.random() * 1800;
     world.magicalBalls.y = 385 - Math.random() * 200;
     world.sticksBar.setAmountSticks(0);
-    if (world.level.sticks.length < 5) {
-        world.level.sticks.push(new Sticks());
-    }
+    world.level.sticks.push(new Sticks());
+    world.level.sticks.push(new Sticks());
+    world.level.sticks.push(new Sticks());
+    world.level.sticks.push(new Sticks());
+    world.level.sticks.push(new Sticks());
 }
 
 /**
