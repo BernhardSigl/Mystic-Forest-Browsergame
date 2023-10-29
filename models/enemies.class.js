@@ -245,7 +245,7 @@ function animateEnemy(o) {
             setTimeout(() => {
                 o.enemyIsThrownOff = false;
             }, 625);
-        } else if (o.checkColliding === true && o.enemyIsAttacked === false && o.checkColliding === true && o.charackterIsJumpingOnOpponent === false) {
+        } else if (o.checkColliding === true && o.enemyIsAttacked === false && world.character.y === 212) {
             o.playAnimation(o.IMAGES_ATTACK);
         }
         else if (o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false && o.enemyIsThrownOff === false && o.enemiesMovable === true) {
@@ -254,6 +254,8 @@ function animateEnemy(o) {
         } else if (o.checkFollowingLeft === false && o.checkFollowingRight === true && o.checkColliding === false && o.enemyIsThrownOff === false && o.enemiesMovable === true) {
             o.playAnimation(o.IMAGES_WALK);
             o.moveRight();
-        } else o.playAnimation(o.IMAGES_HURT);
+        } else if (o.checkColliding === true && world.character.y < 212) {
+            o.playAnimation(o.IMAGES_HURT);
+        }
     }, 60);
 }

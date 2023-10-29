@@ -48,9 +48,8 @@ class MovableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        // console.log(world.character.y); // maximale springhöhe
         if (this instanceof ThrowableObject) {
-            return true; // item soll aus der Welt fallen
+            return true; // fall out of the map
         } else {
             return this.y <= 200;
         }

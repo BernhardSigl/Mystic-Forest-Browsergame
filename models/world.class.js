@@ -145,7 +145,6 @@ class World {
             } else if (this.cheatActivated === true) {
                 endboss.energyEndboss -= 100;
             }
-            console.log(`enboss: `, endboss.energyEndboss);
             if (endboss.energyEndboss <= 0) {
                 endboss.energyEndboss = 0;
                 endboss.endbossIsDead = true;
@@ -162,7 +161,6 @@ class World {
     collisionEnemiesCharacter() {
         this.level.enemies.forEach((enemy) => {
             this.checkEnemyFollowsCharacter(enemy);
-            // this.checkJumpOnOpponent(enemy);
         });
     }
 
@@ -229,7 +227,6 @@ class World {
         if (obj.isColliding(endboss)) {
             endboss.enemyIsThrownOff = true;
             endboss.energyEndboss -= 4;
-            console.log(`energyEndboss: `, endboss.energyEndboss);
         } else {
             endboss.enemyIsThrownOff = false;
         }

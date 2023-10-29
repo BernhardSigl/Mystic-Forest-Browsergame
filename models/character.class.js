@@ -172,6 +172,7 @@ class Character extends MovableObject {
             if (this.energyCharacter === 0) {
                 this.characterMovable = false;
                 this.playAnimation(this.IMAGES_DEAD);
+                // toggleVisibility('reloadGameId', false);
                 setTimeout(() => {
                     characterDied();
                 }, 2500);

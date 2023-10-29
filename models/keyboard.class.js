@@ -47,7 +47,6 @@ function mobileButtons() {
     document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.A = true;
-        console.log(this.A);
     });
     document.getElementById('btnLeft').addEventListener('touchend', (e) => {
         e.preventDefault();

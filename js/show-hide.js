@@ -7,9 +7,9 @@ function startGameVisibilities() {
     toggleVisibility('cheatButtonId', false);
     toggleClass('gameContent', 'center', false);
     toggleClass('gameContent', 'menuFullscreen', false);
-    toggleVisibility('reloadGameId', true);
     toggleVisibility('canvasId', true);
     toggleVisibility('mobileButtonsId', true);
+    toggleVisibility('reloadGameId', true);
 }
 
 function enterWindowMode() {
