@@ -1,24 +1,4 @@
 class WildZombie extends MovableObject {
-    offset = {
-        top: 130 * 0.7,
-        bottom: 130,
-        left: 250 / 2,
-        right: 250,
-    }
-    offsetOnFollowingLeft = {
-        top: 130 * 0.7,
-        bottom: 130,
-        left: 0,
-        right: 225,
-    }
-    offsetOnFollowingRight = {
-        top: 130 * 0.7,
-        bottom: 130,
-        left: 225,
-        right: 0,
-    }
-    width = 400;
-    height = 250;
     IMAGES_WALK = [
         'img/2_enemies/trol_red/Troll_03_1_WALK_000.png',
         'img/2_enemies/trol_red/Troll_03_1_WALK_001.png',
@@ -89,37 +69,15 @@ class WildZombie extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_IDLE);
-        this.x = -300 + Math.random() * 1500;
         this.speed = 3 + Math.random() * 0.5;
-        this.walking_sound = new Audio('audio/zombie_walk.wav');
-        this.walking_sound.volume = 0.15;
+        // this.walking_sound = new Audio('audio/zombie_walk.wav');
+        // this.walking_sound.volume = 0.15;
         animateEnemy(this);
         this.otherDirection = true;
     }
 }
 
 class ManZombie extends MovableObject {
-    offset = {
-        top: 130 * 0.7,
-        bottom: 130,
-        left: 250 / 2,
-        right: 250,
-    }
-    offsetOnFollowingLeft = {
-        top: 130 * 0.7,
-        bottom: 130,
-        left: 0,
-        right: 225,
-    }
-    offsetOnFollowingRight = {
-        top: 130 * 0.7,
-        bottom: 130,
-        left: 225,
-        right: 0,
-    }
-    width = 400;
-    height = 250;
-
     IMAGES_WALK = [
         'img/2_enemies/troll_green/Troll_01_1_WALK_000.png',
         'img/2_enemies/troll_green/Troll_01_1_WALK_001.png',
@@ -188,36 +146,15 @@ class ManZombie extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_IDLE);
-        this.x = -300 + Math.random() * 1500;
         this.speed = 3 + Math.random() * 0.5;
-        this.walking_sound = new Audio('audio/zombie_walk.wav');
-        this.walking_sound.volume = 0.15;
+        // this.walking_sound = new Audio('audio/zombie_walk.wav');
+        // this.walking_sound.volume = 0.15;
         animateEnemy(this);
         this.otherDirection = true;
     }
 }
 
 class WomanZombie extends MovableObject {
-    offset = {
-        top: 130 * 0.7,
-        bottom: 130,
-        left: 250 / 2,
-        right: 250,
-    }
-    offsetOnFollowingLeft = {
-        top: 130 * 0.7,
-        bottom: 130,
-        left: 0,
-        right: 225,
-    }
-    offsetOnFollowingRight = {
-        top: 130 * 0.7,
-        bottom: 130,
-        left: 225,
-        right: 0,
-    }
-    width = 400;
-    height = 250;
     IMAGES_WALK = [
         'img/2_enemies/troll_grey/Troll_02_1_WALK_000.png',
         'img/2_enemies/troll_grey/Troll_02_1_WALK_001.png',
@@ -287,15 +224,15 @@ class WomanZombie extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_IDLE);
         this.speed = 3 + Math.random() * 0.5;
-        this.walking_sound = new Audio('audio/zombie_walk.wav');
-        this.walking_sound.volume = 0.15;
+        // this.walking_sound = new Audio('audio/zombie_walk.wav');
+        // this.walking_sound.volume = 0.15;
         animateEnemy(this);
         this.otherDirection = true;
     }
 }
 
 function animateEnemy(o) {
-    setInterval(() => {
+    o.enemiesInterval = setInterval(() => {
         if (o.energyEnemy === 0) {
             o.playAnimation(o.IMAGES_DEAD);
             setTimeout(() => {

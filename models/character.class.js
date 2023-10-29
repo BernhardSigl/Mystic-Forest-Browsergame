@@ -146,21 +146,21 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_IDLE);
         this.animate();
-        this.walking_sound = new Audio('audio/character_walk.wav');
+        // this.walking_sound = new Audio('audio/character_walk.wav');
         this.applyGravity();
-        this.walking_sound.volume = 0.2;
+        // this.walking_sound.volume = 0.2;
     }
 
     animate() {
-        setInterval(() => {
-            this.walking_sound.pause();
+        this.character60FpsInterval = setInterval(() => {
+            // this.walking_sound.pause();
             if (!this.isDead() && this.world.keyboard.D && this.x < this.world.level.level_end_x) {
                 this.moveRight();
-                this.walking_sound.play();
+                // this.walking_sound.play();
             }
             if (!this.isDead() && this.world.keyboard.A && this.x > 0) {
                 this.moveLeft();
-                this.walking_sound.play();
+                // this.walking_sound.play();
             }
             if (!this.isDead() && this.world.keyboard.W && !this.isAboveGround()) {
                 this.jump();
@@ -168,7 +168,7 @@ class Character extends MovableObject {
             this.world.camera_x = -this.x;
         }, 1000 / 60);
 
-        setInterval(() => {
+        this.character10FpsInterval = setInterval(() => {
             if (this.energyCharacter === 0) {
                 this.characterMovable = false;
                 this.playAnimation(this.IMAGES_DEAD);
@@ -185,9 +185,9 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_IDLE);
             }
 
-        }, 100);
+        }, 1000 / 10);
 
-        setInterval(() => {
+        this.character30FpsInterval = setInterval(() => {
             let currentTime = new Date().getTime();
             let difference = currentTime - this.lastAttackTime;
             if (this.world.keyboard.J) {
@@ -205,7 +205,7 @@ class Character extends MovableObject {
                 this.lastAttackTime = 0;
                 this.isAttacking = false;
             }
-        }, 40); // schlaggeschwindigkeit
+        }, 1000 / 30); // schlaggeschwindigkeit
 
     }
 }

@@ -113,7 +113,6 @@ function addNumberToInput(code) {
     }
 }
 
-
 /**
  * Fullscreen in opera browser
  */

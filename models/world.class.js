@@ -21,6 +21,7 @@ class World {
     collectedCoins = [];
     collectedSticks = [];
     unlockCheat = [];
+    enemiesArray = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -38,7 +39,7 @@ class World {
     }
 
     run() {
-        setInterval(() => {
+        this.runInterval = setInterval(() => {
             this.checkCollisions();
             this.checkThrowObject();
         }, 200);
@@ -60,7 +61,6 @@ class World {
         this.level.enemies.forEach((enemy) => {
             this.checkDamageToCharacter(enemy);
             this.checkGenerallyCollision(enemy);
-
         });
     }
 
@@ -106,11 +106,15 @@ class World {
         if (this.character.isAttacking === true) {
             obj.checkGettingAttacked = true;
             if (this.cheatActivated === false) {
-                obj.energyEnemy -= 6;
-                obj.energyEndboss -= 6;
+                obj.energyEnemy -= 10;
+                console.log(`energyEnemy: `, obj.energyEnemy);
+                obj.energyEndboss -= 10;
+                console.log(`energyEndboss: `, obj.energyEndboss);
             } else if (this.cheatActivated === true) {
-                obj.energyEnemy -= 100;
-                obj.energyEndboss -= 200;
+                obj.energyEnemy -= 50;
+                console.log(`energyEnemy: `, obj.energyEnemy);
+                obj.energyEndboss -= 100;
+                console.log(`energyEndboss: `, obj.energyEndboss);
             }
             if (obj.energyEnemy <= 0 || obj.energyEndboss <= 0) {
                 obj.energyEnemy = 0;
@@ -228,8 +232,8 @@ class World {
     }
 
     /**
- * This function is used to check if the character is collecting a throwable object
- */
+    * This function is used to check if the character is collecting a throwable object
+    */
     collisionSticks() {
         this.level.sticks.forEach((stick) => {
             if (this.character.isColliding(stick)) {

@@ -10,6 +10,27 @@ function resetGame() {
     resetHealth();
     resetEndboss();
     toggleVisibility('reloadGameId', false);
+    // resetInterval();
+    // clearAllIntervals();
+    // world.character.animate();
+    // world.level.enemies[0].animateEnemy();
+    // world.run();
+}
+
+// function resetInterval() {
+//     clearInterval(world.runInterval);
+//     world.run(); // Starte das Intervall erneut
+// }
+
+function clearAllIntervals() {
+    // for (let i = 1; i < 9999; i++) {
+    // window.clearInterval(i);
+    // }
+    clearInterval(world.level.enemies[0].enemiesInterval);
+    // clearInterval(world.character.character60FpsInterval);
+    // clearInterval(world.character.character10FpsInterval);
+    // clearInterval(world.character.character30FpsInterval);
+    // clearInterval(world.runInterval);
 }
 
 /**
@@ -29,11 +50,41 @@ function resetCharacter() {
  */
 function resetEnemies() {
     world.level.enemies.forEach((enemy) => {
+        world.level.enemies.splice(enemy);
+        world.level.enemies.push(new ManZombie());
+        world.level.enemies.push(new ManZombie());
+        world.level.enemies.push(new WomanZombie());
+        world.level.enemies.push(new WomanZombie());
+        world.level.enemies.push(new WildZombie());
+        world.level.enemies.push(new WildZombie());
+    });
+    world.level.enemies.forEach((enemy) => {
         enemy.enemiesMovable = false;
         enemy.enemiesAttacking = false;
         enemy.energyEnemy = 50;
-        enemy.x = Math.random() < 0.6 ? Math.random() * 2000 + 500 : Math.random() * 900 - 1000;
+        enemy.x = Math.random() < 0.6 ? Math.random() * 2000 + 500 : Math.random() * 800 - 1000;
         enemy.y = 205;
+        enemy.energyEnemy = 50;
+        enemy.offset = {
+            top: 130 * 0.7,
+            bottom: 130,
+            left: 250 / 2,
+            right: 250,
+        }
+        enemy.offsetOnFollowingLeft = {
+            top: 130 * 0.7,
+            bottom: 130,
+            left: 0,
+            right: 225,
+        }
+        enemy.offsetOnFollowingRight = {
+            top: 130 * 0.7,
+            bottom: 130,
+            left: 225,
+            right: 0,
+        }
+        enemy.width = 400;
+        enemy.height = 250;
     });
 }
 
@@ -42,9 +93,33 @@ function resetEnemies() {
  */
 function resetEndboss() {
     world.level.endboss.forEach((endboss) => {
+        world.level.endboss.splice(endboss);
+        world.level.endboss.push(new Endboss());
+    });
+    world.level.endboss.forEach((endboss) => {
         endboss.energyEndboss = 100;
-        endboss.x = 2000;
         endboss.y = 65;
+        endboss.x = 2000;
+        endboss.offset = {
+            top: 230 * 0.7,
+            bottom: 205,
+            left: 550 / 2,
+            right: 550,
+        }
+        endboss.offsetOnFollowingLeft = {
+            top: 230 * 0.7,
+            bottom: 205,
+            left: 0,
+            right: 400,
+        }
+        endboss.offsetOnFollowingRight = {
+            top: 230 * 0.7,
+            bottom: 205,
+            left: 400,
+            right: 0,
+        }
+        endboss.width = 700;
+        endboss.height = 400;
     });
 }
 

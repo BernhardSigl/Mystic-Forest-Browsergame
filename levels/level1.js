@@ -1,17 +1,10 @@
 const level1 = new Level([
     new ManZombie(),
     new ManZombie(),
-    new ManZombie(),
-    // new WildZombie(),
-    // new WildZombie(),
+    new WomanZombie(),
+    new WomanZombie(),
     new WildZombie(),
     new WildZombie(),
-    // new WomanZombie(),
-    // new WomanZombie(),
-    new WomanZombie(),
-    new WomanZombie(),
-    new WomanZombie(),
-
 ],
     [
         new Endboss(),

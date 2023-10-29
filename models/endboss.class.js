@@ -1,25 +1,4 @@
 class Endboss extends MovableObject {
-    y = 65;
-    offset = {
-        top: 230 * 0.7,
-        bottom: 205,
-        left: 550 / 2,
-        right: 550,
-    }
-    offsetOnFollowingLeft = {
-        top: 230 * 0.7,
-        bottom: 205,
-        left: 0,
-        right: 400,
-    }
-    offsetOnFollowingRight = {
-        top: 230 * 0.7,
-        bottom: 205,
-        left: 400,
-        right: 0,
-    }
-    width = 700;
-    height = 400;
     IMAGES_IDLE = [
         'img/3_endboss/ORK_03_IDLE_000.png',
         'img/3_endboss/ORK_03_IDLE_001.png',
@@ -101,7 +80,6 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 2000; // 2225
         this.speed = 8 + Math.random() * 2;
         this.otherDirection = true;
         // this.walking_sound = new Audio('audio/zombie_walk.wav');
