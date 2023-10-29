@@ -58,7 +58,7 @@ class World {
      */
     loadEnemies() {
         this.level.enemies.forEach((enemy) => {
-            this.checkDamageToCharacter(enemy); // important
+            this.checkDamageToCharacter(enemy);
             this.checkCollisionEnemies(enemy);
         });
     }
@@ -68,7 +68,7 @@ class World {
      */
     loadEndboss() {
         this.level.endboss.forEach((endboss) => {
-            this.checkDamageToCharacter(endboss);  // important
+            this.checkDamageToCharacter(endboss);
             this.checkCollisionEndboss(endboss);
         });
     }
@@ -76,9 +76,12 @@ class World {
     /**
      * This function is to check the effects of opponent on character
      */
-    checkDamageToCharacter(enemyOrEndboss) {  // important
+    checkDamageToCharacter(enemyOrEndboss) {
         if (this.character.isColliding(enemyOrEndboss)) {
-            this.character.damageObjectToCharacter();
+            if (enemyOrEndboss.energyEnemy > 0 && enemyOrEndboss.energyEndboss > 0) {
+                console.log(enemyOrEndboss.energyEnemy);
+                this.character.damageObjectToCharacter();
+            }
             if (this.character.isAboveGround() && this.character.speedY < 0) {
                 this.character.jump();
             }
@@ -217,7 +220,6 @@ class World {
         if (obj.isColliding(enemy)) {
             enemy.enemyIsThrownOff = true;
             enemy.energyEnemy -= 5;
-            console.log(`energyEnemy: `, enemy.energyEnemy);
         } else {
             enemy.enemyIsThrownOff = false;
         }
@@ -226,8 +228,8 @@ class World {
     endbossIsThrownOff(endboss, obj) {
         if (obj.isColliding(endboss)) {
             endboss.enemyIsThrownOff = true;
-            endboss.energyendboss -= 5;
-            console.log(`energyEndboss: `, endboss.energyEnemy);
+            endboss.energyEndboss -= 4;
+            console.log(`energyEndboss: `, endboss.energyEndboss);
         } else {
             endboss.enemyIsThrownOff = false;
         }

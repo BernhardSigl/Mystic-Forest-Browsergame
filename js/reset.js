@@ -127,8 +127,8 @@ function resetCoins() {
     world.coinsBar.setAmountCoins(0);
     world.collectedCoins = [];
     world.level.coins = [];
-    world.coins.x = 200 + Math.random() * 2000;
-    world.coins.y = 345 - Math.random() * 200;
+    world.coins.x = 300 + Math.random() * 1700;
+    world.coins.y = 390 - Math.random() * 200;
     world.level.coins.push(new Coins());
     world.level.coins.push(new Coins());
     world.level.coins.push(new Coins());
@@ -143,8 +143,8 @@ function resetMagicalBalls() {
     world.throwableObjects = [];
     world.collectedSticks = [];
     world.level.sticks = [];
-    world.magicalBalls.x = 200 + Math.random() * 1800;
-    world.magicalBalls.y = 385 - Math.random() * 200;
+    world.coins.x = 300 + Math.random() * 1700;
+    world.magicalBalls.y = 390 - Math.random() * 200;
     world.sticksBar.setAmountSticks(0);
     world.level.sticks.push(new Sticks());
     world.level.sticks.push(new Sticks());

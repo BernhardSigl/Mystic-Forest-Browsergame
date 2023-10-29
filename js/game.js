@@ -73,7 +73,7 @@ function endbossDied() {
 }
 
 function unlockCheatCode() {
-    if (world.unlockCheat.length == 5) {
+    if (world.unlockCheat.length >= 5) {
         toggleVisibility('cheatCodeVisbibleId', true);
     } else toggleVisibility('cheatCodeVisbibleId', false);
 }
