@@ -4,10 +4,10 @@ class MovableObject extends DrawableObject {
     energyCharacter = 100;
     energyEnemy = 50;
     energyEndboss = 100;
-    endbossIsDead = false;
     lastHit = 0;
     collectedCoins = 0;
     collectedSticks = 0;
+    endbossIsDead = false;
     isAttacking = false;
     enemyIsAttacked = false;
     characterMovable = true;
@@ -18,7 +18,6 @@ class MovableObject extends DrawableObject {
     checkFollowingRightEndboss = false;
     enemyIsThrownOff = false;
     characterDied = false;
-
     offset = {
         top: 0,
         right: 0,

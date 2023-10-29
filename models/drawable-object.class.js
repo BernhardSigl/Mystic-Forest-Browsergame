@@ -65,10 +65,10 @@ class DrawableObject {
             // ctx.strokeStyle = 'red';
             ctx.strokeStyle = 'transparent';
             ctx.rect(
-                this.x + this.offset.left, // offset x
-                this.y + this.offset.top, // offset y
-                this.width - this.offset.right, // offset width
-                this.height - this.offset.bottom, // offset height
+                this.x + this.offset.left,
+                this.y + this.offset.top,
+                this.width - this.offset.right,
+                this.height - this.offset.bottom,
             );
             ctx.stroke();
         }
@@ -83,10 +83,10 @@ class DrawableObject {
             // ctx.strokeStyle = 'blue';
             ctx.strokeStyle = 'transparent';
             ctx.rect(
-                this.x + this.offsetOnFollowingLeft.left, // offset x
-                this.y + this.offsetOnFollowingLeft.top, // offset y
-                this.width - this.offsetOnFollowingLeft.right, // offset width
-                this.height - this.offsetOnFollowingLeft.bottom, // offset height
+                this.x + this.offsetOnFollowingLeft.left,
+                this.y + this.offsetOnFollowingLeft.top,
+                this.width - this.offsetOnFollowingLeft.right,
+                this.height - this.offsetOnFollowingLeft.bottom,
             );
             ctx.stroke();
         }
@@ -100,10 +100,10 @@ class DrawableObject {
             // ctx.strokeStyle = 'green';
             ctx.strokeStyle = 'transparent';
             ctx.rect(
-                this.x + this.offsetOnFollowingRight.left, // offset x
-                this.y + this.offsetOnFollowingRight.top, // offset y
-                this.width - this.offsetOnFollowingRight.right, // offset width
-                this.height - this.offsetOnFollowingRight.bottom, // offset height
+                this.x + this.offsetOnFollowingRight.left,
+                this.y + this.offsetOnFollowingRight.top,
+                this.width - this.offsetOnFollowingRight.right,
+                this.height - this.offsetOnFollowingRight.bottom,
             );
             ctx.stroke();
         }

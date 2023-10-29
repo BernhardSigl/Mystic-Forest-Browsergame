@@ -16,6 +16,11 @@ class StatusBarEndBoss extends DrawableObject {
         this.x = 495;
         this.y = 0;
         this.setPercentageEndboss(100);
+        this.updateStatusbarVisibility(0);
+    }
+
+    updateStatusbarVisibility(visible) {
+        this.y = visible;
     }
 
     setPercentageEndboss(percentage) {

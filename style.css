@@ -107,6 +107,15 @@ canvas {
     transform: translate(-50%, -50%);
 }
 
+.disableScreen {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vh;
+    height: 100vh;
+    z-index: 9999;
+}
+
 .loading {
     height: auto;
     width: auto;

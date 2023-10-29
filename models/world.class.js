@@ -4,17 +4,17 @@ class World {
     womanZombie = new WomanZombie();
     wildZombie = new WildZombie();
     endboss = new Endboss();
-    level = level1;
-    canvas;
-    ctx;
-    keyboard;
-    camera_x = -100;
     statusBar = new StatusBar();
     sticksBar = new SticksBar();
     coinsBar = new CoinsBar();
     statusBarEndBoss = new StatusBarEndBoss();
     coins = new Coins();
     magicalBalls = new Sticks();
+    level = level1;
+    canvas;
+    ctx;
+    keyboard;
+    camera_x = -100;
     cheatActivated = false;
 
     throwableObjects = [];
@@ -23,6 +23,9 @@ class World {
     unlockCheat = [];
     enemiesArray = [];
 
+    /**
+     * Create a world object.
+     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -33,18 +36,26 @@ class World {
         this.run();
     }
 
-    // pull keyboard
+    /**
+    * Set the character's world reference.
+    */
     setWorld() {
         this.character.world = this;
     }
 
+    /**
+     * Start the game loop.
+     */
     run() {
-        this.runInterval = setInterval(() => {
+        setInterval(() => {
             this.checkCollisions();
             this.checkThrowObject();
         }, 200);
     }
 
+    /**
+     * Check various collision events.
+     */
     checkCollisions() {
         this.loadEnemies();
         this.loadEndboss();
@@ -53,8 +64,9 @@ class World {
         this.collisionThrowableObjectWithEnemy();
         this.collisionEnemiesCharacter();
     }
+
     /**
-     * This function is used to check if the effects due to collisions between character and enemies.
+     * Load enemy objects and check their collisions.
      */
     loadEnemies() {
         this.level.enemies.forEach((enemy) => {
@@ -64,7 +76,7 @@ class World {
     }
 
     /**
-     * This function is used to check if the effects due to collisions between character and endboss.
+     * Load endboss object and check his collisions.
      */
     loadEndboss() {
         this.level.endboss.forEach((endboss) => {
@@ -74,12 +86,11 @@ class World {
     }
 
     /**
-     * This function is to check the effects of opponent on character
+     * Check the effects of opponent on character due to collision.
      */
     checkDamageToCharacter(enemyOrEndboss) {
         if (this.character.isColliding(enemyOrEndboss)) {
             if (enemyOrEndboss.energyEnemy > 0 && enemyOrEndboss.energyEndboss > 0) {
-                console.log(enemyOrEndboss.energyEnemy);
                 this.character.damageObjectToCharacter();
             }
             if (this.character.isAboveGround() && this.character.speedY < 0) {
@@ -89,6 +100,9 @@ class World {
         }
     }
 
+    /**
+     * Check collision between character and enemies.
+     */
     checkCollisionEnemies(enemy) {
         if (enemy.isColliding(this.character)) {
             enemy.checkColliding = true;
@@ -99,7 +113,7 @@ class World {
     }
 
     /**
-     * This function is used to check if a collision is happening
+     * Check collision between character and endboss.
      */
     checkCollisionEndboss(endboss) {
         if (endboss.isColliding(this.character)) {
@@ -115,8 +129,8 @@ class World {
     }
 
     /**
-     * This function is used to check if the character is attacking
-     */
+      * Check if the character is attacking the enemy.
+      */
     checkCharacterIsAttackingEnemy(enemy) {
         if (this.character.isAttacking === true) {
             enemy.checkGettingAttacked = true;
@@ -135,8 +149,8 @@ class World {
     }
 
     /**
- * This function is used to check if the character is attacking
- */
+     * Checks if the character is attacking the endboss.
+     */
     checkCharacterIsAttackingEndboss(endboss) {
         if (this.character.isAttacking === true) {
             endboss.checkGettingAttacked = true;
@@ -156,7 +170,7 @@ class World {
     }
 
     /**
-     * This function is used to check if the enemy is following the character
+    * Checks if enemies are following the character.
      */
     collisionEnemiesCharacter() {
         this.level.enemies.forEach((enemy) => {
@@ -165,8 +179,8 @@ class World {
     }
 
     /**
-     * This function is used to check if the enemy is right or left to the character
-     */
+    * Checks if an enemy is positioned to the right or left of the character.
+    */
     checkEnemyFollowsCharacter(enemy) {
         if (enemy.x > this.character.x) {
             enemy.checkFollowingLeft = true;
@@ -181,8 +195,8 @@ class World {
     }
 
     /**
-    * This function is used to check if the endboss is near to the character
-    */
+     * Checks if the endboss is near the character.
+     */
     checkEndbossFollowsCharacter(endboss) {
         if (endboss.endbossIsFollowingLeft(this.character)) {
             endboss.checkFollowingLeft = true;
@@ -197,8 +211,8 @@ class World {
     }
 
     /**
-     * This function is used to check if the enemy or the endboss is thrown off by an magic-ball
-     */
+    * Checks if an enemy or the endboss is affected by a magic ball.
+    */
     collisionThrowableObjectWithEnemy() {
         this.throwableObjects.forEach((magicball) => {
             this.level.enemies.forEach((enemy) => {
@@ -212,8 +226,10 @@ class World {
     }
 
     /**
-     * This function is used to check if an opponent is thrown off by an object
-     */
+    * Checks if an enemy is thrown off by an object.
+    * @param {Enemy} enemy - The enemy object.
+    * @param {ThrowableObject} obj - The throwable object.
+    */
     enemyIsThrownOff(enemy, obj) {
         if (obj.isColliding(enemy)) {
             enemy.enemyIsThrownOff = true;
@@ -223,6 +239,11 @@ class World {
         }
     }
 
+    /**
+     * Checks if the endboss is thrown off by an object.
+     * @param {Endboss} endboss - The endboss object.
+     * @param {ThrowableObject} obj - The throwable object.
+     */
     endbossIsThrownOff(endboss, obj) {
         if (obj.isColliding(endboss)) {
             endboss.enemyIsThrownOff = true;
@@ -233,8 +254,8 @@ class World {
     }
 
     /**
-     * This function is used to check if the character is collecting a coin
-     */
+    * Checks if the character is collecting a coin.
+    */
     collisionCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
@@ -248,8 +269,8 @@ class World {
     }
 
     /**
-    * This function is used to check if the character is collecting a throwable object
-    */
+     * Checks if the character is collecting a throwable object.
+     */
     collisionSticks() {
         this.level.sticks.forEach((stick) => {
             if (this.character.isColliding(stick)) {
@@ -262,7 +283,7 @@ class World {
     }
 
     /**
-     * This function is used to check if the character is able to throw a throwable object
+     * Checks if the character can throw a throwable object.
      */
     checkThrowObject() {
         for (let i = 0; i < this.collectedSticks.length; i++) {
@@ -276,6 +297,22 @@ class World {
         }
     }
 
+    /**
+     * Updates the visibility of the endboss status bar based on the characters distance from the endboss.
+    */
+    endbossStatusBarVisibility() {
+        let distance = this.character.x - world.level.endboss[0].x;
+        if (distance <= -500 || distance >= 500) {
+            this.statusBarEndBoss.y == 500;
+            this.statusBarEndBoss.updateStatusbarVisibility(500);
+        } else {
+            this.statusBarEndBoss.y = 0;
+        }
+    }
+
+    /**
+    * Draws the game elements on the canvas.
+    */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -295,19 +332,26 @@ class World {
         this.addToMap(this.coinsBar);
         this.addToMap(this.statusBarEndBoss);
 
-        // Draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
         });
     }
 
+    /**
+    * Adds an array of objects to the game map.
+    * @param {Array} objects - The array of objects to be added to the map.
+    */
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         });
     }
 
+    /**
+    * Adds a game object to the map.
+    * @param {GameObject} mo - The game object to be added to the map.
+    */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
@@ -323,6 +367,10 @@ class World {
         }
     }
 
+    /**
+    * Flips the image horizontally.
+    * @param {GameObject} mo - The game object to have its image flipped.
+    */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -330,6 +378,10 @@ class World {
         mo.x = mo.x * -1;
     }
 
+    /**
+    * Restores the original image orientation.
+    * @param {GameObject} mo - The game object to have its original image orientation restored.
+    */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();

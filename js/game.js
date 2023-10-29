@@ -26,6 +26,9 @@ function startGame() {
         isMovable();
         startGameVisibilities();
     }, 3000);
+    setInterval(() => {
+        world.endbossStatusBarVisibility();
+    }, 1000);
 }
 
 function loading() {

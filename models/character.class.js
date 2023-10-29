@@ -1,4 +1,7 @@
 class Character extends MovableObject {
+    /**
+     * Character coordiantes and attributes.
+     */
     offset = {
         top: 132 * 0.7,
         bottom: 132,
@@ -24,6 +27,9 @@ class Character extends MovableObject {
     lastAttackTime = 0;
     maxAttackDuration = 1000;
 
+    /**
+     * Arrays of image paths for the character animation.
+     */
     IMAGES_WALK = [
         'img/1_characters/elf_sword/Elf_02__WALK_000.png',
         'img/1_characters/elf_sword/Elf_02__WALK_001.png',
@@ -135,8 +141,14 @@ class Character extends MovableObject {
         'img/1_characters/elf_sword/Elf_02__IDLE_009.png',
     ]
 
+    /**
+     * Reference to the game world.
+     */
     world;
 
+    /**
+    * Create a character object.
+    */
     constructor() {
         super().loadImage('img/1_characters/elf_sword/Elf_02__IDLE_000.png');
         this.loadImages(this.IMAGES_WALK);
@@ -151,62 +163,75 @@ class Character extends MovableObject {
         // this.walking_sound.volume = 0.2;
     }
 
+    /**
+     * Start character animations.
+     */
     animate() {
-        this.character60FpsInterval = setInterval(() => {
-            // this.walking_sound.pause();
-            if (!this.isDead() && this.world.keyboard.D && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                // this.walking_sound.play();
-            }
-            if (!this.isDead() && this.world.keyboard.A && this.x > 0) {
-                this.moveLeft();
-                // this.walking_sound.play();
-            }
-            if (!this.isDead() && this.world.keyboard.W && !this.isAboveGround()) {
-                this.jump();
-            }
-            this.world.camera_x = -this.x;
-        }, 1000 / 60);
+        setInterval(() => this.moveCharacter(), 1000 / 60);
+        setInterval(() => this.animateCharacter(), 1000 / 10);
+        setInterval(() => this.attackFromCharacter(), 1000 / 30);
+    }
 
-        this.character10FpsInterval = setInterval(() => {
-            if (this.energyCharacter === 0) {
-                this.characterMovable = false;
-                this.playAnimation(this.IMAGES_DEAD);
-                // toggleVisibility('reloadGameId', false);
-                setTimeout(() => {
-                    characterDied();
-                }, 2500);
-            } else if (this.isHurt() && !this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_HURT);
-            } else if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMP);
-            } else if (this.world.keyboard.D && this.x < this.world.level.level_end_x || this.world.keyboard.A && this.x > 0) {
-                this.playAnimation(this.IMAGES_WALK);
-            } else {
-                this.playAnimation(this.IMAGES_IDLE);
-            }
+    /**
+     * Move the character based on user input.
+     */
+    moveCharacter() {
+        // this.walking_sound.pause();
+        if (!this.isDead() && this.world.keyboard.D && this.x < this.world.level.level_end_x) {
+            this.moveRight();
+            // this.walking_sound.play();
+        }
+        if (!this.isDead() && this.world.keyboard.A && this.x > 0) {
+            this.moveLeft();
+            // this.walking_sound.play();
+        }
+        if (!this.isDead() && this.world.keyboard.W && !this.isAboveGround()) {
+            this.jump();
+        }
+        this.world.camera_x = -this.x;
+    }
 
-        }, 1000 / 10);
+    /**
+     * Animate the character based on its state.
+     */
+    animateCharacter() {
+        if (this.energyCharacter === 0) {
+            this.characterMovable = false;
+            this.playAnimation(this.IMAGES_DEAD);
+            setTimeout(() => {
+                characterDied();
+            }, 2500);
+        } else if (this.isHurt() && !this.isAboveGround()) {
+            this.playAnimation(this.IMAGES_HURT);
+        } else if (this.isAboveGround()) {
+            this.playAnimation(this.IMAGES_JUMP);
+        } else if (this.world.keyboard.D && this.x < this.world.level.level_end_x || this.world.keyboard.A && this.x > 0) {
+            this.playAnimation(this.IMAGES_WALK);
+        } else {
+            this.playAnimation(this.IMAGES_IDLE);
+        }
+    }
 
-        this.character30FpsInterval = setInterval(() => {
-            let currentTime = new Date().getTime();
-            let difference = currentTime - this.lastAttackTime;
-            if (this.world.keyboard.J) {
-                if (this.lastAttackTime === 0) {
-                    this.lastAttackTime = currentTime; // beim drücken soll lastAttackTime die aktuelle Zeit in echt bekommen
-                } else if (!this.isDead() && difference <= this.maxAttackDuration) {
-                    this.playAnimation(this.IMAGES_ATTACK);
-                    this.isAttacking = true;
-                } else if (difference > this.maxAttackDuration) {
-                    this.world.keyboard.J = false;
-                    this.isAttacking = false;
-                }
-            } else {
+    /**
+     * Perform an attack animation if the character is attacking.
+     */
+    attackFromCharacter() {
+        let currentTime = new Date().getTime();
+        let difference = currentTime - this.lastAttackTime;
+        if (this.world.keyboard.J) {
+            if (this.lastAttackTime === 0) {
+                this.lastAttackTime = currentTime;
+            } else if (!this.isDead() && difference <= this.maxAttackDuration) {
+                this.playAnimation(this.IMAGES_ATTACK);
+                this.isAttacking = true;
+            } else if (difference > this.maxAttackDuration) {
                 this.world.keyboard.J = false;
-                this.lastAttackTime = 0;
                 this.isAttacking = false;
             }
-        }, 1000 / 30); // schlaggeschwindigkeit
-
+        } else {
+            this.world.keyboard.J = false;
+            this.lastAttackTime = 0;
+            this.isAttacking = false;
+        }
     }
 }

@@ -1,4 +1,7 @@
 class Coins extends MovableObject {
+    /**
+     * The coordinates of the stick object.
+     */
     width = 40;
     height = 40;
     offset = {
@@ -8,6 +11,9 @@ class Coins extends MovableObject {
         left: 0,
     }
 
+    /**
+     * An array of image paths for the coin animation.
+     */
     IMAGES_COINS = [
         'img/7_items/Gold_21.png',
         'img/7_items/Gold_22.png',
@@ -21,13 +27,21 @@ class Coins extends MovableObject {
         'img/7_items/Gold_30.png',
     ];
 
+    /**
+     * Creates an instance of the Coins class.
+     * Loads the initial image, sets position, and initiates the animation.
+     */
     constructor() {
         super().loadImage('img/7_items/Gold_21.png');
         this.loadImages(this.IMAGES_COINS);
-        this.x = 200 + Math.random() * 2000;
-        this.y = 345 - Math.random() * 200;
+        this.x = 300 + Math.random() * 1700;
+        this.y = 390 - Math.random() * 200;
         this.animateCoins();
     }
+
+    /**
+     * Initiates the animation of the coin object.
+     */
     animateCoins() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_COINS);

@@ -1,4 +1,7 @@
 class WildZombie extends MovableObject {
+    /**
+     * Arrays of image paths for red troll the animation.
+     */
     IMAGES_WALK = [
         'img/2_enemies/trol_red/Troll_03_1_WALK_000.png',
         'img/2_enemies/trol_red/Troll_03_1_WALK_001.png',
@@ -62,6 +65,10 @@ class WildZombie extends MovableObject {
         'img/2_enemies/trol_red/Troll_03_1_IDLE_009.png',
     ];
 
+    /**
+     * Creates an instance of the red troll class.
+     * Loads the initial image, sets animation images, speed, and initiates animation.
+     */
     constructor() {
         super().loadImage('img/2_enemies/trol_red/Troll_03_1_WALK_000.png');
         this.loadImages(this.IMAGES_WALK);
@@ -78,6 +85,9 @@ class WildZombie extends MovableObject {
 }
 
 class ManZombie extends MovableObject {
+    /**
+     * Arrays of image paths for green troll the animation.
+     */
     IMAGES_WALK = [
         'img/2_enemies/troll_green/Troll_01_1_WALK_000.png',
         'img/2_enemies/troll_green/Troll_01_1_WALK_001.png',
@@ -139,6 +149,10 @@ class ManZombie extends MovableObject {
         'img/2_enemies/troll_green/Troll_01_1_IDLE_009.png',
     ];
 
+    /**
+     * Creates an instance of the green troll class.
+     * Loads the initial image, sets animation images, speed, and initiates animation.
+     */
     constructor() {
         super().loadImage('img/2_enemies/troll_green/Troll_01_1_WALK_000.png');
         this.loadImages(this.IMAGES_WALK);
@@ -155,6 +169,9 @@ class ManZombie extends MovableObject {
 }
 
 class WomanZombie extends MovableObject {
+    /**
+     * Arrays of image paths for the grey troll animation.
+     */
     IMAGES_WALK = [
         'img/2_enemies/troll_grey/Troll_02_1_WALK_000.png',
         'img/2_enemies/troll_grey/Troll_02_1_WALK_001.png',
@@ -216,6 +233,10 @@ class WomanZombie extends MovableObject {
         'img/2_enemies/troll_grey/Troll_02_1_IDLE_009.png',
     ];
 
+    /**
+     * Creates an instance of the grey troll class.
+     * Loads the initial image, sets animation images, speed, and initiates animation.
+     */
     constructor() {
         super().loadImage('img/2_enemies/troll_grey/Troll_02_1_WALK_000.png');
         this.loadImages(this.IMAGES_WALK);
@@ -231,6 +252,10 @@ class WomanZombie extends MovableObject {
     }
 }
 
+/**
+ * Initiates the animation of the given enemy object.
+ * @param {object} o - "this operator".
+ */
 function animateEnemy(o) {
     o.enemiesInterval = setInterval(() => {
         if (o.energyEnemy === 0) {

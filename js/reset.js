@@ -1,5 +1,5 @@
 /**
- * This function is to reset the hole game
+ * Resets the entire game state.
  */
 function resetGame() {
     showMenu();
@@ -13,7 +13,7 @@ function resetGame() {
 }
 
 /**
- * This function is to reset the character
+ * Resets the character's attributes and position.
  */
 function resetCharacter() {
     world.character.characterMovable = false;
@@ -25,13 +25,16 @@ function resetCharacter() {
 }
 
 /**
- * This function is to reset the enemies
+ * Resets the enemies by initializing a new set of enemies.
  */
 function resetEnemies() {
     resetEnemiesArray();
     resetEnemiesValues();
 }
 
+/**
+ * Clears and refills the array of enemies.
+ */
 function resetEnemiesArray() {
     world.level.enemies.forEach((enemy) => {
         world.level.enemies.splice(enemy);
@@ -44,6 +47,9 @@ function resetEnemiesArray() {
     });
 }
 
+/**
+ * Resets the attributes and positions of all enemies.
+ */
 function resetEnemiesValues() {
     world.level.enemies.forEach((enemy) => {
         enemy.enemiesMovable = false;
@@ -83,6 +89,9 @@ function resetEndboss() {
     resetEndbossValues();
 }
 
+/**
+ * Resets the end boss by initializing a new one.
+ */
 function resetEndbossArray() {
     world.level.endboss.forEach((endboss) => {
         world.level.endboss.splice(endboss);
@@ -90,6 +99,9 @@ function resetEndbossArray() {
     });
 }
 
+/**
+ * Clears and refills the array of end bosses.
+ */
 function resetEndbossValues() {
     world.level.endboss.forEach((endboss) => {
         clearInterval(endboss.endbossInterval);
@@ -121,7 +133,7 @@ function resetEndbossValues() {
 }
 
 /**
- * This function is to reset the coins
+ * Resets the coins attributes and positions.
  */
 function resetCoins() {
     world.coinsBar.setAmountCoins(0);
@@ -137,13 +149,13 @@ function resetCoins() {
 }
 
 /**
- * This function is to reset the throwable object
+ * Resets the throwable objects attributes and positions.
  */
 function resetMagicalBalls() {
     world.throwableObjects = [];
     world.collectedSticks = [];
     world.level.sticks = [];
-    world.coins.x = 300 + Math.random() * 1700;
+    world.magicalBalls.x = 300 + Math.random() * 1700;
     world.magicalBalls.y = 390 - Math.random() * 200;
     world.sticksBar.setAmountSticks(0);
     world.level.sticks.push(new Sticks());
@@ -154,7 +166,7 @@ function resetMagicalBalls() {
 }
 
 /**
- * This function is to reset the health-bars
+ * Resets the health bars to full.
  */
 function resetHealth() {
     world.statusBar.setPercentage(100);
