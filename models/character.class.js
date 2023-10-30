@@ -177,39 +177,74 @@ class Character extends MovableObject {
      */
     moveCharacter() {
         // this.walking_sound.pause();
-        if (!this.isDead() && this.world.keyboard.D && this.x < this.world.level.level_end_x) {
+        if (this.canMoveRight()) {
             this.moveRight();
             // this.walking_sound.play();
         }
-        if (!this.isDead() && this.world.keyboard.A && this.x > 0) {
+        if (this.canMoveLeft()) {
             this.moveLeft();
             // this.walking_sound.play();
         }
-        if (!this.isDead() && this.world.keyboard.W && !this.isAboveGround()) {
+        if (this.canJump()) {
             this.jump();
         }
         this.world.camera_x = -this.x;
     }
 
     /**
+    * Check if the character can move to the right.
+    */
+    canMoveRight() {
+        return !this.isDead() && this.world.keyboard.D && this.x < this.world.level.level_end_x;
+    }
+
+    /**
+    * Check if the character can move to the left.
+    */
+    canMoveLeft() {
+        return !this.isDead() && this.world.keyboard.A && this.x > 0;
+    }
+
+    /**
+    * Check if the character can jump.
+    */
+    canJump() {
+        return !this.isDead() && this.world.keyboard.W && !this.isAboveGround();
+    }
+
+    /**
      * Animate the character based on its state.
      */
     animateCharacter() {
-        if (this.energyCharacter === 0) {
+        if (this.isDead()) {
             this.characterMovable = false;
             this.playAnimation(this.IMAGES_DEAD);
             setTimeout(() => {
                 characterDied();
             }, 2500);
-        } else if (this.isHurt() && !this.isAboveGround()) {
+        } else if (this.isGettingDamage()) {
             this.playAnimation(this.IMAGES_HURT);
         } else if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_JUMP);
-        } else if (this.world.keyboard.D && this.x < this.world.level.level_end_x || this.world.keyboard.A && this.x > 0) {
+        } else if (this.isWalking()) {
             this.playAnimation(this.IMAGES_WALK);
         } else {
             this.playAnimation(this.IMAGES_IDLE);
         }
+    }
+
+    /**
+    * Check if the character is receiving damage.
+    */
+    isGettingDamage() {
+        return this.isHurt() && !this.isAboveGround();
+    }
+
+    /**
+     * Check if the character is walking.
+    */
+    isWalking() {
+        return this.world.keyboard.D && this.x < this.world.level.level_end_x || this.world.keyboard.A && this.x > 0;
     }
 
     /**

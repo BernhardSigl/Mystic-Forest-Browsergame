@@ -111,6 +111,25 @@ class ManZombie extends MovableObject {
         'img/2_enemies/troll_green/Troll_01_1_DIE_007.png',
         'img/2_enemies/troll_green/Troll_01_1_DIE_008.png',
         'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
+        'img/2_enemies/troll_green/Troll_01_1_DIE_009.png',
     ];
     IMAGES_HURT = [
         'img/2_enemies/troll_green/Troll_01_1_HURT_000.png',
@@ -254,33 +273,75 @@ class WomanZombie extends MovableObject {
 
 /**
  * Initiates the animation of the given enemy object.
- * @param {object} o - "this operator".
+ * @param {object} o - "this" operator.
  */
 function animateEnemy(o) {
     o.enemiesInterval = setInterval(() => {
-        if (o.energyEnemy === 0) {
+        if (enemyIsDead(o)) {
             o.playAnimation(o.IMAGES_DEAD);
             setTimeout(() => {
                 o.y = 400;
             }, 2500);
-        } else if (o.checkGettingAttacked === true && o.checkColliding === true) {
+        } else if (enemyIsGettingAttacked(o)) {
             o.playAnimation(o.IMAGES_HURT);
         } else if (o.enemyIsThrownOff === true) {
             o.playAnimation(o.IMAGES_HURT);
             setTimeout(() => {
                 o.enemyIsThrownOff = false;
             }, 625);
-        } else if (o.checkColliding === true && o.enemyIsAttacked === false && world.character.y === 212) {
+        } else if (enemyIsAttacking(o)) {
             o.playAnimation(o.IMAGES_ATTACK);
         }
-        else if (o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false && o.enemyIsThrownOff === false && o.enemiesMovable === true) {
+        else if (enemyIsWalkingLeft(o)) {
             o.playAnimation(o.IMAGES_WALK);
             o.moveLeft();
-        } else if (o.checkFollowingLeft === false && o.checkFollowingRight === true && o.checkColliding === false && o.enemyIsThrownOff === false && o.enemiesMovable === true) {
+        } else if (enemyIsWalkingRight(o)) {
             o.playAnimation(o.IMAGES_WALK);
             o.moveRight();
-        } else if (o.checkColliding === true && world.character.y < 212) {
+        } else if (enemyIsJumped(o)) {
             o.playAnimation(o.IMAGES_HURT);
         }
     }, 60);
+}
+
+/**
+ * Checks if the enemy is dead.
+ */
+function enemyIsDead(o) {
+    return o.energyEnemy === 0;
+}
+
+/**
+ * Checks if the enemy is getting attacked.
+ */
+function enemyIsGettingAttacked(o) {
+    return o.checkGettingAttacked === true && o.checkColliding === true;
+}
+
+/**
+ * Checks if the enemy is attacking.
+ */
+function enemyIsAttacking(o) {
+    return o.checkColliding === true && o.enemyIsAttacked === false && world.character.y === 212;
+}
+
+/**
+ * Checks if the enemy is walking left.
+ */
+function enemyIsWalkingLeft(o) {
+    return o.checkFollowingLeft === true && o.checkFollowingRight === false && o.checkColliding === false && o.enemyIsThrownOff === false && o.enemiesMovable === true;
+}
+
+/**
+ * Checks if the enemy is walking right.
+ */
+function enemyIsWalkingRight(o) {
+    return o.checkFollowingLeft === false && o.checkFollowingRight === true && o.checkColliding === false && o.enemyIsThrownOff === false && o.enemiesMovable === true;
+}
+
+/**
+ * Checks whether the opponent is jumped on.
+ */
+function enemyIsJumped(o) {
+    return o.checkColliding === true && world.character.y < 212;
 }
