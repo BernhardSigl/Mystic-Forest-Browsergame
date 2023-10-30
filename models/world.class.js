@@ -34,6 +34,11 @@ class World {
         this.setWorld();
         this.lifeImagesrc = this.lifeImageSrc;
         this.run();
+        this.coin_sound = new Audio('audio/coins.mp3');
+        this.throwable_object_sound = new Audio('audio/throwable_object.mp3');
+        this.enemy_hurting = new Audio('audio/enemy_hurt.wav');
+        this.enemy_dead = new Audio('audio/endboss_dead.wav');
+        this.throw_sound = new Audio('audio/throw.wav');
     }
 
     /**
@@ -140,6 +145,7 @@ class World {
                 enemy.energyEnemy -= 50;
             }
             if (enemy.energyEnemy <= 0) {
+                this.enemy_dead.play();
                 enemy.energyEnemy = 0;
             }
         } else {
@@ -161,6 +167,7 @@ class World {
             }
             if (endboss.energyEndboss <= 0) {
                 endboss.energyEndboss = 0;
+                this.enemy_dead.play();
                 endboss.endbossIsDead = true;
             }
         } else {
@@ -234,6 +241,7 @@ class World {
         if (obj.isColliding(enemy)) {
             enemy.enemyIsThrownOff = true;
             enemy.energyEnemy -= 5;
+            this.enemy_hurting.play();
         } else {
             enemy.enemyIsThrownOff = false;
         }
@@ -248,6 +256,7 @@ class World {
         if (obj.isColliding(endboss)) {
             endboss.enemyIsThrownOff = true;
             endboss.energyEndboss -= 4;
+            this.enemy_hurting.play();
         } else {
             endboss.enemyIsThrownOff = false;
         }
@@ -259,6 +268,7 @@ class World {
     collisionCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
+                this.coin_sound.play();
                 this.character.addItem('coin');
                 this.coinsBar.setAmountCoins(this.collectedCoins.length + 1);
                 this.character.removeItem(level1.coins, coin);
@@ -274,6 +284,7 @@ class World {
     collisionSticks() {
         this.level.sticks.forEach((stick) => {
             if (this.character.isColliding(stick)) {
+                this.throwable_object_sound.play();
                 this.character.addItem('stick');
                 this.sticksBar.setAmountSticks(this.collectedSticks.length + 1);
                 this.character.removeItem(level1.sticks, stick);
@@ -289,6 +300,7 @@ class World {
         for (let i = 0; i < this.collectedSticks.length; i++) {
             let throwableStick = this.collectedSticks[i];
             if (this.collectedSticks.length > 0 && this.keyboard.K && world.character.characterMovable === true) {
+                this.throw_sound.play();
                 throwableStick = new ThrowableObject(this.character.x + 25, this.character.y + 5);
                 this.throwableObjects.push(throwableStick);
                 this.collectedSticks.splice(i, 1);

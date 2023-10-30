@@ -50,6 +50,8 @@ function showMenu() {
         toggleClass('gameContent', 'menuFullscreen', false);
     document.getElementById('cheatInputFieldId').value = '';
     enteredCode = "";
+    story_sound.pause();
+    story_sound.currentTime = 0;
 }
 
 function endScreenVisibilites() {
@@ -63,18 +65,24 @@ function endScreenVisibilites() {
 }
 
 function openPlayerinfo() {
+    click_sound.play();
     toggleVisibility('playerinfoDescription', true);
     toggleVisibility('backToMenuId', true);
     toggleVisibility('cheatButtonId', false);
 }
 
 function openControls() {
+    click_sound.play();
     toggleVisibility('controls', true);
     toggleVisibility('backToMenuId', true);
     toggleVisibility('cheatButtonId', false);
 }
 
 function openAbout() {
+    click_sound.play();
+    setTimeout(() => {
+        story_sound.play();
+    }, 1000);
     toggleVisibility('backToMenuId', true);
     toggleVisibility('aboutId', true);
     toggleVisibility('cheatButtonId', false);

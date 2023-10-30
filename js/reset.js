@@ -10,6 +10,8 @@ function resetGame() {
     resetHealth();
     resetEndboss();
     toggleVisibility('reloadGameId', false);
+    gameplay_sound.pause();
+    mystic_sound.pause();
 }
 
 /**
@@ -55,7 +57,7 @@ function resetEnemiesValues() {
         enemy.enemiesMovable = false;
         enemy.enemiesAttacking = false;
         enemy.energyEnemy = 50;
-        enemy.x = Math.random() < 0.7 ? Math.random() * 1900 + 500 : Math.random() * 800 - 800;
+        enemy.x = Math.random() < 0.85 ? Math.random() * 1900 + 500 : Math.random() * 800 - 800;
         enemy.y = 205;
         enemy.energyEnemy = 50;
         enemy.offset = {
@@ -139,7 +141,7 @@ function resetCoins() {
     world.coinsBar.setAmountCoins(0);
     world.collectedCoins = [];
     world.level.coins = [];
-    world.coins.x = 300 + Math.random() * 1700;
+    world.level.coins.x = 600 + Math.random() * 1400;
     world.coins.y = 390 - Math.random() * 200;
     world.level.coins.push(new Coins());
     world.level.coins.push(new Coins());
@@ -155,7 +157,7 @@ function resetMagicalBalls() {
     world.throwableObjects = [];
     world.collectedSticks = [];
     world.level.sticks = [];
-    world.magicalBalls.x = 300 + Math.random() * 1700;
+    world.magicalBalls.x = 600 + Math.random() * 1400;
     world.magicalBalls.y = 390 - Math.random() * 200;
     world.sticksBar.setAmountSticks(0);
     world.level.sticks.push(new Sticks());

@@ -158,9 +158,13 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_IDLE);
         this.animate();
-        // this.walking_sound = new Audio('audio/character_walk.wav');
+        this.walking_sound = new Audio('audio/character_walk.wav');
+        this.jumping_sound = new Audio('audio/character_jump.wav');
+        this.hurting_sound = new Audio('audio/character_hurt.wav');
+        this.sword_sound = new Audio('audio/sword.wav');
+        this.dead_sound = new Audio('audio/characterIsDying.mp3');
         this.applyGravity();
-        // this.walking_sound.volume = 0.2;
+        this.walking_sound.volume = 0.2;
     }
 
     /**
@@ -176,17 +180,18 @@ class Character extends MovableObject {
      * Move the character based on user input.
      */
     moveCharacter() {
-        // this.walking_sound.pause();
+        this.walking_sound.pause();
         if (this.canMoveRight()) {
             this.moveRight();
-            // this.walking_sound.play();
+            this.walking_sound.play();
         }
         if (this.canMoveLeft()) {
             this.moveLeft();
-            // this.walking_sound.play();
+            this.walking_sound.play();
         }
         if (this.canJump()) {
             this.jump();
+            this.jumping_sound.play();
         }
         this.world.camera_x = -this.x;
     }
@@ -219,11 +224,13 @@ class Character extends MovableObject {
         if (this.isDead()) {
             this.characterMovable = false;
             this.playAnimation(this.IMAGES_DEAD);
+            this.dead_sound.play();
             setTimeout(() => {
                 characterDied();
             }, 2500);
         } else if (this.isGettingDamage()) {
             this.playAnimation(this.IMAGES_HURT);
+            this.hurting_sound.play();
         } else if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_JUMP);
         } else if (this.isWalking()) {
@@ -254,6 +261,7 @@ class Character extends MovableObject {
         let currentTime = new Date().getTime();
         let difference = currentTime - this.lastAttackTime;
         if (this.world.keyboard.J) {
+            this.sword_sound.play();
             if (this.lastAttackTime === 0) {
                 this.lastAttackTime = currentTime;
             } else if (!this.isDead() && difference <= this.maxAttackDuration) {

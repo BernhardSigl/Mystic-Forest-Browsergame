@@ -64,14 +64,27 @@ class Endboss extends MovableObject {
     ];
     IMAGES_DEAD = [
         'img/3_endboss/ORK_03_DIE_000.png',
+        'img/3_endboss/ORK_03_DIE_000.png',
+        'img/3_endboss/ORK_03_DIE_001.png',
         'img/3_endboss/ORK_03_DIE_001.png',
         'img/3_endboss/ORK_03_DIE_002.png',
+        'img/3_endboss/ORK_03_DIE_002.png',
+        'img/3_endboss/ORK_03_DIE_003.png',
         'img/3_endboss/ORK_03_DIE_003.png',
         'img/3_endboss/ORK_03_DIE_004.png',
+        'img/3_endboss/ORK_03_DIE_004.png',
+        'img/3_endboss/ORK_03_DIE_005.png',
         'img/3_endboss/ORK_03_DIE_005.png',
         'img/3_endboss/ORK_03_DIE_006.png',
+        'img/3_endboss/ORK_03_DIE_006.png',
+        'img/3_endboss/ORK_03_DIE_007.png',
         'img/3_endboss/ORK_03_DIE_007.png',
         'img/3_endboss/ORK_03_DIE_008.png',
+        'img/3_endboss/ORK_03_DIE_008.png',
+        'img/3_endboss/ORK_03_DIE_009.png',
+        'img/3_endboss/ORK_03_DIE_009.png',
+        'img/3_endboss/ORK_03_DIE_009.png',
+        'img/3_endboss/ORK_03_DIE_009.png',
         'img/3_endboss/ORK_03_DIE_009.png',
     ];
 
@@ -88,9 +101,6 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.speed = 8 + Math.random() * 2;
         this.otherDirection = true;
-        // this.walking_sound = new Audio('audio/zombie_walk.wav');
-        // this.walking_sound.volume = 0.15;
-        // animateEndboss(this);
         this.animateEndboss();
         this.endbossInterval;
     }
@@ -105,7 +115,7 @@ class Endboss extends MovableObject {
                 setTimeout(() => {
                     endbossDied();
                     clearInterval(endbossInterval);
-                }, 2500);
+                }, 2000);
             } else if (this.endbossMoveLeft()) {
                 this.playAnimation(this.IMAGES_RUN);
                 this.moveLeft();
