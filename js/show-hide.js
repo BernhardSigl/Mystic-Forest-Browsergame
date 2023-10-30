@@ -43,6 +43,7 @@ function showMenu() {
     toggleClass('cheatId', 'd-none', true);
     toggleVisibility('cheatButtonId', true);
     toggleClass('gameContent', 'center', true);
+    toggleVisibility('aboutId', false);
     if (full === true) {
         toggleClass('gameContent', 'menuFullscreen', true);
     } else
@@ -70,6 +71,12 @@ function openPlayerinfo() {
 function openControls() {
     toggleVisibility('controls', true);
     toggleVisibility('backToMenuId', true);
+    toggleVisibility('cheatButtonId', false);
+}
+
+function openAbout() {
+    toggleVisibility('backToMenuId', true);
+    toggleVisibility('aboutId', true);
     toggleVisibility('cheatButtonId', false);
 }
 

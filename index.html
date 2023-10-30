@@ -40,18 +40,26 @@
     <div id="fullscreen">
         <div id="gameContent" class="center border">
             <section id="menu">
-                <a class="startGame scaleOnHover cursorPointer" onclick="startGame(), resetCheatCode()">
-                    <img src="img/9_menu/startgame.png">
-                    <h2>START</h2>
-                </a>
-                <a class="playerinfo scaleOnHover cursorPointer" onclick="openPlayerinfo()">
-                    <img src="img/9_menu/playerinfo.png">
-                    <h2>PLAYER INFO</h2>
-                </a>
-                <a class="controls scaleOnHover cursorPointer" onclick="openControls()">
-                    <img src="img/9_menu/joystick.png">
-                    <h2>CONTROLS</h2>
-                </a>
+                <div class="topMenu">
+                    <a class="startGame scaleOnHover cursorPointer" onclick="startGame(), resetCheatCode()">
+                        <img src="img/9_menu/startgame.png">
+                        <h2>START</h2>
+                    </a>
+                    <a class="playerinfo scaleOnHover cursorPointer" onclick="openPlayerinfo()">
+                        <img src="img/9_menu/playerinfo.png">
+                        <h2>PLAYER INFO</h2>
+                    </a>
+                </div>
+                <div class="bottomMenu">
+                    <a class="controls scaleOnHover cursorPointer" onclick="openControls()">
+                        <img src="img/9_menu/joystick.png">
+                        <h2>CONTROLS</h2>
+                    </a>
+                    <a class="scrollPaper scaleOnHover cursorPointer" onclick="openAbout()">
+                        <img src="img/9_menu/scroll-310783_640.png">
+                        <h2>ABOUT</h2>
+                    </a>
+                </div>
             </section>
 
             <!-- player info -->
@@ -123,6 +131,16 @@
                     </div>
                     <h2>THROW</h2>
                 </div>
+            </section>
+
+            <!-- about -->
+            <section id="aboutId" class="center d-none">
+                <img src="img/9_menu/scroll-310783_640.png">
+                <span class="aboutText absoluteMiddle">
+                    In the Mystic Forest, Elf Elarian confronts a menacing Troll army. His quest: to find ancient Coins,
+                    using their power alongside a sword and unleashing a magical throwing attack to dispel the darkness.
+                    Beneath the shadow of the World Tree, he faces the sinister Troll King.
+                </span>
             </section>
 
             <!-- gameplay -->

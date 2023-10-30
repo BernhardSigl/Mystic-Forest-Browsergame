@@ -107,15 +107,6 @@ canvas {
     transform: translate(-50%, -50%);
 }
 
-.disableScreen {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100vh;
-    height: 100vh;
-    z-index: 9999;
-}
-
 .loading {
     height: auto;
     width: auto;
@@ -191,33 +182,55 @@ button img {
 
 #menu {
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    gap: 30px;
+}
+
+.bottomMenu,
+.topMenu {
+    display: flex;
+    gap: 30px;
 }
 
 .startGame,
 .playerinfo,
-.controls {
+.controls,
+.scrollPaper {
+    width: 250px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.startGame img,
+.controls img,
+.scrollPaper img,
 .playerinfo img {
     width: auto;
-    height: 150px;
+    height: 130px;
 }
 
-.startGame img {
-    width: auto;
-    height: 150px;
+#aboutId {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
 }
 
-.controls img {
-    width: auto;
-    height: 150px;
+#aboutId img {
+    position: relative;
+    width: 320px;
+    height: 360px;
+}
+
+.aboutText {
+    width: 220px;
 }
 
 #playerinfoDescription {
@@ -364,10 +377,14 @@ button img {
 
 @media only screen and (max-width: 724px) {
 
-    .buttons .canvasFullscreen,
+    .canvasFullscreen,
     canvas {
         width: 80% !important;
         height: 100vh !important;
+    }
+
+    .buttons {
+        display: none
     }
 
     #fullscreen {
@@ -410,12 +427,20 @@ button img {
         display: none;
     }
 
+    #menu {
+        flex-direction: row;
+    }
+
     .turnPhoneArea {
         visibility: visible;
     }
 
     .turnPhoneArea img {
         animation: turnPhoneImage 2s infinite;
+    }
+
+    #menu {
+        display: none;
     }
 
     @keyframes turnPhoneImage {
@@ -426,9 +451,10 @@ button img {
         }
 
         50% {
-            transform: rotate(90deg);
+            transform: rotate(-90deg);
         }
     }
+
 }
 
 @media only screen and (max-height: 484px) {
@@ -479,6 +505,10 @@ button img {
         display: none;
     }
 
+    #menu {
+        flex-direction: row;
+    }
+
     #enterFullscreen {
         animation: shakingFullscreenBtn 0.5s infinite;
     }
@@ -504,4 +534,3 @@ button img {
             transform: rotate(0deg);
         }
     }
-}
