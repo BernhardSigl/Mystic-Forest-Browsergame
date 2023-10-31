@@ -1,5 +1,5 @@
 /**
- * This function is to show or hide elements if the game starts
+ * Sets initial visibilities when the game starts.
  */
 function startGameVisibilities() {
     toggleVisibility('menu', false);
@@ -12,6 +12,9 @@ function startGameVisibilities() {
     toggleVisibility('reloadGameId', true);
 }
 
+/**
+ * Enters fullscreen mode and adjusts element visibilities accordingly.
+ */
 function enterWindowMode() {
     full = true;
     toggleVisibility('enterFullscreen', false);
@@ -21,6 +24,9 @@ function enterWindowMode() {
     toggleClass('gameContent', 'menuFullscreen', true);
 }
 
+/**
+ * Exits fullscreen mode and adjusts element visibilities accordingly.
+ */
 function closeWindowMode() {
     full = false;
     toggleVisibility('enterFullscreen', true);
@@ -31,6 +37,9 @@ function closeWindowMode() {
     toggleClass('canvasId', 'canvasFullscreen', false);
 }
 
+/**
+ * Shows the game menu and adjusts element visibilities accordingly.
+ */
 function showMenu() {
     toggleVisibility('mobileButtonsId', false);
     toggleVisibility('controls', false);
@@ -54,6 +63,9 @@ function showMenu() {
     story_sound.currentTime = 0;
 }
 
+/**
+ * Sets visibilities for the end screen elements.
+ */
 function endScreenVisibilites() {
     toggleVisibility('playAgainId', true);
     toggleVisibility('endScreenId', true);
@@ -64,6 +76,9 @@ function endScreenVisibilites() {
     toggleVisibility('mobileButtonsId', false);
 }
 
+/**
+ * Opens the player information overlay.
+ */
 function openPlayerinfo() {
     click_sound.play();
     toggleVisibility('playerinfoDescription', true);
@@ -71,6 +86,9 @@ function openPlayerinfo() {
     toggleVisibility('cheatButtonId', false);
 }
 
+/**
+ * Opens the controls overlay.
+ */
 function openControls() {
     click_sound.play();
     toggleVisibility('controls', true);
@@ -78,6 +96,9 @@ function openControls() {
     toggleVisibility('cheatButtonId', false);
 }
 
+/**
+ * Opens the about overlay and plays a sound after a delay.
+ */
 function openAbout() {
     click_sound.play();
     setTimeout(() => {
@@ -88,6 +109,9 @@ function openAbout() {
     toggleVisibility('cheatButtonId', false);
 }
 
+/**
+ * Sets visibilities for cheat-related elements.
+ */
 function cheatsVisibility() {
     toggleVisibility('menu', false);
     toggleVisibility('reloadGameId', false);
@@ -97,6 +121,9 @@ function cheatsVisibility() {
     toggleVisibility('backToMenuId', true);
 }
 
+/**
+ * Resets visibilities for cheat code input-related elements.
+ */
 function checkCheatCodeVisibilites() {
     toggleVisibility('cheatInputFieldId', false);
     document.querySelector('.cheatCodeNumbersContainer').innerHTML = "";
