@@ -27,7 +27,7 @@ class Sticks extends MovableObject {
     constructor() {
         super().loadImage('img/7_items/w1.png');
         this.loadImages(this.IMAGES_MAGICBALLS);
-        this.x = 600 + Math.random() * 1400;
+        this.x = 500 + Math.random() * 1400;
         this.y = 390 - Math.random() * 200;
         this.animateMagicBalls();
     }

@@ -157,7 +157,7 @@ function resetMagicalBalls() {
     world.throwableObjects = [];
     world.collectedSticks = [];
     world.level.sticks = [];
-    world.magicalBalls.x = 600 + Math.random() * 1400;
+    world.magicalBalls.x = 500 + Math.random() * 1400;
     world.magicalBalls.y = 390 - Math.random() * 200;
     world.sticksBar.setAmountSticks(0);
     world.level.sticks.push(new Sticks());

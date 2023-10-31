@@ -1,4 +1,7 @@
 class CoinsBar extends DrawableObject {
+    /**
+     * Array of image paths representing the coin bar at different fill levels.
+     */
     IMAGES_COINBAR = [
         'img/6_statusbar/coinbar/100.png',
         'img/6_statusbar/coinbar/80.png',
@@ -8,8 +11,14 @@ class CoinsBar extends DrawableObject {
         'img/6_statusbar/coinbar/0.png',
     ];
 
+    /**
+     * The current amount of collected coins.
+     */
     amount = 0;
 
+    /**
+    * Create a bar object.
+    */
     constructor() {
         super();
         this.loadImages(this.IMAGES_COINBAR);
@@ -18,12 +27,20 @@ class CoinsBar extends DrawableObject {
         this.setAmountCoins(0);
     }
 
+    /**
+     * Sets the amount of collected coins and updates the displayed image accordingly.
+     * @param {number} amount - The amount of collected coins (0 to 5).
+     */
     setAmountCoins(amount) {
         this.amount = amount;
         let path = this.IMAGES_COINBAR[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+     * Resolves the index of the image in the array based on the current amount of collected coins.
+     * @returns {number} - The index of the image in the array.
+     */
     resolveImageIndex() {
         if (this.amount == 5) {
             return 0;
