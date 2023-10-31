@@ -1,4 +1,7 @@
 class MovableObject extends DrawableObject {
+    /**
+    * characteristics of the movable objects.
+    */
     speedY = 0;
     acceleration = 2;
     energyCharacter = 100;
@@ -37,6 +40,9 @@ class MovableObject extends DrawableObject {
         right: 0,
     }
 
+    /**
+     * Applies gravity to the object's vertical movement.
+     */
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -46,14 +52,20 @@ class MovableObject extends DrawableObject {
         }, 1000 / 25);
     }
 
+    /**
+     * Checks if the object is above the ground.
+     */
     isAboveGround() {
         if (this instanceof ThrowableObject) {
-            return true; // fall out of the map
+            return true;
         } else {
             return this.y <= 200;
         }
     }
 
+    /**
+     * Checks if the object is colliding with another object.
+     */
     isColliding(mo) {
         return (
             this.x + this.offset.left + this.width - this.offset.right >=
@@ -65,6 +77,10 @@ class MovableObject extends DrawableObject {
         );
     }
 
+    /**
+     * Checks if the end boss is following to the left.
+     * @param {MovableObject} mo - The other movable object to check following with.
+     */
     endbossIsFollowingLeft(mo) {
         return (
             this.x + this.offsetOnFollowingLeft.left + this.width - this.offsetOnFollowingLeft.right >=
@@ -76,6 +92,10 @@ class MovableObject extends DrawableObject {
         );
     }
 
+    /**
+     * Checks if the end boss is following to the right.
+     * @param {MovableObject} mo - The other movable object to check following with.
+     */
     endbossIsFollowingRight(mo) {
         return (
             this.x + this.offsetOnFollowingRight.left + this.width - this.offsetOnFollowingRight.right >=
@@ -87,6 +107,9 @@ class MovableObject extends DrawableObject {
         );
     }
 
+    /**
+     * Damages the object to the character based on the attack conditions.
+     */
     damageObjectToCharacter() {
         if (this.isAttacking === false && this.enemiesAttacking === true) {
             if (world.character.isAboveGround()) {
@@ -110,20 +133,32 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Checks if the object is currently hurt based on the time since the last hit.
+     */
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
         return timepassed < 1;
     }
 
+    /**
+     * Checks if the character is dead.
+     */
     isDead() {
         return this.energyCharacter == 0
     }
 
+    /**
+    * Checks if the enemy is dead.
+    */
     isManZombieDead() {
         return this.energyEnemy == 0;
     }
 
+    /**
+     * Moves the object to the right if movable.
+     */
     moveRight() {
         if (this.characterMovable === true) {
             this.characterMovable = true;
@@ -132,6 +167,9 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Moves the object to the left if movable.
+     */
     moveLeft() {
         if (this.characterMovable === true) {
             this.x -= this.speed;
@@ -139,6 +177,9 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+    * Makes the object jump based on cheat activation and character movability.
+    */
     jump() {
         if (this.characterMovable === true && world.cheatActivated === false) {
             this.speedY = 26;
@@ -149,6 +190,10 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Plays the animation with the provided images.
+     * @param {string[]} images - Array of image paths for the animation.
+     */
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];

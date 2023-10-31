@@ -1,4 +1,7 @@
 class SticksBar extends DrawableObject {
+    /**
+     * Array of image paths representing the sticks bar at different fill levels.
+     */
     IMAGES_STICKSBAR = [
         'img/6_statusbar/weoponbar/100.png',
         'img/6_statusbar/weoponbar/80.png',
@@ -8,8 +11,14 @@ class SticksBar extends DrawableObject {
         'img/6_statusbar/weoponbar/0.png',
     ];
 
+    /**
+     * The current amount of sticks in the bar in the beginning.
+     */
     amount = 0;
 
+    /**
+    * Create a bar object.
+    */
     constructor() {
         super();
         this.loadImages(this.IMAGES_STICKSBAR);
@@ -18,12 +27,19 @@ class SticksBar extends DrawableObject {
         this.setAmountSticks(0);
     }
 
+    /**
+     * Sets the amount of throwable objects in the bar and updates the displayed image accordingly.
+     * @param {number} amount - The amount of sticks (0 to 5).
+     */
     setAmountSticks(amount) {
         this.amount = amount;
         let path = this.IMAGES_STICKSBAR[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+    * Resolves the index of the image in the array based on the current amount of throwable objects.
+    */
     resolveImageIndex() {
         if (this.amount == 5) {
             return 0;

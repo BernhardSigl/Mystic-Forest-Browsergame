@@ -1,4 +1,7 @@
 class DrawableObject {
+    /**
+     * Drawable object coordiantes and attributes.
+     */
     otherDirection = false;
     img;
     imageCache = {};
@@ -28,11 +31,19 @@ class DrawableObject {
     width = 190;
     height = 50;
 
+    /**
+     * Loads an image for the drawable object.
+     * @param {string} path - The path to the image.
+     */
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
     }
 
+    /**
+     * Loads multiple images into the image cache.
+     * @param {string[]} arr - Array of image paths to load.
+     */
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();
@@ -41,6 +52,10 @@ class DrawableObject {
         });
     }
 
+    /**
+     * Draws the object on the canvas context.
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     */
     draw(ctx) {
         try {
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
@@ -50,6 +65,10 @@ class DrawableObject {
         }
     }
 
+    /**
+     * Draws a frame around the object on the canvas context.
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     */
     drawFrame(ctx) {
         if (
             this instanceof Character ||
@@ -74,6 +93,10 @@ class DrawableObject {
         }
     }
 
+    /**
+     * Draws a frame around the object on the canvas context when following on the left.
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     */
     drawFrameOnFollowingLeft(ctx) {
         if (
 
@@ -91,6 +114,11 @@ class DrawableObject {
             ctx.stroke();
         }
     }
+
+    /**
+     * Draws a frame around the object on the canvas context when following on the right.
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     */
     drawFrameOnFollowingRight(ctx) {
         if (
 
@@ -109,6 +137,10 @@ class DrawableObject {
         }
     }
 
+    /**
+     * Adds a specified item (coin or stick) to the object's inventory.
+     * @param {string} item - The item to add ('coin' or 'stick').
+     */
     addItem(item) {
         switch (item) {
             case 'coin':
@@ -126,6 +158,11 @@ class DrawableObject {
         }
     }
 
+    /**
+     * Removes the specified item from the given array.
+     * @param {Array} array - The array from which to remove the item.
+     * @param {*} item - The item to be removed.
+     */
     removeItem(array, item) {
         let index = array.indexOf(item);
         array.splice(index, 1);

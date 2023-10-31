@@ -131,7 +131,7 @@ canvas {
 .buttons {
     display: flex;
     justify-content: center;
-    width: 100px;
+    width: auto;
     position: absolute;
     top: 16px;
     left: calc(50% - 100px / 2);
@@ -375,7 +375,7 @@ button img {
     width: 500px;
 }
 
-@media only screen and (max-width: 724px) {
+@media only screen and (max-width: 665px) {
 
     .canvasFullscreen,
     canvas {
@@ -441,6 +441,13 @@ button img {
 
     #menu {
         display: none;
+    }
+
+    .startGame img,
+    .controls img,
+    .scrollPaper img,
+    .playerinfo img {
+        height: 100px;
     }
 
     @keyframes turnPhoneImage {
@@ -513,6 +520,20 @@ button img {
         animation: shakingFullscreenBtn 0.5s infinite;
     }
 
+    .startGame,
+    .playerinfo,
+    .controls,
+    .scrollPaper {
+        width: 200px;
+    }
+
+    .startGame img,
+    .controls img,
+    .scrollPaper img,
+    .playerinfo img {
+        height: 100px;
+    }
+
     @keyframes shakingFullscreenBtn {
         0% {
             transform: rotate(0deg);
@@ -534,3 +555,4 @@ button img {
             transform: rotate(0deg);
         }
     }
+}

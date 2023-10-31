@@ -1,4 +1,7 @@
 class Keyboard {
+    /**
+     * State of the keys.
+     */
     A = false;
     D = false;
     W = false;
@@ -6,6 +9,9 @@ class Keyboard {
     J = false;
 }
 
+/**
+ * Event listener for keydown events to update the keyboard state.
+ */
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 65) {
         keyboard.A = true;
@@ -25,6 +31,9 @@ window.addEventListener('keydown', (e) => {
     // console.log(e.keyCode);
 });
 
+/**
+ * Event listener for keyup events to update the keyboard state.
+ */
 window.addEventListener('keyup', (e) => {
     if (e.keyCode == 65) {
         keyboard.A = false;
@@ -43,6 +52,9 @@ window.addEventListener('keyup', (e) => {
     }
 });
 
+/**
+ * Function to set up touch event listeners for mobile buttons.
+ */
 function mobileButtons() {
     document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
         e.preventDefault();

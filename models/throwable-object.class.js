@@ -1,12 +1,16 @@
 class ThrowableObject extends MovableObject {
-    // otherDirection = false;
+    /**
+     * Array of image paths for a throwable object.
+     */
     IMAGES_WEOPON = [
         'img/7_items/w1.png',
         'img/7_items/w2.png',
         'img/7_items/w3.png',
-
     ];
 
+    /**
+    * Create a throwable object object.
+    */
     constructor(x, y) {
         super().loadImage('img/7_items/w1.png');
         this.loadImages(this.IMAGES_WEOPON);
@@ -17,8 +21,11 @@ class ThrowableObject extends MovableObject {
         this.throw();
     }
 
+    /**
+     * Throws the object by applying a vertical speed and animating its movement.
+     */
     throw() {
-        this.speedY = 16; //18
+        this.speedY = 16;
         this.applyGravity();
         setInterval(() => {
             this.x += 20;

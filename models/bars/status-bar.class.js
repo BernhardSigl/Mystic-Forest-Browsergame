@@ -1,4 +1,7 @@
 class StatusBar extends DrawableObject {
+    /**
+     * Array of image paths representing the health bar at different fill levels.
+     */
     IMAGES_HEALTHBAR = [
         'img/6_statusbar/healthbar/100.png',
         'img/6_statusbar/healthbar/80.png',
@@ -8,8 +11,14 @@ class StatusBar extends DrawableObject {
         'img/6_statusbar/healthbar/0.png',
     ];
 
+    /**
+     * The current health percentage.
+     */
     percentage = 100;
 
+    /**
+    * Create a bar object.
+    */
     constructor() {
         super();
         this.loadImages(this.IMAGES_HEALTHBAR);
@@ -18,12 +27,20 @@ class StatusBar extends DrawableObject {
         this.setPercentage(100);
     }
 
+    /**
+     * Sets the health percentage and updates the displayed image accordingly.
+     * @param {number} percentage - The health percentage (0 to 100).
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_HEALTHBAR[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+     * Resolves the index of the image in the array based on the current health percentage.
+     * @returns {number} - The index of the image in the array.
+     */
     resolveImageIndex() {
         if (this.percentage > 80) {
             return 0;

@@ -1,8 +1,23 @@
+/**
+ * References.
+ */
 let canvas;
 let world;
+/**
+ * Instance of the Keyboard class for handling user input.
+ */
 let keyboard = new Keyboard();
+/**
+ * Stores the entered cheat code.
+ */
 let enteredCode = "";
+/**
+ * Represents the current sound mute status.
+ */
 let isSoundMuted = true;
+/**
+ * Audio objects.
+ */
 let click_sound = new Audio('audio/click.wav');
 let gameplay_sound = new Audio('audio/forest.wav');
 let winning_sound = new Audio('audio/winning.mp3');
@@ -10,12 +25,14 @@ let losing_sound = new Audio('audio/losing.mp3');
 let walking_sound = new Audio('audio/enemy_walk.wav');
 let mystic_sound = new Audio('audio/mystic_sound.mp3');
 let story_sound = new Audio('audio/story-alternative.mp3');
-
 /**
- * if you launch the game-url fullscreen is false
+ * Flag indicating whether the game is launched in fullscreen mode.
  */
 let full = false;
 
+/**
+ * Initializes the game by setting up the canvas, creating the world, and configuring initial settings.
+ */
 function init() {
     canvas = document.getElementById('canvasId');
     world = new World(canvas, keyboard);
@@ -26,7 +43,7 @@ function init() {
 }
 
 /**
- * This function is used to make the players movable
+ * Starts the game, making the players movable and triggering relevant audio and visual effects.
  */
 function startGame() {
     click_sound.play();
@@ -52,7 +69,7 @@ function loading() {
 }
 
 /**
- * This function is used to make the character movable if the game starts
+ * Enables character movement at the start of the game.
  */
 function isMovable() {
     world.character.characterMovable = true;
@@ -63,7 +80,7 @@ function isMovable() {
 }
 
 /**
- * This function is used to make the character unmovable if the game starts
+ * Disables character movement at the start of the game.
  */
 function notMovable() {
     world.character.characterMovable = false;
@@ -73,6 +90,9 @@ function notMovable() {
     });
 }
 
+/**
+ * Handles the event when the character dies, triggering relevant actions and effects.
+ */
 function characterDied() {
     resetGame();
     endScreenVisibilites();
@@ -84,6 +104,9 @@ function characterDied() {
     losing_sound.play();
 }
 
+/**
+ * Handles the event when the endboss dies, triggering relevant actions and effects.
+ */
 function endbossDied() {
     let endScreen = document.getElementById('endScreenId');
     endScreen.innerHTML = winning();
@@ -96,22 +119,34 @@ function endbossDied() {
     winning_sound.play();
 }
 
+/**
+ * Unlocks the cheat code if specific conditions are met.
+ */
 function unlockCheatCode() {
     if (world.unlockCheat.length >= 5) {
         toggleVisibility('cheatCodeVisbibleId', true);
     } else toggleVisibility('cheatCodeVisbibleId', false);
 }
 
+/**
+ * Resets the cheat code input.
+ */
 function resetCheatCode() {
     world.unlockCheat = [];
 }
 
+/**
+ * Returns the HTML content for the losing screen.
+ */
 function losing() {
     return /* html */ `
     <h1 class="endScreenText">YOU LOSE!<h1>
     <img src="img/9_menu/losingscreen.png">`
 }
 
+/**
+ * Returns the HTML content for the winning screen.
+ */
 function winning() {
     return /* html */ `
     <h1 class="endScreenText">YOU WON!<h1>
@@ -119,6 +154,10 @@ function winning() {
     <img src="img/9_menu/winningscreen.png">`
 }
 
+/**
+ * Checks the entered cheat code and activates the cheat if the correct code is entered.
+ * @param {string} inputValue - The entered cheat code.
+ */
 function checkCheatCode(inputValue) {
     let cheatKeyword = "1994";
     if (inputValue === cheatKeyword) {
@@ -128,6 +167,10 @@ function checkCheatCode(inputValue) {
     }
 }
 
+/**
+ * Adds a number to the cheat code input field.
+ * @param {number} code - The number to add to the input field.
+ */
 function addNumberToInput(code) {
     click_sound.play();
     const inputField = document.getElementById('cheatInputFieldId');
@@ -138,23 +181,32 @@ function addNumberToInput(code) {
     }
 }
 
+/**
+ * Controls the volume of all game sounds, toggling between mute and unmute.
+ */
 function soundControl() {
     const allSounds = [
         click_sound, gameplay_sound,
         winning_sound, losing_sound, walking_sound,
-        mystic_sound, story_sound
+        mystic_sound, story_sound, world.character.walking_sound, world.character.jumping_sound, world.character.hurting_sound, world.character.sword_sound, world.character.dead_sound, world.coin_sound, world.throwable_object_sound, world.enemy_hurting, world.enemy_dead, world.throw_sound
     ];
 
     allSounds.forEach(sound => {
         sound.volume = isSoundMuted ? 0 : 1.0;
     });
+    changeSoundImage();
+}
 
+/**
+ * Changes the sound control button image based on the mute status.
+ */
+function changeSoundImage() {
     isSoundMuted = !isSoundMuted;
     const soundControlButton = document.getElementById('soundControllBtn');
     if (isSoundMuted) {
-        soundControlButton.innerHTML = '<img src="img/8_buttons/soundoff.png">';
-    } else {
         soundControlButton.innerHTML = '<img src="img/8_buttons/soundon.png">';
+    } else {
+        soundControlButton.innerHTML = '<img src="img/8_buttons/soundoff.png">';
     }
 }
 
