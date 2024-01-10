@@ -34,27 +34,54 @@ let full = false;
  * Initializes the game by setting up the canvas, creating the world, and configuring initial settings.
  */
 function init() {
+    const loading = document.getElementById('loader-id');
+    loading.style.display = "block";
     canvas = document.getElementById('canvasId');
     world = new World(canvas, keyboard);
     notMovable();
     resetGame();
     mobileButtons();
     isSoundMuted;
+    loading.style.display = "none";
+}
+
+function disableBtns() {
+    document.getElementById('enterFullscreen').disabled = true;
+    document.getElementById('soundControllBtn').disabled = true;
+    document.getElementById('cheatButtonId').disabled = true;
+    document.getElementById('reloadGameId').disabled = true;
+    document.getElementById('playAgainId').disabled = true;
+    document.getElementById('playerinfo').onclick = null;
+    document.getElementById('joystick').onclick = null;
+    document.getElementById('about-me').onclick = null;
+}
+
+function enableBtns() {
+    document.getElementById('enterFullscreen').disabled = false;
+    document.getElementById('soundControllBtn').disabled = false;
+    document.getElementById('cheatButtonId').disabled = false;
+    document.getElementById('reloadGameId').disabled = false;
+    document.getElementById('playAgainId').disabled = false;
+    document.getElementById('playerinfo').onclick = openPlayerinfo;
+    document.getElementById('joystick').onclick = openControls;
+    document.getElementById('about-me').onclick = openAbout;
 }
 
 /**
  * Starts the game, making the players movable and triggering relevant audio and visual effects.
  */
 function startGame() {
+    disableBtns();
+    resetCheatCode();
     click_sound.play();
     loading();
     setTimeout(() => {
-        resetGame();
         isMovable();
         startGameVisibilities();
         gameplay_sound.play();
         walking_sound.play();
         mystic_sound.play();
+        enableBtns();
     }, 3000);
     setInterval(() => {
         world.endbossStatusBarVisibility();
@@ -94,6 +121,7 @@ function notMovable() {
  * Handles the event when the character dies, triggering relevant actions and effects.
  */
 function characterDied() {
+    disableBtns();
     resetGame();
     endScreenVisibilites();
     let losingScreen = document.getElementById('endScreenId');
@@ -102,21 +130,24 @@ function characterDied() {
     walking_sound.pause();
     mystic_sound.pause();
     losing_sound.play();
+    setTimeout(() => enableBtns(), 3000);
 }
 
 /**
  * Handles the event when the endboss dies, triggering relevant actions and effects.
  */
-function endbossDied() {
+async function endbossDied() {
+    resetGame();
+    disableBtns();
     let endScreen = document.getElementById('endScreenId');
     endScreen.innerHTML = winning();
     gameplay_sound.pause();
     walking_sound.pause();
     mystic_sound.pause();
-    unlockCheatCode();
-    resetGame();
-    endScreenVisibilites();
     winning_sound.play();
+    unlockCheatCode();
+    endScreenVisibilites();
+    setTimeout(() => enableBtns(), 3000);
 }
 
 /**

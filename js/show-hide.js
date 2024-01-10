@@ -10,6 +10,7 @@ function startGameVisibilities() {
     toggleVisibility('canvasId', true);
     toggleVisibility('mobileButtonsId', true);
     toggleVisibility('reloadGameId', true);
+    toggleVisibility('endScreenId', false);
 }
 
 /**
@@ -103,7 +104,7 @@ function openAbout() {
     click_sound.play();
     setTimeout(() => {
         story_sound.play();
-    }, 1000);
+    }, 500);
     toggleVisibility('backToMenuId', true);
     toggleVisibility('aboutId', true);
     toggleVisibility('cheatButtonId', false);

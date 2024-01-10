@@ -13,6 +13,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
+    caret-color: transparent !important;
 }
 
 h1,
@@ -131,10 +132,10 @@ canvas {
 .buttons {
     display: flex;
     justify-content: center;
-    width: auto;
+    width: 180px;
     position: absolute;
     top: 16px;
-    left: calc(50% - 100px / 2);
+    left: calc(50% - 180px / 2);
     z-index: 1;
 }
 
@@ -373,6 +374,39 @@ button img {
 
 .howToGetCheatCode {
     width: 500px;
+}
+
+#loader-id {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader {
+    border: 8px solid white;
+    border-top: 8px solid #092E7F;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    caret-color: transparent;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media only screen and (max-width: 665px) {

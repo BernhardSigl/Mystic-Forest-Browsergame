@@ -35,27 +35,31 @@
 
 <body onload="init()">
 
+    <div id="loader-id">
+        <div class="loader"></div>
+    </div>
+
     <h1 class="gameName">Mystic Forest</h1>
 
     <div id="fullscreen">
         <div id="gameContent" class="center border">
             <section id="menu">
                 <div class="topMenu">
-                    <a class="startGame scaleOnHover cursorPointer" onclick="startGame(), resetCheatCode()">
+                    <a class="startGame scaleOnHover cursorPointer" onclick="startGame()">
                         <img src="img/9_menu/startgame.png">
                         <h2>START</h2>
                     </a>
-                    <a class="playerinfo scaleOnHover cursorPointer" onclick="openPlayerinfo()">
+                    <a class="playerinfo scaleOnHover cursorPointer" onclick="openPlayerinfo()" id="playerinfo">
                         <img src="img/9_menu/playerinfo.png">
                         <h2>PLAYER INFO</h2>
                     </a>
                 </div>
                 <div class="bottomMenu">
-                    <a class="controls scaleOnHover cursorPointer" onclick="openControls()">
+                    <a class="controls scaleOnHover cursorPointer" onclick="openControls()" id="joystick">
                         <img src="img/9_menu/joystick.png">
                         <h2>CONTROLS</h2>
                     </a>
-                    <a class="scrollPaper scaleOnHover cursorPointer" onclick="openAbout()">
+                    <a class="scrollPaper scaleOnHover cursorPointer" onclick="openAbout()" id="about-me">
                         <img src="img/9_menu/scroll-310783_640.png">
                         <h2>ABOUT</h2>
                     </a>
@@ -153,8 +157,8 @@
                     id="reloadGameId">
                     <img src="img/9_menu/arrow-left-solid.png">
                 </button>
-                <button onclick="startGame(), resetCheatCode()"
-                    class="upperMenuButtons scaleOnHover d-none cursorPointer" id="playAgainId">
+                <button onclick="startGame()" class="upperMenuButtons scaleOnHover d-none cursorPointer"
+                    id="playAgainId">
                     <img src="img/9_menu/rotate-right-solid.png">
                 </button>
                 <button onclick="showMenu()" class="upperMenuButtons scaleOnHover d-none cursorPointer"

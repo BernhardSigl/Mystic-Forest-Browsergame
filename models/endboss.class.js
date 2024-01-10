@@ -109,12 +109,12 @@ class Endboss extends MovableObject {
      * Start the end boss animations.
      */
     animateEndboss() {
-        let endbossInterval = setInterval(() => {
+        setInterval(() => {
             if (this.endbossIsDead === true) {
                 this.playAnimation(this.IMAGES_DEAD);
                 setTimeout(() => {
+                    this.endbossIsDead = false;
                     endbossDied();
-                    clearInterval(endbossInterval);
                 }, 2000);
             } else if (this.endbossMoveLeft()) {
                 this.playAnimation(this.IMAGES_RUN);
