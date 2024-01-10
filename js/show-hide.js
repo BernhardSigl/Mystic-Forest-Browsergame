@@ -9,7 +9,6 @@ function startGameVisibilities() {
     toggleClass('gameContent', 'menuFullscreen', false);
     toggleVisibility('canvasId', true);
     toggleVisibility('mobileButtonsId', true);
-    toggleVisibility('reloadGameId', true);
     toggleVisibility('endScreenId', false);
 }
 
@@ -54,6 +53,7 @@ function showMenu() {
     toggleVisibility('cheatButtonId', true);
     toggleClass('gameContent', 'center', true);
     toggleVisibility('aboutId', false);
+    toggleVisibility('reloadGameId', false);
     if (full === true) {
         toggleClass('gameContent', 'menuFullscreen', true);
     } else

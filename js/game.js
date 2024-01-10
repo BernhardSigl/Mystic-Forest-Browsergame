@@ -49,6 +49,7 @@ function init() {
  */
 function disableBtns() {
     document.getElementById('enterFullscreen').disabled = true;
+    document.getElementById('closeFullscreen').disabled = true;
     document.getElementById('soundControllBtn').disabled = true;
     document.getElementById('cheatButtonId').disabled = true;
     document.getElementById('reloadGameId').disabled = true;
@@ -63,6 +64,7 @@ function disableBtns() {
  */
 function enableBtns() {
     document.getElementById('enterFullscreen').disabled = false;
+    document.getElementById('closeFullscreen').disabled = false;
     document.getElementById('soundControllBtn').disabled = false;
     document.getElementById('cheatButtonId').disabled = false;
     document.getElementById('reloadGameId').disabled = false;
