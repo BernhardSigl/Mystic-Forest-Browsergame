@@ -2,14 +2,12 @@
  * Resets the entire game state.
  */
 function resetGame() {
-    showMenu();
     resetCharacter();
     resetEnemies();
     resetCoins();
     resetMagicalBalls();
     resetHealth();
     resetEndboss();
-    toggleVisibility('reloadGameId', false);
     gameplay_sound.pause();
     mystic_sound.pause();
 }
@@ -24,6 +22,7 @@ function resetCharacter() {
     world.character.y = 212;
     world.character.isAttacking = false;
     world.character.characterDied = false;
+    world.character.gameEnd = false;
 }
 
 /**

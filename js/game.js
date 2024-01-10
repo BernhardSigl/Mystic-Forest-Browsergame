@@ -39,12 +39,14 @@ function init() {
     canvas = document.getElementById('canvasId');
     world = new World(canvas, keyboard);
     notMovable();
-    resetGame();
     mobileButtons();
     isSoundMuted;
     loading.style.display = "none";
 }
 
+/**
+ * Disables certain buttons and removes click event listeners.
+ */
 function disableBtns() {
     document.getElementById('enterFullscreen').disabled = true;
     document.getElementById('soundControllBtn').disabled = true;
@@ -56,6 +58,9 @@ function disableBtns() {
     document.getElementById('about-me').onclick = null;
 }
 
+/**
+ * Enables disabled buttons and restores click event listeners.
+ */
 function enableBtns() {
     document.getElementById('enterFullscreen').disabled = false;
     document.getElementById('soundControllBtn').disabled = false;
@@ -71,6 +76,7 @@ function enableBtns() {
  * Starts the game, making the players movable and triggering relevant audio and visual effects.
  */
 function startGame() {
+    resetGame();
     disableBtns();
     resetCheatCode();
     click_sound.play();
@@ -121,31 +127,37 @@ function notMovable() {
  * Handles the event when the character dies, triggering relevant actions and effects.
  */
 function characterDied() {
-    disableBtns();
-    resetGame();
-    endScreenVisibilites();
+    deadEndbossOrCharacterBehaviour();
     let losingScreen = document.getElementById('endScreenId');
     losingScreen.innerHTML = losing();
-    gameplay_sound.pause();
-    walking_sound.pause();
-    mystic_sound.pause();
     losing_sound.play();
-    setTimeout(() => enableBtns(), 3000);
 }
 
 /**
  * Handles the event when the endboss dies, triggering relevant actions and effects.
  */
-async function endbossDied() {
-    resetGame();
-    disableBtns();
+function endbossDied() {
+    deadEndbossOrCharacterBehaviour();
     let endScreen = document.getElementById('endScreenId');
     endScreen.innerHTML = winning();
+    winning_sound.play();
+    unlockCheatCode();
+}
+
+/**
+ * Common behavior for handling the death of either the character or the endboss.
+ */
+function deadEndbossOrCharacterBehaviour() {
+    world.character.gameEnd = true;
+    world.character.characterMovable = false;
+    world.character.y = 5000;
+    showMenu();
+    toggleVisibility('reloadGameId', false);
+    disableBtns();
     gameplay_sound.pause();
     walking_sound.pause();
     mystic_sound.pause();
-    winning_sound.play();
-    unlockCheatCode();
+    world.character.hurting_sound.pause();
     endScreenVisibilites();
     setTimeout(() => enableBtns(), 3000);
 }

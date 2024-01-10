@@ -26,6 +26,7 @@ class Character extends MovableObject {
     otherDirection = false;
     lastAttackTime = 0;
     maxAttackDuration = 1000;
+    gameEnd = false;
 
     /**
      * Arrays of image paths for the character animation.
@@ -180,20 +181,22 @@ class Character extends MovableObject {
      * Move the character based on user input.
      */
     moveCharacter() {
-        this.walking_sound.pause();
-        if (this.canMoveRight()) {
-            this.moveRight();
-            this.walking_sound.play();
+        if (this.gameEnd === false) {
+            this.walking_sound.pause();
+            if (this.canMoveRight()) {
+                this.moveRight();
+                this.walking_sound.play();
+            }
+            if (this.canMoveLeft()) {
+                this.moveLeft();
+                this.walking_sound.play();
+            }
+            if (this.canJump()) {
+                this.jump();
+                this.jumping_sound.play();
+            }
+            this.world.camera_x = -this.x;
         }
-        if (this.canMoveLeft()) {
-            this.moveLeft();
-            this.walking_sound.play();
-        }
-        if (this.canJump()) {
-            this.jump();
-            this.jumping_sound.play();
-        }
-        this.world.camera_x = -this.x;
     }
 
     /**
@@ -227,6 +230,7 @@ class Character extends MovableObject {
             this.dead_sound.play();
             setTimeout(() => {
                 characterDied();
+                world.character.energyCharacter = 100;
             }, 2500);
         } else if (this.isGettingDamage()) {
             this.playAnimation(this.IMAGES_HURT);
@@ -260,21 +264,23 @@ class Character extends MovableObject {
     attackFromCharacter() {
         let currentTime = new Date().getTime();
         let difference = currentTime - this.lastAttackTime;
-        if (this.world.keyboard.J) {
-            this.sword_sound.play();
-            if (this.lastAttackTime === 0) {
-                this.lastAttackTime = currentTime;
-            } else if (!this.isDead() && difference <= this.maxAttackDuration) {
-                this.playAnimation(this.IMAGES_ATTACK);
-                this.isAttacking = true;
-            } else if (difference > this.maxAttackDuration) {
+        if (this.gameEnd === false) {
+            if (this.world.keyboard.J) {
+                this.sword_sound.play();
+                if (this.lastAttackTime === 0) {
+                    this.lastAttackTime = currentTime;
+                } else if (!this.isDead() && difference <= this.maxAttackDuration) {
+                    this.playAnimation(this.IMAGES_ATTACK);
+                    this.isAttacking = true;
+                } else if (difference > this.maxAttackDuration) {
+                    this.world.keyboard.J = false;
+                    this.isAttacking = false;
+                }
+            } else {
                 this.world.keyboard.J = false;
+                this.lastAttackTime = 0;
                 this.isAttacking = false;
             }
-        } else {
-            this.world.keyboard.J = false;
-            this.lastAttackTime = 0;
-            this.isAttacking = false;
         }
     }
 }

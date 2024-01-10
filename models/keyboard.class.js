@@ -56,51 +56,55 @@ window.addEventListener('keyup', (e) => {
  * Function to set up touch event listeners for mobile buttons.
  */
 function mobileButtons() {
+    const options = { passive: false };
+
     document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.A = true;
-    });
+    }, options);
+
     document.getElementById('btnLeft').addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.A = false;
-    });
+    }, options);
+
     document.getElementById('btnRight').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.D = true;
-    });
+    }, options);
 
     document.getElementById('btnRight').addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.D = false;
-    });
+    }, options);
 
     document.getElementById('btnUp').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.W = true;
-    });
+    }, options);
 
     document.getElementById('btnUp').addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.W = false;
-    });
+    }, options);
 
     document.getElementById('btnThrow').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.K = true;
-    });
+    }, options);
 
     document.getElementById('btnThrow').addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.K = false;
-    });
+    }, options);
 
     document.getElementById('btnAttack').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.J = true;
-    });
+    }, options);
 
     document.getElementById('btnAttack').addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.J = false;
-    });
+    }, options);
 }

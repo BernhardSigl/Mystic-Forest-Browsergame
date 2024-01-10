@@ -102,7 +102,6 @@ class Endboss extends MovableObject {
         this.speed = 8 + Math.random() * 2;
         this.otherDirection = true;
         this.animateEndboss();
-        this.endbossInterval;
     }
 
     /**
@@ -113,9 +112,9 @@ class Endboss extends MovableObject {
             if (this.endbossIsDead === true) {
                 this.playAnimation(this.IMAGES_DEAD);
                 setTimeout(() => {
-                    this.endbossIsDead = false;
                     endbossDied();
-                }, 2000);
+                    this.endbossIsDead = false;
+                }, 2500);
             } else if (this.endbossMoveLeft()) {
                 this.playAnimation(this.IMAGES_RUN);
                 this.moveLeft();
@@ -132,7 +131,8 @@ class Endboss extends MovableObject {
                 }, 625);
             } else if (this.endbossIsAttacking()) {
                 this.playAnimation(this.IMAGES_ATTACK);
-            } else
+            }
+            else
                 this.playAnimation(this.IMAGES_IDLE);
         }, 60);
     }
